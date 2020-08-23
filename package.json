@@ -6,7 +6,13 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "codemirror": "^5.57.0",
+    "select2": "4.0.13",
+    "bootstrap": "4.3.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "gasparesganga-jquery-loading-overlay": "2.1.7"
   },
   "version": "0.1.0",
   "devDependencies": {

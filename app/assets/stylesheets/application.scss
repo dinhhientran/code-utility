@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap/scss/bootstrap";
+
+html{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  color:#484848;
+  line-height:1.28;
+}
+
+body {
+  background-color: #f9f9f9 !important;
+  padding: 30px 30px 30px 30px;
+}
+
+h1 {
+  font-size: 39px;
+  line-height: 40px;
+  font-weight: bold;
+  text-rendering: optimizelegibility;
+}
+
+textarea#source {
+  width: 100%;
+}
+
+.CodeMirror {
+  border: 1px solid #cacaca;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+  max-height: 300px !important;
+}

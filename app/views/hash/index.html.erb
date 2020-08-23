@@ -1,0 +1,64 @@
+<h1>Beautify Hash</h1>
+<div class="row mt-4">
+  <div class="col-md-6">
+    <label>Language</label>
+    <select id="language">
+      <option value="PHP">PHP</option>
+      <option value="Ruby">Ruby</option>
+      <option value="Javascript/Typescript">Javascript/Typescript</option>
+      <option value="Python">Python</option>
+      <option value="Perl">Perl</option>
+      <option value="Go">Go</option>
+      <option value="Groovy">Groovy</option>
+      <option value="Swift">Swift</option>
+    </select>
+  </div>
+  <div class="col-md-6 text-right">
+    <label>Theme</label>
+    <select id="theme">
+      <option value="Light">Light</option>
+      <option value="Dark">Dark</option>
+    </select>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-5" style="max-width: 47% !important; flex: 0 0 47% !important">
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="source">
+$ab = array(
+  "registrationRequest.contactFullName" => "Full Name",
+  "registrationRequest.companyName" => "Company Name",
+  "registrationRequest.contactEmail" => "Email",
+  "registrationRequest.contactPhone" => "Phone",
+  "registrationRequest.status" => "Request Status",
+  "registrationRequest.credentialUserName" => "User Name",
+  "registrationRequest.organization" => "Company linkage on system",
+  "registrationRequest.description" => "Description"
+);
+        </textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 justify-content-center align-self-center" style="max-width: 6% !important; flex: 0 0 6% !important; padding: 0;">
+    <button id="beautify-btn" class="btn btn-primary" style="width: 100%;">Beautify</button>
+  </div>
+  <div class="col-md-5" style="max-width: 47% !important; flex: 0 0 47% !important">
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="target">
+$ab = array(
+  "registrationRequest.contactFullName"    => "Full Name",
+  "registrationRequest.companyName"        => "Company Name",
+  "registrationRequest.contactEmail"       => "Email",
+  "registrationRequest.contactPhone"       => "Phone",
+  "registrationRequest.status"             => "Request Status",
+  "registrationRequest.credentialUserName" => "User Name",
+  "registrationRequest.organization"       => "Company linkage on system",
+  "registrationRequest.description"        => "Description"
+);
+        </textarea>
+      </div>
+    </div>
+  </div>
+</div>

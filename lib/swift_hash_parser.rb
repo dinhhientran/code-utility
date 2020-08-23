@@ -1,13 +1,13 @@
-class RubyHashParser < HashParser
+class SwiftHashParser < HashParser
 
-  HASH_REGEX = /^(?:\s*){(.*)}(?:\s*)$/m
-  HASH_WITH_VARIABLE_REGEX = /^(?:\s*)(\w+)(?:\s*)=(?:\s*){(?:\s*)(.*)(?:\s*)}(?:\s*)$/m
+  HASH_REGEX = /^(?:\s*)\[(.*)\](?:\s*)$/m
+  HASH_WITH_VARIABLE_REGEX = /^(?:\s*)(.*)(?:\s*)=(?:\s*)\[(?:\s*)(.*)(?:\s*)\](?:\s*)$/m
 
-  ITEM_SPLIT_REGEX = /(?:\s*)(:\w+|\d|[0-9]\.[0-9]+|true|false|".+?"|'.+?')(?:\s*)(?:\:|=>)(?:\s*)(:\w+|\d|[0-9]\.[0-9]+|true|false|".+?"|'.+?'|.+?)(?:\s*)(?:,?)(?:\s*)/m
+  ITEM_SPLIT_REGEX = /(?:\s*)(\w+|\d|[0-9]\.[0-9]+|true|false|".+?"|'.+?')(?:\s*):(?:\s*)(:\w+|\d|[0-9]\.[0-9]+|true|false|".+?"|'.+?'|.+?)(?:\s*)(?:,?)(?:\s*)/m
 
-  HASH_SYNTAX = "%s{\n%s\n}\n"
+  HASH_SYNTAX = "%s[\n%s\n]\n"
   ITEM_SEPARATOR = ','
-  KEY_VALUE_SEPARATOR = '=>'
+  KEY_VALUE_SEPARATOR = ':'
   INDENT = '  '
 
   def initialize(input = nil)
