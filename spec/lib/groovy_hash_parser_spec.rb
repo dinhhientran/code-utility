@@ -123,7 +123,7 @@ def ab   = ["registrationRequest.contactFullName":"Full Name",
 
     swiftHashParser = SwiftHashParser.new(input)
     swiftHashParser.setKeyValueSeparator(":")
-    swiftHashParser.setIndent("  ")
+    swiftHashParser.setIndent(2)
     expect(swiftHashParser.isValidHash?).to be_truthy
     expect(swiftHashParser.beautify).to eq(
                                            <<-HASH
@@ -155,7 +155,7 @@ ab   = ["registrationRequest.contactFullName":"Full Name",
 
     swiftHashParser = SwiftHashParser.new(input)
     swiftHashParser.setKeyValueSeparator(":")
-    swiftHashParser.setIndent("  ")
+    swiftHashParser.setIndent(2)
     swiftHashParser.setKeyFollowBySeparator(true)
 
     expect(swiftHashParser.isValidHash?).to be_truthy

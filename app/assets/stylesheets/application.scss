@@ -15,15 +15,17 @@
  */
 
 @import "bootstrap/scss/bootstrap";
+@import "nav";
+@import url(//db.onlinewebfonts.com/c/b4e4280eacbbd2ed88862d648b0b1f2f?family=Proxima+Nova+Soft);
+
+@font-face {font-family: "Proxima Nova Soft"; src: url("//db.onlinewebfonts.com/t/b4e4280eacbbd2ed88862d648b0b1f2f.eot"); src: url("//db.onlinewebfonts.com/t/b4e4280eacbbd2ed88862d648b0b1f2f.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/b4e4280eacbbd2ed88862d648b0b1f2f.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/b4e4280eacbbd2ed88862d648b0b1f2f.woff") format("woff"), url("//db.onlinewebfonts.com/t/b4e4280eacbbd2ed88862d648b0b1f2f.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/b4e4280eacbbd2ed88862d648b0b1f2f.svg#Proxima Nova Soft") format("svg");}
 
 html{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  color:#484848;
   line-height:1.28;
 }
 
-body {
-  background-color: #f9f9f9 !important;
+main {
   padding: 30px 30px 30px 30px;
 }
 
@@ -32,6 +34,46 @@ h1 {
   line-height: 40px;
   font-weight: bold;
   text-rendering: optimizelegibility;
+  font-family: "Proxima Nova Soft";
+}
+
+label {
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .col-md-5_5 {
+    width: 45.8333333%;
+    flex: 0 0 45.8333333%;
+    max-width: 45.8333333%;
+  }
+}
+
+$btn-padding-x-xs:  .20rem !default;
+$btn-padding-y-xs:  .12rem !default;
+$input-btn-line-height-xs: 1.1 !default;
+
+.btn.btn-xs {
+  // line-height: ensure proper height of button next to small input
+  @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-sm, $input-btn-line-height-xs, $btn-border-radius-sm);
+}
+
+div.editor-buttons {
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+}
+
+.editor-buttons .btn.wrap .fa-primary {
+  fill: #acacac !important;
+}
+
+.editor-buttons .btn.wrap.active .fa-primary{
+  fill: #28a745 !important;
+}
+
+.editor-buttons .btn {
+  border-radius: 0 0 0.2rem 0.2rem !important;
 }
 
 textarea#source {
@@ -40,8 +82,32 @@ textarea#source {
 
 .CodeMirror {
   border: 1px solid #cacaca;
+  border-radius: 10px;
+  font-size: 14px !important;
 }
 
 .select2-container--default .select2-results > .select2-results__options {
-  max-height: 300px !important;
+  max-height: 350px !important;
+}
+
+.select2-results__option {
+  color: rgba(0,0,0,.85) !important;
+}
+
+.select2-selection {
+  height: auto !important;
+}
+
+.indent-spaces {
+  display: inline-flex !important;
+  width: 120px;
+}
+
+.indent-spaces .form-control-sm {
+  width: 40px !important;
+  border: 1px solid #aaa !important;
+}
+
+.indent-spaces .btn-sm {
+  border: 1px solid #aaa !important;
 }

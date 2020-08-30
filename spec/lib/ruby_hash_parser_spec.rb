@@ -123,7 +123,7 @@ ab   = {"registrationRequest.contactFullName":"Full Name",
 
     rubyHashParser = RubyHashParser.new(input)
     rubyHashParser.setKeyValueSeparator(":")
-    rubyHashParser.setIndent("  ")
+    rubyHashParser.setIndent(2)
     expect(rubyHashParser.isValidHash?).to be_truthy
     expect(rubyHashParser.beautify).to eq(
                                            <<-HASH
@@ -155,7 +155,7 @@ ab   = {"registrationRequest.contactFullName":"Full Name",
 
     rubyHashParser = RubyHashParser.new(input)
     rubyHashParser.setKeyValueSeparator(":")
-    rubyHashParser.setIndent("  ")
+    rubyHashParser.setIndent(2)
     rubyHashParser.setKeyFollowBySeparator(true)
 
     expect(rubyHashParser.isValidHash?).to be_truthy

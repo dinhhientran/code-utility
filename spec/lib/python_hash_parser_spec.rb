@@ -123,7 +123,7 @@ ab   = {"registrationRequest.contactFullName":"Full Name",
 
     pythonHashParser = PythonHashParser.new(input)
     pythonHashParser.setKeyValueSeparator(":")
-    pythonHashParser.setIndent("  ")
+    pythonHashParser.setIndent(2)
     expect(pythonHashParser.isValidHash?).to be_truthy
     expect(pythonHashParser.beautify).to eq(
                                            <<-HASH
@@ -155,7 +155,7 @@ ab   = {"registrationRequest.contactFullName":"Full Name",
 
     pythonHashParser = PythonHashParser.new(input)
     pythonHashParser.setKeyValueSeparator(":")
-    pythonHashParser.setIndent("  ")
+    pythonHashParser.setIndent(2)
     pythonHashParser.setKeyFollowBySeparator(true)
 
     expect(pythonHashParser.isValidHash?).to be_truthy

@@ -1,0 +1,92 @@
+@import "bootstrap/scss/bootstrap";
+
+$bd-purple-bright: #3b528c;
+
+.bd-navbar {
+  min-height: 3.2rem;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
+
+  @include media-breakpoint-down(md) {
+    padding-right: .5rem;
+    padding-left: .5rem;
+
+    .navbar-nav-scroll {
+      max-width: 100%;
+      height: 2.5rem;
+      margin-top: .25rem;
+      overflow: hidden;
+
+      .navbar-nav {
+        padding-bottom: 2rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    .navbar-nav-scroll span {
+      font-family: "Proxima Nova Soft";
+      font-size: 1.4rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    @supports (position: sticky) {
+      top: 0;
+      z-index: 1071; // over everything in bootstrap
+    }
+  }
+
+  .navbar-nav-scroll {
+    line-height: 0.9;
+
+    span {
+      font-family: "Proxima Nova Soft";
+      font-size: 1.4rem;
+    }
+
+    span.slogan {
+      color: #9b9dad;
+      font-size: 0.8rem;
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      padding-right: .5rem;
+      padding-left: .5rem;
+      color: $primary;
+
+      &.active,
+      &:hover {
+        color: $primary;
+        background-color: transparent;
+      }
+
+      &.active {
+        font-weight: 600;
+      }
+    }
+
+    .nav-item span{
+      display: inline-block;
+      padding-top: 0.5rem;
+    }
+  }
+
+  .navbar-nav-svg {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-top;
+    fill: $primary;
+  }
+
+  .navbar-brand {
+    padding-top: 0 !important;
+  }
+
+  .dropdown-menu {
+    @include font-size(.875rem);
+  }
+}

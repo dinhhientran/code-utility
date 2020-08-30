@@ -1,3 +1,0 @@
-class GroovyHashParser < SwiftHashParser
-
-end

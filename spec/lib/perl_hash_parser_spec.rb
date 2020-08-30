@@ -122,7 +122,7 @@ HASH
     INPUT
 
     perlHashParser = PerlHashParser.new(input)
-    perlHashParser.setIndent("  ")
+    perlHashParser.setIndent(2)
     expect(perlHashParser.isValidHash?).to be_truthy
     expect(perlHashParser.beautify).to eq(
                                            <<-HASH
@@ -153,7 +153,7 @@ HASH
     INPUT
 
     perlHashParser = PerlHashParser.new(input)
-    perlHashParser.setIndent("  ")
+    perlHashParser.setIndent(2)
     perlHashParser.setKeyFollowBySeparator(true)
 
     expect(perlHashParser.isValidHash?).to be_truthy

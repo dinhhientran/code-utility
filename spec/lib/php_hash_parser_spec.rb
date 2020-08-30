@@ -122,7 +122,7 @@ $ab   = array("registrationRequest.contactFullName"=>"Full Name",
     INPUT
 
     phpHashParser = PhpHashParser.new(input)
-    phpHashParser.setIndent("  ")
+    phpHashParser.setIndent(2)
     expect(phpHashParser.isValidHash?).to be_truthy
     expect(phpHashParser.beautify).to eq(
                                            <<-HASH
@@ -153,7 +153,7 @@ array("registrationRequest.contactFullName":"Full Name",
     INPUT
 
     phpHashParser = PhpHashParser.new(input)
-    phpHashParser.setIndent("  ")
+    phpHashParser.setIndent(2)
     phpHashParser.setKeyFollowBySeparator(true)
 
     expect(phpHashParser.isValidHash?).to be_truthy

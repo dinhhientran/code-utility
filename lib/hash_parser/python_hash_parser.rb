@@ -1,3 +1,2 @@
 class PythonHashParser < JsHashParser
-
 end
