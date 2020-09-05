@@ -54,7 +54,7 @@ class HashBeautifier
     if hash.is_a? Hash
       longestKey =  hash.keys.map { |key| key.to_s.length }.max
       hash = hash.map do |key, value|
-        key = "#{whiteSpaces(indent + indent())}#{key.to_s}#{valueAligned ? whiteSpaces(longestKey - key.to_s.length) : ' '}#{self.class::COLON}"
+        key = "#{whiteSpaces(indent + (!isRoot ? indent() : 0))}#{key.to_s}#{valueAligned ? whiteSpaces(longestKey - key.to_s.length) : ' '}#{self.class::COLON}"
         if value.is_a? String
           "#{key} #{value}"
         else
@@ -63,8 +63,8 @@ class HashBeautifier
       end
       "#{!isRoot && !isHashItem ? whiteSpaces(indent) : ''}#{self.class::LEFT_BRACE}\n#{hash.join("#{self.class::COMMA}\n")}\n#{!isRoot ? whiteSpaces(indent) : ''}#{self.class::RIGHT_BRACE}"
     elsif hash.is_a? Array
-      array = hash.map { |item| _beautify(item, indent + indent())}
-      "#{!isRoot && !isHashItem ? whiteSpaces(indent) : ''}#{self.class::LEFT_BRACKET}\n#{array.join("#{self.class::COMMA}\n")}\n#{!isRoot ? whiteSpaces(indent) : ''}#{self.class::RIGHT_BRACKET}"
+      array = hash.map { |item| _beautify(item, indent)}
+      "#{!isRoot && !isHashItem ? whiteSpaces(indent) : ''}#{self.class::LEFT_BRACKET}\n#{array.join("#{self.class::COMMA}\n")}\n#{!isRoot ? whiteSpaces(indent - indent()) : ''}#{self.class::RIGHT_BRACKET}"
     else
       "#{!isRoot ? whiteSpaces(indent) : ''}#{hash}"
     end

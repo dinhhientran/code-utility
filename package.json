@@ -17,6 +17,7 @@
     "popper.js": "^1.16.1",
     "select2": "4.0.13",
     "toastr": "^2.1.2",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

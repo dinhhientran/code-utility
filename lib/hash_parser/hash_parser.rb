@@ -12,14 +12,14 @@ class HashParser
   SYNTAX = [COMMA, COLON, LEFT_BRACKET, RIGHT_BRACKET, LEFT_BRACE, RIGHT_BRACE].flatten
 
   # regex
-  STRING_REGEX = /^(?:\s*)('.*?[^\\]'|".*?[^\\]")(?:\s*)(.*)/m
-  NUMBER_REGEX = /^(?:\s*)(-?\d+\.?[\d_][eE-]?(?:\d+)?|0[xXbB][0-9a-fA-F]+|\d+|-\d+)(?:\s*)(.*)/m
-  BOOL_REGEX = /^(?:\s*)(true|false|TRUE|FALSE|True|False)(?:\s*)(.*)/
-  NULL_REGEX = /^(?:\s*)(#{NULL_VALUES.join('|')})(?:\s+?)(.*)/m
-  SYMBOL_REGEX = /^(?:\s*)(:\w+)(?:\s*)(.*)/m
-  VARIABLE_REGEX = /^(?:\s*)(\w+\.\w+|\w+::\w+|@\w+|\$\w+|\w+)(?:\s*)(.*)/m
-  REGEX_REGEX = /^(\/.*[^\\]\/\w*)(?:\s*)(.*)/m
-  EXPRESSION_REGEX = /^(?:\s*)([^#{[COMMA, COLON].flatten.join('|')}]+)(?:\s*)(.*)/m
+  STRING_REGEX = /\A(?:\s*)(""|''|'.*?[^\\]'|".*?[^\\]")(?:\s*)(.*)/m
+  NUMBER_REGEX = /\A(?:\s*)(-?\d+\.?[\d_][eE-]?(?:\d+)?|0[xXbB][0-9a-fA-F]+|\d+|-\d+)(?:\s*)(.*)/m
+  BOOL_REGEX = /\A(?:\s*)(true|false|TRUE|FALSE|True|False)(?:\s*)(.*)/
+  NULL_REGEX = /\A(?:\s*)(#{NULL_VALUES.join('|')})(?:\s+?)(.*)/m
+  SYMBOL_REGEX = /\A(?:\s*)(:\w+)(?:\s*)(.*)/m
+  VARIABLE_REGEX = /\A(?:\s*)(\w+\.\w+|\w+::\w+|@\w+|\$\w+|\w+)(?:\s*)(.*)/m
+  REGEX_REGEX = /\A(\/.*[^\\]\/\w*)(?:\s*)(.*)/m
+  EXPRESSION_REGEX = /\A(?:\s*)([^#{[COMMA, COLON].flatten.join('|')}]+)(?:\s*)(.*)/m
 
   LEX_FUNCTIONS = %w[lexString lexNumber lexBool lexNull lexSymbol lexFunction lexRegex lexVariable lexExpression]
 
@@ -67,7 +67,6 @@ class HashParser
   end
 
   def lexType(hash, regex)
-    return [nil, hash] if hash.start_with?(*self.class::SYNTAX)
     scanned = hash.scan(regex).flatten
     if !scanned.empty?
       [scanned[0], scanned[1]]
@@ -100,7 +99,7 @@ class HashParser
     return [nil, hash] if hash.start_with?(*self.class::SYNTAX)
     bracket = {:open => 0, :close => 0}
     function = ''
-    if hash.match?(/^(?:\s*)(\w+(\:\:|.)\w+(?:\w+)?\()(.*)/m)
+    if hash.match?(/\A(?:\s*)(\w+(\:\:|.)\w+(?:\w+)?\()(.*)/m)
       hash.chars.each do |char|
         if (bracket[:open] == 0 and bracket[:close] == 0) || bracket[:open] != bracket[:close]
           bracket[:open] = bracket[:open] + 1 if char == '('
@@ -148,16 +147,13 @@ class HashParser
       end
 
       if !hash.nil? and hash.strip != ""
-        doNext = false
         self.class::LEX_FUNCTIONS.each do |function|
           result, hash = self.send(function.to_sym, hash)
           if !result.nil?
             tokens.push(result)
-            doNext = true
             break
           end
         end
-        next if doNext
       end
 
       hash = hash.strip

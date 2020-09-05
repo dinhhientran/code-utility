@@ -37,6 +37,10 @@ h1 {
   font-family: "Proxima Nova Soft";
 }
 
+h6 {
+  font-family: "Proxima Nova Soft" !important;
+}
+
 label {
   font-weight: 500;
 }
@@ -57,6 +61,11 @@ $input-btn-line-height-xs: 1.1 !default;
   // line-height: ensure proper height of button next to small input
   @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-sm, $input-btn-line-height-xs, $btn-border-radius-sm);
 }
+
+.row-eq-height {
+  display: -webkit-box !important;
+}
+
 
 div.editor-buttons {
   position: absolute;
@@ -110,4 +119,23 @@ textarea#source {
 
 .indent-spaces .btn-sm {
   border: 1px solid #aaa !important;
+}
+
+.share-link {
+  @extend .btn;
+  color: #007bff !important;
+  border-radius: 0.4rem !important;
+  background: rgba(0, 123, 255, 0.1) !important;
+  -webkit-user-select: all;  /* Chrome 49+ */
+  -moz-user-select: all;     /* Firefox 43+ */
+  -ms-user-select: all;      /* No support yet */
+  user-select: all;
+}
+
+.share-link::selection {
+  color: #fff;
+}
+
+.share-link:hover {
+
 }
