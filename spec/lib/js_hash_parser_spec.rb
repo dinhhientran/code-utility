@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe JsHashParser do
 
-  it "should work with empty hash" do
+  it "should work with empty align_hash" do
     jsHashParser = JsHashParser.new("{}")
     expect(jsHashParser.isValidHash?).to be_truthy
     expect(jsHashParser.beautify).to eq(
@@ -25,7 +25,7 @@ HASH
 )
   end
 
-  it "should work with nested hash" do
+  it "should work with nested align_hash" do
     input = <<-INPUT
 {
     "registrationRequest.contactFullName":"Full Name",

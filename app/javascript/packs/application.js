@@ -14,12 +14,21 @@ import $ from 'jquery'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '@fortawesome/fontawesome-free/js/all.min.js'
 
-import AlignPage from "./alignPage.js";
+import AlignHashPage from "./alignHashPage.js";
+import BeautifyCodePage from "./beautifyCodePage.js";
 
-$(document).ready(function() {
+$( document ).on('turbolinks:load', function() {
 
-    let page = new AlignPage();
-    page.init();
+    let page = null;
+    if (window.gon.tool == 'align') {
+        page = new AlignHashPage();
+    } else if (window.gon.tool == 'beautify_code') {
+        page = new BeautifyCodePage();
+    }
+
+    if (page != null) {
+        page.init();
+    }
 
 });
 

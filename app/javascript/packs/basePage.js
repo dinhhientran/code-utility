@@ -5,6 +5,9 @@ export default class BasePage {
 
     constructor() {
         this.initMegaMenu = this.initMegaMenu.bind(this);
+
+        this.uploadUrl = '/tool/upload';
+        this.downloadUrl = '/tool/download';
     }
 
     init() {

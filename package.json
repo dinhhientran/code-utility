@@ -2,6 +2,7 @@
   "name": "codeutility",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -17,11 +18,13 @@
     "popper.js": "^1.16.1",
     "select2": "4.0.13",
     "toastr": "^2.1.2",
-    "@fortawesome/fontawesome-free": "^5.14.0",
+    "blueimp-file-upload": "^10.31.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@unibeautify/beautifier-php-cs-fixer": "^0.4.0",
+    "unibeautify": "^0.17.1",
     "webpack-dev-server": "^3.11.0"
   }
 }

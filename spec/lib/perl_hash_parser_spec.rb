@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PerlHashParser do
 
-  it "should work with empty hash" do
+  it "should work with empty align_hash" do
     perlHashParser = PerlHashParser.new("()")
     expect(perlHashParser.isValidHash?).to be_truthy
     expect(perlHashParser.beautify).to eq(
@@ -74,7 +74,7 @@ HASH
 )
   end
 
-  it "hash input is not valid" do
+  it "align_hash input is not valid" do
     perlHashParser = PerlHashParser.new(":a => 1 :b => 'test'}")
     expect(perlHashParser.isValidHash?).to be_falsey
   end

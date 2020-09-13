@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PythonHashParser do
 
-  it "should work with empty hash" do
+  it "should work with empty align_hash" do
     pythonHashParser = PythonHashParser.new("{}")
     expect(pythonHashParser.isValidHash?).to be_truthy
     expect(pythonHashParser.beautify).to eq(
@@ -74,7 +74,7 @@ HASH
 )
   end
 
-  it "hash input is not valid" do
+  it "align_hash input is not valid" do
     pythonHashParser = PythonHashParser.new(":a : 1 :b : 'test'}")
     expect(pythonHashParser.isValidHash?).to be_falsey
   end

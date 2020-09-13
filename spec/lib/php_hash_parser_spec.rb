@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PhpHashParser do
 
-  it "should work with empty hash" do
+  it "should work with empty align_hash" do
     phpHashParser = PhpHashParser.new("array()")
     expect(phpHashParser.isValidHash?).to be_truthy
     expect(phpHashParser.beautify).to eq(
@@ -74,7 +74,7 @@ HASH
 )
   end
 
-  it "hash input is not valid" do
+  it "align_hash input is not valid" do
     phpHashParser = PhpHashParser.new(":a => 1 :b => 'test'}")
     expect(phpHashParser.isValidHash?).to be_falsey
   end

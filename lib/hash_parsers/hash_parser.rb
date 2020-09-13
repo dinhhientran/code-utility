@@ -172,7 +172,7 @@ class HashParser
       array.push(hash)
       t = tokens[0]
       return array, tokens[1, tokens.size - 1] if self.class::RIGHT_BRACKET.include?(t)
-      # in case there is colon after object, it should be an hash
+      # in case there is colon after object, it should be an align_hash
       return parseHash(originTokens) if self.class::LEFT_BRACE == self.class::LEFT_BRACKET and self.class::COLON.include?(t)
       raise HashParserError.new("Expected comma after object in array") if t != self.class::COMMA
       tokens = tokens[1, tokens.size - 1]

@@ -1,40 +1,13 @@
-class HashController < ApplicationController
+class AlignHashController < ShareController
 
-  TOOL = 'align_hash'
+  TOOL = 'align'
+  BASE_URL = 'http://localhost:3000/align_hash/'
 
   skip_before_action :verify_authenticity_token
 
   def get_params
     input = params.require(:input).permit(:language, :hash, :indent, :valueAligned)
     {input: input, tool: TOOL}
-  end
-
-  def index
-    begin
-      reference_number = params[:reference_number]
-      version_number = params[:version]
-
-      if !reference_number.nil? and !version_number.nil?
-        @share = Share.find_by_reference_number(reference_number)
-
-        raise NotFoundError.new("This share does not exist!") if @share.nil?
-
-        raise NotFoundError.new("Cannot find this share for the Align Hash/Array tool!") if @share.nil? or @share.tool != TOOL
-
-        @version = @share.versions.find_by(:version_number => version_number)
-
-        raise NotFoundError.new("This share does not exist!") if @version.nil?
-
-        gon.reference_number = @share.reference_number
-        gon.version = @version.version_number
-        gon.input = @version.input
-      end
-
-    rescue NotFoundError => e
-      render_error(e.message, 404) and return
-    rescue Exception => e
-      render_error(e.message)
-    end
   end
 
   def beautify
@@ -54,7 +27,7 @@ class HashController < ApplicationController
 
       hash = parser.parse(source.strip)
 
-      raise StandardError.new("Cannot parse the input into hash!") if hash.nil? or hash.is_a? String
+      raise StandardError.new("Cannot parse the input into align_hash!") if hash.nil? or hash.is_a? String
 
       beautifier.setHash(hash)
       beautifier.setIndent(indent.to_i) if !indent.nil?

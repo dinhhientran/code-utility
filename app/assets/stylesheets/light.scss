@@ -1,8 +1,101 @@
 body {
-  background-color: #f9f9f9 !important;
+  background-color: #efefef !important;
   color: rgba(0,0,0,.85) !important;
+}
+
+header {
+  background-color: #fcfcfc;
+}
+
+footer {
+  background-color: #fcfcfc;
+}
+
+.modal button {
+  color: rgba(0,0,0,.85) !important;
+}
+
+.modal .modal-content {
+  background-color: #fcfcfc !important;
 }
 
 .navbar-brand svg path {
   fill: rgba(0, 0, 0, 0.85);
+}
+
+.modal, .CodeMirror{
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-button {
+    background-color: #ddd;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #ddd;
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    background-color: #ddd;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    height: 50px;
+    background-color: #aaa;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: #ddd;
+  }
+
+  ::-webkit-resizer {
+    background-color: #aaa;
+  }
+}
+
+.btn-light {
+  background-color: #f8f9fa !important;
+  color: #212529 !important;
+}
+
+.form-control-sm {
+  background-color: #f8f9fa !important;
+  color: #212529 !important;
+}
+
+.select2-container--default .select2-selection--single {
+  background-color: #fbfbfb !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+  background-color: #fbfbfb !important;
+  border: 1px solid #aaa !important;
+}
+
+.select2-dropdown {
+  background-color: #fbfbfb !important;
+}
+
+.select2-results__option {
+  color: rgba(0,0,0,.85) !important;
+}
+
+.select2-selection__rendered {
+  color: rgba(0,0,0,.85) !important;
+}
+
+.select2-selection__placeholder {
+  color: rgba(0,0,0,.85) !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+  color: rgba(0,0,0,.85) !important;
+  background-color: #ddd !important;
+}
+
+textarea:focus, input:focus, span:focus{
+  outline: none;
 }

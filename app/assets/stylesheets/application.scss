@@ -66,6 +66,9 @@ $input-btn-line-height-xs: 1.1 !default;
   display: -webkit-box !important;
 }
 
+.modal {
+  top: 80px !important;
+}
 
 div.editor-buttons {
   position: absolute;
@@ -107,6 +110,20 @@ textarea#source {
   height: auto !important;
 }
 
+.select2-selection--multiple .select2-selection__rendered {
+  line-height: 16px !important;
+  font-size: 13px !important;
+  font-weight: bold;
+}
+
+.select2-selection__rendered li {
+  color: #212529 !important;
+}
+
+.select2-container .select2-selection--multiple {
+  min-height: 30px !important;
+}
+
 .indent-spaces {
   display: inline-flex !important;
   width: 120px;
@@ -138,4 +155,18 @@ textarea#source {
 
 .share-link:hover {
 
+}
+
+#php_rule_description .select2 {
+  text-align: left;
+}
+
+.desc-green {
+  color: #34BC27;
+}
+
+.rule-content {
+  font-size: 14px;
+  height: 450px;
+  overflow-y: auto;
 }
