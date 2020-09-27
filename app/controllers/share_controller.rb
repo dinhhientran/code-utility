@@ -44,6 +44,8 @@ class ShareController < ApplicationController
       tool = params[:tool]
       share = Share.create({:tool => tool})
 
+      puts input.inspect
+
       version = Version.create({:share => share, :input => input})
 
       render :json => {

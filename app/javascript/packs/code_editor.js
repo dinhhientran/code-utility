@@ -1,12 +1,21 @@
 import $ from "jquery";
+import 'codemirror/mode/clike/clike.js'
 import 'codemirror/mode/php/php.js'
 import 'codemirror/mode/ruby/ruby.js'
+import 'codemirror/mode/htmlmixed/htmlmixed.js'
+import 'codemirror/mode/jsx/jsx.js'
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/mode/python/python.js'
 import 'codemirror/mode/perl/perl.js'
 import 'codemirror/mode/go/go.js'
 import 'codemirror/mode/groovy/groovy.js'
 import 'codemirror/mode/swift/swift.js'
+import 'codemirror/mode/htmlembedded/htmlembedded.js'
+import 'codemirror/addon/hint/show-hint.js';
+import 'codemirror/addon/lint/lint.js';
+import 'codemirror-graphql/hint.js';
+import 'codemirror-graphql/lint.js';
+import 'codemirror-graphql/mode.js';
 import 'codemirror/addon/fold/foldcode.js'
 import 'codemirror/addon/fold/foldgutter.js'
 import 'codemirror/addon/fold/brace-fold.js'
@@ -14,10 +23,11 @@ import 'codemirror/addon/fold/indent-fold.js'
 import 'codemirror/addon/fold/comment-fold.js'
 import 'codemirror/addon/fold/foldgutter.css'
 import 'codemirror/addon/fold/xml-fold.js'
+import 'codemirror/addon/edit/matchbrackets.js'
+import 'codemirror/addon/edit/matchtags.js'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/mdn-like.css'
 import 'codemirror/theme/eclipse.css'
-import 'codemirror/theme/dracula.css'
 import 'codemirror/theme/darcula.css'
 import CodeMirror from "codemirror"
 import ClipboardJS from 'clipboard/dist/clipboard.min.js'
@@ -37,10 +47,14 @@ export default class CodeEditor {
         this.onMaximize = options.onMaximize;
         this.onMinimize = options.onMinimize;
 
+        CodeMirror.keyMap.default["Shift-Tab"] = "indentLess";
+        CodeMirror.keyMap.default["Tab"] = "indentMore";
+
         this.$codeMirror = CodeMirror.fromTextArea(document.getElementById(this.elementId), {
             lineNumbers: true,
             styleActiveLine: true,
             matchBrackets: true,
+            matchTags: {bothTags: true},
             theme: this.getEditorTheme(this.theme),
             extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
             foldGutter: true,
@@ -141,7 +155,7 @@ export default class CodeEditor {
             editorHeight = $(window).height() - 120;
         }
 
-        this.$codeMirror.setSize(null, editorHeight);
+        this.$codeMirror.setSize(null, editorHeight < 400 ? 400 : editorHeight);
     }
 
     setTheme(theme) {

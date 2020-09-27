@@ -1,0 +1,2 @@
+module BeautifyCodeHelper
+end

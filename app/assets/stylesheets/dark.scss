@@ -11,7 +11,7 @@ footer {
   background-color: #1f2227;
 }
 
-.modal, .CodeMirror {
+.modal, .CodeMirror, .select2-results {
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -75,7 +75,7 @@ footer {
   color: #fbfbfb !important;
 }
 
-.form-control-sm {
+.form-control-sm, .select2-search__field {
   background-color: #343a40 !important;
   color: #fbfbfb !important;
 }

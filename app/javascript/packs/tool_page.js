@@ -1,8 +1,10 @@
 import $ from "jquery";
-import BasePage from "./basePage";
+import BasePage from "./base_page";
 import Toastr from "toastr/build/toastr.min.js"
 import Cookies from "js-cookie"
 import ClipboardJS from 'clipboard/dist/clipboard.min.js'
+import moment from 'moment/dist/moment.js'
+import {DOWNLOAD_FILE_NAME_MODAL} from "./modals/download_file_name";
 
 export default class ToolPage extends BasePage {
 
@@ -11,7 +13,7 @@ export default class ToolPage extends BasePage {
 
         this.sendShareRequest = this.sendShareRequest.bind(this);
         this.sendForkRequest = this.sendForkRequest.bind(this);
-        this.initButtons = this.initButtons.bind(this);
+        this.initShareButtons = this.initShareButtons.bind(this);
         this.initUploadDownloadButtons = this.initUploadDownloadButtons.bind(this);
         this.initShare = this.initShare.bind(this);
 
@@ -29,6 +31,7 @@ export default class ToolPage extends BasePage {
     }
 
     initShare() {
+        console.log('init share');
         if (this.isThisShare()) {
 
             this.onShareLoad(window.gon.input);
@@ -44,10 +47,10 @@ export default class ToolPage extends BasePage {
             });
         }
 
-        this.initButtons();
+        this.initShareButtons();
     }
 
-    initButtons() {
+    initShareButtons() {
         let _this = this;
 
         if (this.isThisShare()) {
@@ -151,12 +154,71 @@ export default class ToolPage extends BasePage {
                 }
             });
         });
+
+        let $downloadFileNameModal = $(DOWNLOAD_FILE_NAME_MODAL);
+
+        $('body').append($downloadFileNameModal);
+
+        let validateDownloadFileName = function() {
+            let fileName = $('#download_file_name').val();
+            if (fileName == "") {
+                $('#download_file_name').addClass('is-invalid');
+                $downloadFileNameModal.find('.invalid-feedback').show();
+                return false;
+            } else {
+                $('#download_file_name').removeClass('is-invalid');
+                $downloadFileNameModal.find('.invalid-feedback').hide();
+                return true;
+            }
+        };
+
+        let $downloadForm = $('<form method="post"></form>');
+        $('body').append($downloadForm);
+
+        $downloadFileNameModal.on('shown.bs.modal', function () {
+            if (_this.uploadFileName != undefined) {
+                $('#download_file_name').val(_this.uploadFileName);
+            } else {
+                let language = _this.getSelectedLanguage();
+                let extension = language != null && language.extensions && language.extensions.length > 0 ?
+                    language.extensions[0] : '.txt';
+                $('#download_file_name').val(moment().format("MMM_DD_YY_h_mm_ss_A") + extension);
+            }
+
+            $('#download_file_name').on('input', function() {
+                validateDownloadFileName();
+            });
+        });
+
+        $('#download-btn').click(function() {
+            if (validateDownloadFileName()) {
+                let fileName = $('#download_file_name').val();
+
+                $('<input />').attr({
+                    type: 'hidden',
+                    name: 'code',
+                    value: _this.getCode()
+                }).appendTo($downloadForm);
+
+                $('<input />').attr({
+                    type: 'hidden',
+                    name: 'fileName',
+                    value: fileName
+                }).appendTo($downloadForm);
+
+                $downloadForm.attr("action", _this.downloadUrl).attr('target', '_blank').submit();
+
+                $downloadFileNameModal.modal('hide');
+            }
+        });
     }
 
     sendShareRequest() {
         let _this = this;
 
         let input = this.getInput();
+
+        console.log(input);
 
         if (input != null) {
             this.showLoadingOverlay();
@@ -207,6 +269,10 @@ export default class ToolPage extends BasePage {
         return null;
     }
 
+    getCode() {
+        return null;
+    }
+
     afterSendBeautifyRequest() {
         $('#share-btn').show();
     }
@@ -218,5 +284,8 @@ export default class ToolPage extends BasePage {
     }
 
     onUploadSuccess() {
+    }
+
+    getSelectedLanguage() {
     }
 }

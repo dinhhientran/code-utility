@@ -4,8 +4,9 @@ import Toastr from "toastr/build/toastr.min.js"
 import 'select2/dist/css/select2.css'
 import 'select2'
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner.js'
-import ToolPage from "./toolPage";
-import CodeEditor from "./codeEditor";
+import ToolPage from "./tool_page";
+import CodeEditor from "./code_editor";
+import {ALIGN_HASH_SAMPLE} from "./samples/align_hash";
 
 export default class AlignHashPage extends ToolPage {
 
@@ -25,98 +26,32 @@ export default class AlignHashPage extends ToolPage {
         this.LANGUAGE = {
             php: {
                 mode: 'text/x-php',
-                sample: '// Sample input\n\n' +
-                    'array(\n' +
-                    '  "Product ID" => 10440, "SKU" => "KOI-721",\n' +
-                    '  "Name" => "Basic Beauty Off-The-Shoulder Dress",\n' +
-                    '  "Product URL" => "https://www.domain.com/product/koi-721",\n' +
-                    '  "Price" => 52, "Retail Price" => 78,\n' +
-                    '  "Thumbnail URL" => "https://www.domain.com/images/koi-721_600x600.png",\n' +
-                    '  "Search Keywords" => "lorem, ipsum, dolor, ...",\n' +
-                    '  "Description" => "Sociosqu facilisis duis ...",\n' +
-                    '  "Color Swatches" => array(array("color" => "Rosewood","family" => "Red","price" => 42), array("color" => "Thyme Green","family" => "Green","price" => 59.99)),\n' +
-                    '  "Date Created" => "2018-03-03 17:38:50"\n' +
-                    ')\n',
+                sample: ALIGN_HASH_SAMPLE.php,
                 comment: '//'
             },
             ruby: {
                 mode: 'text/x-ruby',
-                sample: '# Sample input\n\n' +
-                    '{\n' +
-                    '  "Product ID" => 10440,"SKU" => "KOI-721",\n' +
-                    '  "Name" => "Basic Beauty Off-The-Shoulder Dress",\n' +
-                    '  "Product URL" => "https://www.domain.com/product/koi-721",\n' +
-                    '  "Price" => 52, "Retail Price" => 78,\n' +
-                    '  "Thumbnail URL" => "https://www.domain.com/images/koi-721_600x600.png",\n' +
-                    '  "Search Keywords" => "lorem, ipsum, dolor, ...",\n' +
-                    '  "Description" => "Sociosqu facilisis duis ...",\n' +
-                    '  "Color Swatches" => [{"color" => "Rosewood","family" => "Red","price" => 42}, {"color" => "Thyme Green","family" => "Green","price" => 59.99}],\n' +
-                    '  "Date Created" => "2018-03-03 17:38:50"\n' +
-                    '}',
+                sample: ALIGN_HASH_SAMPLE.ruby,
                 comment: '#'
             },
             javascript: {
                 mode: 'text/typescript',
-                sample: '// Sample input\n\n' +
-                    '{\n' +
-                    '  "Product ID":10440,"SKU":"KOI-721",\n' +
-                    '  "Name":"Basic Beauty Off-The-Shoulder Dress",\n' +
-                    '  "Product URL":"https://www.domain.com/product/koi-721",\n' +
-                    '  "Price":52,"Retail Price":78,\n' +
-                    '  "Thumbnail URL":"https://www.domain.com/images/koi-721_600x600.png",\n' +
-                    '  "Search Keywords":"lorem, ipsum, dolor, ...",\n' +
-                    '  "Description":"Sociosqu facilisis duis ...",\n' +
-                    '  "Color Swatches" : [{"color" : "Rosewood","family" : "Red","price" : 42}, {"color" : "Thyme Green","family" : "Green","price" : 59.99}],\n' +
-                    '  "Date Created":"2018-03-03 17:38:50"\n' +
-                    '}',
+                sample: ALIGN_HASH_SAMPLE.javascript,
                 comment: '//'
             },
             python: {
                 mode: 'text/x-python',
-                sample: '// Sample input\n\n' +
-                    '{\n' +
-                    '  "Product ID":10440, "SKU":"KOI-721",\n' +
-                    '  "Name":"Basic Beauty Off-The-Shoulder Dress",\n' +
-                    '  "Product URL":"https://www.domain.com/product/koi-721",\n' +
-                    '  "Price":52, "Retail Price":78,\n' +
-                    '  "Thumbnail URL":"https://www.domain.com/images/koi-721_600x600.png",\n' +
-                    '  "Search Keywords":"lorem, ipsum, dolor, ...",\n' +
-                    '  "Description":"Sociosqu facilisis duis ...",\n' +
-                    '  "Color Swatches" : [{"color" : "Rosewood","family" : "Red","price" : 42}, {"color" : "Thyme Green","family" : "Green","price" : 59.99}],\n' +
-                    '  "Date Created":"2018-03-03 17:38:50"\n' +
-                    '}',
+                sample: ALIGN_HASH_SAMPLE.python,
                 comment: '//'
             },
             perl: {
                 mode: 'text/x-perl',
-                sample: '# Sample input\n\n' +
-                    '(\n' +
-                    '  "Product ID" => 10440, "SKU" => "KOI-721",\n' +
-                    '  "Name" => "Basic Beauty Off-The-Shoulder Dress",\n' +
-                    '  "Product URL" => "https://www.domain.com/product/koi-721",\n' +
-                    '  "Price" => 52, "Retail Price" => 78,\n' +
-                    '  "Thumbnail URL" => "https://www.domain.com/images/koi-721_600x600.png",\n' +
-                    '  "Search Keywords" => "lorem, ipsum, dolor, ...",\n' +
-                    '  "Description" => "Sociosqu facilisis duis ...",\n' +
-                    '  "Color Swatches" => (("color" => "Rosewood","family" => "Red","price" => 42), ("color" => "Thyme Green","family" => "Green","price" => 59.99)),\n' +
-                    '  "Date Created" => "2018-03-03 17:38:50"\n' +
-                    ')',
+                sample: ALIGN_HASH_SAMPLE.perl,
                 comment: '#'
             },
             groovy: {
                 mode: 'text/x-groovy',
-                sample: '// Sample input\n\n' +
-                    '[\n' +
-                    '  "Product ID":10440, "SKU":"KOI-721",\n' +
-                    '  "Name":"Basic Beauty Off-The-Shoulder Dress",\n' +
-                    '  "Product URL":"https://www.domain.com/product/koi-721",\n' +
-                    '  "Price":52, "Retail Price":78,\n' +
-                    '  "Thumbnail URL":"https://www.domain.com/images/koi-721_600x600.png",\n' +
-                    '  "Search Keywords":"lorem, ipsum, dolor, ...",\n' +
-                    '  "Description":"Sociosqu facilisis duis ...",\n' +
-                    '  "Color Swatches" : [["color" : "Rosewood","family" : "Red","price" : 42], ["color" : "Thyme Green","family" : "Green","price" : 59.99]],\n' +
-                    '  "Date Created":"2018-03-03 17:38:50"\n' +
-                    ']',
+                sample: ALIGN_HASH_SAMPLE.groovy,
                 comment: '//'
             }
         };
@@ -130,8 +65,6 @@ export default class AlignHashPage extends ToolPage {
     }
 
     initButtons() {
-        super.initButtons();
-
         let _this = this;
         $("#beautify-btn").click(function() {
             _this.sendBeautifyRequest();
@@ -260,8 +193,6 @@ export default class AlignHashPage extends ToolPage {
     }
 
     onShareLoad(input) {
-
-        console.log('test1');
 
         $('#language').val(input.language).trigger('change');
 

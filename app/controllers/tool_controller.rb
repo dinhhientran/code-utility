@@ -12,6 +12,7 @@ class ToolController < ApplicationController
 
       render :json => {
           :content => content.strip,
+          :fileName => params[:file].original_filename,
           :extension => extension
       }
     rescue Exception => e
@@ -20,6 +21,15 @@ class ToolController < ApplicationController
   end
 
   def download
+    begin
+      code = params[:code]
+      fileName = params[:fileName]
+      extension = File.extname(params[:fileName])
+      mimeType = Rack::Mime.mime_type(extension)
 
+      send_data code, :filename => fileName, :type => mimeType, :disposition => "download"
+    rescue Exception => e
+      render_error(e.message)
+    end
   end
 end

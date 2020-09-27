@@ -14,8 +14,8 @@ import $ from 'jquery'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '@fortawesome/fontawesome-free/js/all.min.js'
 
-import AlignHashPage from "./alignHashPage.js";
-import BeautifyCodePage from "./beautifyCodePage.js";
+import AlignHashPage from "./align_hash_page.js";
+import BeautifyCodePage from "./beautify_code_page.js";
 
 $( document ).on('turbolinks:load', function() {
 
