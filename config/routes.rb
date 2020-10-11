@@ -1,22 +1,40 @@
 Rails.application.routes.draw do
 
+  beautify_tools = ['align_hash', 'beautify_code', 'beautify_json']
+  convert_tools = ['html2haml', 'html2slim', 'html2jsx', 'html2pug', 'css2scss', 'json2yaml']
+  minify_tools = ['minify_html', 'minify_javascript', 'minify_css', 'minify_json', 'minify_sql']
+  encode_tools = ['uri_encode']
+
+  tools = beautify_tools + convert_tools + minify_tools + encode_tools
+
   root 'align_hash#index'
 
-  get '/align_hash', to: 'align_hash#index'
-  get '/align_hash/:reference_number/:version', to: 'align_hash#index'
+  tools.each do |tool|
+    get tool, to: tool + '#index'
+    get "/#{tool}/:reference_number/:version", to: "#{tool}#index"
 
-  post '/align_hash/beautify', to: 'align_hash#beautify'
-  post '/align_hash/share', to: 'align_hash#share'
-  post '/align_hash/fork', to: 'align_hash#fork'
+    if beautify_tools.include?(tool)
+      post "/#{tool}/beautify", to: "#{tool}#beautify"
+    end
 
-  get '/beautify_code', to: 'beautify_code#index'
-  get '/beautify_code/:reference_number/:version', to: 'beautify_code#index'
+    if convert_tools.include?(tool)
+      post "/#{tool}/convert", to: "#{tool}#convert"
+    end
 
-  post '/beautify_code/beautify', to: 'beautify_code#beautify'
-  post '/beautify_code/share', to: 'beautify_code#share'
-  post '/beautify_code/fork', to: 'beautify_code#fork'
+    if minify_tools.include?(tool)
+      post "/#{tool}/minify", to: "#{tool}#minify"
+    end
 
-  post '/tool/upload', to: 'tool#upload'
-  post '/tool/download', to: 'tool#download'
+    if encode_tools.include?(tool)
+      post "/#{tool}/encode", to: "#{tool}#encode"
+      post "/#{tool}/decode", to: "#{tool}#decode"
+    end
+
+    post "/#{tool}/share", to: "#{tool}#share"
+    post "/#{tool}/fork", to: "#{tool}#fork"
+  end
+
+  post '/file/upload', to: 'file#upload'
+  post '/file/download', to: 'file#download'
 
 end

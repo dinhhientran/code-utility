@@ -1,0 +1,33 @@
+<div class="d-flex h-md-50 align-items-end">
+  <div class="w-100">
+    <button id="convert-btn" class="btn btn-primary" style="width: 100%;">Convert
+      <i class="fas fa-angle-double-right"></i>
+    </button>
+    <button id="to-json-btn" class="btn btn-primary mt-4" style="width: 100%;">
+      <i class="fas fa-angle-double-left"></i>
+      JSON
+    </button>
+    <button id="upload-btn" class="btn btn-outline-primary mt-4" style="width: 100%;">
+      <i class="fas fa-upload"></i>
+      Upload</button>
+    <form id="source_file_form" enctype="multipart/form-data" method="post" name="source_file">
+      <input type="file" style="display: none" name="file"/>
+    </form>
+    <button data-toggle="modal" data-target="#download_file_name_modal" class="btn btn-outline-primary mt-4" style="width: 100%;">
+      <i class="fas fa-download"></i>
+      Download</button>
+  </div>
+</div>
+<div class="d-flex h-md-50 align-items-end">
+  <div class="w-100">
+    <button id="share-btn" class="btn btn-outline-primary" style="width: 100%;display: none;">
+      <i class="fas fa-share-alt"></i>
+      Share</button>
+    <button id="fork-btn" class="btn btn-outline-primary mt-2" style="width: 100%;display: none;">
+      <i class="fas fa-code-branch"></i>
+      Fork</button>
+    <button id="new-btn" class="btn btn-outline-primary mt-2" style="width: 100%;display: none;">
+      <i class="fas fa-plus"></i>
+      New</button>
+  </div>
+</div>

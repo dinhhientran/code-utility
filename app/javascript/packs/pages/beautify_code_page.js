@@ -1,31 +1,33 @@
 import $ from "jquery";
-import 'toastr/build/toastr.min.css'
 import Toastr from "toastr/build/toastr.min.js"
-import 'select2/dist/css/select2.css'
 import 'select2'
-import CodeEditor from "./code_editor";
-import ToolPage from "./tool_page";
-import {PHP_RULES_MODAL} from "./modals/php_rules.js";
-import {BEAUTIFY_CODE_SAMPLE} from "./samples/beautify_code";
-import {C_STYLES_MODAL} from "./modals/c_styles";
-import {TOOL_OPTIONS} from "./tool_options/beautify_code";
+import CodeEditor from "../code_editor";
+import ToolPage from "./abstracts/tool_page";
+import {PHP_RULES_MODAL} from "../modals/php_rules.js";
+import {BEAUTIFY_CODE_SAMPLE} from "../samples/beautify_code";
+import {C_STYLES_MODAL} from "../modals/c_styles";
+import {TOOL_OPTIONS} from "../tool_options/beautify_code";
+import Cookies from "js-cookie";
 
 export default class BeautifyCodePage extends ToolPage {
 
     constructor(props) {
         super(props);
 
-        this.initInputs = this.initInputs.bind(this);
-        this.sendBeautifyRequest = this.sendBeautifyRequest.bind(this);
-        this.onShareLoad = this.onShareLoad.bind(this);
         this.init = this.init.bind(this);
+        this.initInputs = this.initInputs.bind(this);
         this.initPhp = this.initPhp.bind(this);
         this.initC = this.initC.bind(this);
+        this.sendBeautifyRequest = this.sendBeautifyRequest.bind(this);
         this.getLanguageOptions = this.getLanguageOptions.bind(this);
+        this.calculateEditorHeight = this.calculateEditorHeight.bind(this);
+        this.onShareLoad = this.onShareLoad.bind(this);
+        this.getCOptions = this.getCOptions.bind(this);
+        this.getPhpOptions = this.getPhpOptions.bind(this);
 
-        this.beautifyUrl = '/beautify_code/beautify';
-        this.shareUrl = '/beautify_code/share';
-        this.forkUrl = '/beautify_code/fork';
+        this.beautifyUrl = window.gon.tool_url + '/beautify';
+        this.shareUrl = window.gon.tool_url + '/share';
+        this.forkUrl = window.gon.tool_url + '/fork';
 
         this.LANGUAGE = {
             c: {
@@ -121,7 +123,7 @@ export default class BeautifyCodePage extends ToolPage {
                 name: 'HTML+ERB',
                 mode: 'application/x-erb',
                 sample: BEAUTIFY_CODE_SAMPLE.htmlerb,
-                extensions: ['.erb'],
+                extensions: ['.html.erb', '.html.erb', '.erb'],
                 initFnc: this.initNoOptions,
                 getOptionsFnc: this.getNoOptions
             },
@@ -137,7 +139,8 @@ export default class BeautifyCodePage extends ToolPage {
                 name: 'PHP',
                 mode: 'text/x-php',
                 sample:  BEAUTIFY_CODE_SAMPLE.php,
-                extensions: ['.php'],
+                extensions: ['.php', '.php_cs', '.php_cs.dist', '.aw', '.ctp', '.fcgi', '.inc', '.module', '.php3',
+                    '.php4', '.php5', '.phps', '.phpt'],
                 initFnc: this.initPhp,
                 getOptionsFnc: this.getPhpOptions
             },
@@ -207,26 +210,48 @@ export default class BeautifyCodePage extends ToolPage {
                 initFnc: this.initNoOptions,
                 getOptionsFnc: this.getNoOptions
             },
-            perl: {
-                mode: 'text/x-perl',
-                sample: ''
-            },
-            groovy: {
-                mode: 'text/x-groovy',
-                sample: ''
+            sql: {
+                name: 'SQL',
+                mode: 'text/x-sql',
+                sample: BEAUTIFY_CODE_SAMPLE.sql,
+                extensions: ['.sql', '.cql', '.ddl', '.inc', '.mysql', '.prc', '.tab', '.udf', '.viw'],
+                initFnc: this.initNoOptions,
+                getOptionsFnc: this.getNoOptions
             },
             ruby: {
                 name: 'Ruby',
                 mode: 'text/x-ruby',
-                sample: '',
+                sample: BEAUTIFY_CODE_SAMPLE.ruby,
                 extensions: ['.rb'],
-                initFnc: this.initRuby
+                initFnc: this.initNoOptions,
+                getOptionsFnc: this.getNoOptions
             },
         };
     }
 
     init() {
         super.init();
+
+        this.$optionColumn = $('#option-column');
+        this.$buttonColumn = $('#button-column');
+        this.$sourceColumn = $('#source-column');
+
+        this.phpRuleDdlId = '#rules';
+        this.phpRuleDescriptionDdlName = '#php_rule_description select';
+        this.phpRuleContentContainerName = '#rule-content';
+
+        this.$cOptions = $('#c_options');
+        this.cStyleDdlName = "select[name=style]";
+
+        this.$beautifyBtn = $("#beautify-btn");
+        this.$languageDdl = $('#language');
+
+        this.$headerTextRow = $('#h1-row');
+        this.$inputOptionRow = $('#input-options');
+
+        this.$exampleToggle = $('#example-toggle');
+        this.$footer = $('footer');
+
         this.initInputs();
         this.initButtons();
         this.initUploadDownloadButtons();
@@ -243,45 +268,49 @@ export default class BeautifyCodePage extends ToolPage {
     initPhp() {
         $('body').append($(PHP_RULES_MODAL));
 
-        $('.option-column').append($(TOOL_OPTIONS.php));
+        this.$phpOptions = $(TOOL_OPTIONS.php);
+        this.$optionColumn.append(this.$phpOptions);
 
-        let $optionEl = $('#php_options');
+        this.$phpOptions.show();
 
-        $optionEl.show();
-        $optionEl.find('#rules').select2({width: 270, multiple: true});
+        this.$phpRuleDdl =  this.$phpOptions.find(this.phpRuleDdlId);
 
-        $('#php_rule_description select')
-            .select2({width: 120, minimumResultsForSearch: Infinity})
+        this.$phpRuleDdl.select2({width: 270, multiple: true});
+
+        this.$phpRuleDescDdl = $(this.phpRuleDescriptionDdlName);
+
+        this.$phpRuleDescDdl.select2({width: 120, minimumResultsForSearch: Infinity})
             .change(function() {
-                $('.rule-content > div').hide();
-                $('.rule-content .' + $(this).val() + '-rule').removeClass('d-none').show();
+                $(this.phpRuleContentContainerName + ' > div').hide();
+                $('#' + this.phpRuleContentContainerName + '.' + $(this).val() + '-rule').removeClass('d-none').show();
             });
 
         let sharedOptions = this.getSharedInputOptions();
         if (sharedOptions != null) {
-            $optionEl.find('#rules').val(sharedOptions.rules).trigger('change');
+            this.$phpRuleDdl.val(sharedOptions.rules).trigger('change');
         }
     }
 
     getPhpOptions() {
         return {
-            rules: $("#rules").select2('val')
+            rules: this.$phpRuleDdl.select2('val')
         };
     }
 
     initC() {
         $('body').append($(C_STYLES_MODAL));
 
-        $('.option-column').append($(TOOL_OPTIONS.c));
+        this.$cOptions = $(TOOL_OPTIONS.c);
 
-        let $optionEl = $('#c_options');
+        this.$optionColumn.append(this.$cOptions);
 
-        $optionEl.show();
-        $optionEl.find("select[name=style]").select2({width: 150, minimumResultsForSearch: Infinity});
+        this.$cOptions.show();
+        this.$cStyleDdl = this.$cOptions.find(this.cStyleDdlName);
+        this.$cStyleDdl.select2({width: 150, minimumResultsForSearch: Infinity});
 
         let sharedOptions = this.getSharedInputOptions();
         if (sharedOptions != null) {
-            $optionEl.find("select[name=style]").val(sharedOptions.style).trigger('change');
+            this.$cStyleDdl.val(sharedOptions.style).trigger('change');
         }
     }
 
@@ -295,18 +324,14 @@ export default class BeautifyCodePage extends ToolPage {
 
     getCOptions() {
         return {
-            style: $('#c_options').find("select[name=style]").select2('val')
+            style: this.$cStyleDdl.select2('val')
         };
-    }
-
-    initRuby() {
-
     }
 
     initButtons() {
 
         let _this = this;
-        $("#beautify-btn").click(function() {
+        this.$beautifyBtn.click(function() {
             _this.sendBeautifyRequest();
         });
 
@@ -317,10 +342,11 @@ export default class BeautifyCodePage extends ToolPage {
 
         this.sourceEditor = new CodeEditor();
         this.sourceEditor.init({
-            elementId: 'source',
+            elementId: 'source-editor',
             theme: this.theme,
             onMaximize: this.onSourceEditorMaximize,
-            onMinimize: this.onSourceEditorMinimize
+            onMinimize: this.onSourceEditorMinimize,
+            calculateEditorHeight: this.calculateEditorHeight
         });
 
         let languages = [{id: '', text: ''}];
@@ -334,36 +360,65 @@ export default class BeautifyCodePage extends ToolPage {
             return a.text > b.text ? 1 : 0
         });
 
-        console.log(languages);
-
-        $('#language').select2({width: 200, data: languages, placeholder: "Select a language"});
-        $('#language').change(function() {
+        this.$languageDdl.select2({width: 200, data: languages, placeholder: "Select a language"});
+        this.$languageDdl.change(function() {
             let language = $(this).val();
 
-            $('.h1-row h1').text('Beautify ' + _this.LANGUAGE[language].name);
+            _this.$headerTextRow.find('h1').text('Beautify ' + _this.LANGUAGE[language].name);
 
-            $('.option-column > div').remove();
+            _this.$optionColumn.find('div').remove();
 
             _this.sourceEditor.setMode(_this.LANGUAGE[language].mode);
 
-            let currentCode = _this.sourceEditor.getContent();
-            let originalCode = _this.originalCode;
+            if (_this.showSampleCode) {
 
-            let isSample = false;
-            for ( const [language, data] of Object.entries(_this.LANGUAGE)) {
-                if (data.sample && (data.sample.trim() == currentCode || data.sample.trim() == originalCode)) {
-                    isSample = true;
-                    break;
+                let currentCode = _this.sourceEditor.getContent();
+                let originalCode = _this.originalCode;
+
+                let isSample = false;
+                for (const [lang, data] of Object.entries(_this.LANGUAGE)) {
+                    if (data.sample && (data.sample.trim() == currentCode || data.sample.trim() == originalCode)) {
+                        isSample = true;
+                        break;
+                    }
                 }
-            }
 
-            if (isSample || currentCode == "") {
-                _this.sourceEditor.setContent(_this.LANGUAGE[language].sample);
+                if (isSample || currentCode == "") {
+                    _this.sourceEditor.setContent(_this.LANGUAGE[language].sample);
+                }
             }
 
             let initLanguage = _this.LANGUAGE[$(this).val()].initFnc;
             initLanguage();
         });
+
+        this.$exampleToggle.click(function() {
+            let showSampleCode = $(this).is(':checked');
+
+            _this.showSampleCode = showSampleCode;
+
+            Cookies.set(window.gon.tool + '_showSampleCode', showSampleCode);
+
+            let language = _this.$languageDdl.val();
+
+            let currentCode = _this.sourceEditor.getContent();
+            let originalCode = _this.originalCode;
+
+            if (!showSampleCode) {
+                for (const [lang, data] of Object.entries(_this.LANGUAGE)) {
+                    if (data.sample && (data.sample.trim() == currentCode || data.sample.trim() == originalCode)) {
+                        _this.sourceEditor.setContent('');
+                        break;
+                    }
+                }
+            } else if (currentCode == "") {
+                _this.sourceEditor.setContent(_this.LANGUAGE[language].sample);
+            }
+        });
+
+        if (window.gon.language != undefined) {
+            this.$languageDdl.val(window.gon.language).trigger('change');
+        }
     }
 
     sendBeautifyRequest() {
@@ -385,7 +440,7 @@ export default class BeautifyCodePage extends ToolPage {
             }, function (response) {
                 _this.sourceEditor.setContent(response.code);
 
-                _this.afterSendBeautifyRequest();
+                _this.showShareButton();
             })
             .fail(function (response) {
                 response = response.responseJSON;
@@ -400,7 +455,7 @@ export default class BeautifyCodePage extends ToolPage {
     }
 
     getInput() {
-        let language = $('#language').val();
+        let language = this.$languageDdl.val();
 
         if (language == undefined || language == "") {
             return null;
@@ -421,7 +476,7 @@ export default class BeautifyCodePage extends ToolPage {
     }
 
     getSharedInputOptions() {
-        let language = $('#language').val();
+        let language = this.$languageDdl.val();
 
         if (this.language != null && this.language != '' && this.input != undefined && this.input[language] != undefined) {
             return this.input[language].options;
@@ -435,12 +490,12 @@ export default class BeautifyCodePage extends ToolPage {
         return config != null ? config.getOptionsFnc() : {};
     }
 
-    getCode() {
+    getCodeToDownload() {
         return this.sourceEditor.getContent();
     }
 
     getSelectedLanguage() {
-        let language = $('#language').val();
+        let language = this.$languageDdl.val();
 
         if (language == undefined || language == "") {
             return null;
@@ -459,7 +514,7 @@ export default class BeautifyCodePage extends ToolPage {
 
         this.sourceEditor.setContent(input.code);
 
-        $('#language').val(input.language).trigger('change');
+        this.$languageDdl.val(input.language).trigger('change');
 
         let _this = this;
         setTimeout(function() {
@@ -479,25 +534,27 @@ export default class BeautifyCodePage extends ToolPage {
     }
 
     onSourceEditorMaximize() {
-        $('.button-column').hide();
+        this.$buttonColumn.hide();
 
-        $('.source-column').removeClass('col-md-10');
-        $('.source-column').addClass('col-md-12');
+        this.$sourceColumn
+            .removeClass('col-md-10')
+            .addClass('col-md-12');
 
-        $('.h1-row').hide();
-        $('.input-options').hide();
-        $('footer').hide();
+        this.$headerTextRow.hide();
+        this.$inputOptionRow.hide();
+        this.$footer.hide();
     }
 
     onSourceEditorMinimize() {
-        $('.button-column').show();
+        this.$buttonColumn.show();
 
-        $('.source-column').removeClass('col-md-12');
-        $('.source-column').addClass('col-md-10');
+        this.$sourceColumn
+            .removeClass('col-md-12')
+            .addClass('col-md-10');
 
-        $('.h1-row').show();
-        $('.input-options').show();
-        $('footer').show();
+        this.$headerTextRow.show();
+        this.$inputOptionRow.show();
+        this.$footer.show();
     }
 
 }

@@ -43,8 +43,7 @@ int main()
 
 
 
-    cpp: `
-#include <iostream>
+    cpp: `#include <iostream>
 using namespace std;
 
 struct student{
@@ -503,14 +502,10 @@ p {font-size: 25px;color:#3C7949;}
 .myclass {h1 {font-size: 25px;color:#E45456;}p {font-size: 25px;color:#3C7949;}}}
 `,
 
-    css: `
-    
-html{height:100%;padding-left:7%;padding-right:7%}body{background:#f5f5f5;font-size:18px;margin:7% auto}body h1{font-family:'Segoe UI';padding:1px;text-transform:uppercase}body>header>h1{font-size:200%;margin:2%;text-shadow:rgba(0,0,0,.4) 3px 3px 12px;text-align:center}#tagline{text-shadow:rgba(0,0,0,.4) 3px 3px 12px;text-align:center;margin-top:-2%;display:block}body>header>nav{border-bottom:solid 1px rgba(0,0,0,.2);margin-bottom:2%;padding:2%}nav>ul>li{text-shadow:rgba(0,0,0,.4) 1px 1px 1px;text-transform:lowercase;font-size:150%;display:inline;margin-right:5%}body>header>nav>ul>li:last-child{margin-right:0}body>header>nav>ul>li>a{color:orange;text-decoration:none}body>section>article>h1{font-size:125%;margin-bottom:1px;text-shadow:rgba(0,0,0,.4) 1px 1px 1px}body>section>article>p{font-family:'Segoe UI Light';font-size:100%;margin-top:2%;margin-bottom:2%;text-align:justify}body>section>article>h1+p{font-style:italic;font-size:110%}.callout{font-weight:700}a{padding-bottom:2px;text-decoration:none}a:hover{opacity:.8}a:active,a:focus{position:relative;top:1px}
+    css: `html{height:100%;padding-left:7%;padding-right:7%}body{background:#f5f5f5;font-size:18px;margin:7% auto}body h1{font-family:'Segoe UI';padding:1px;text-transform:uppercase}body>header>h1{font-size:200%;margin:2%;text-shadow:rgba(0,0,0,.4) 3px 3px 12px;text-align:center}#tagline{text-shadow:rgba(0,0,0,.4) 3px 3px 12px;text-align:center;margin-top:-2%;display:block}body>header>nav{border-bottom:solid 1px rgba(0,0,0,.2);margin-bottom:2%;padding:2%}nav>ul>li{text-shadow:rgba(0,0,0,.4) 1px 1px 1px;text-transform:lowercase;font-size:150%;display:inline;margin-right:5%}body>header>nav>ul>li:last-child{margin-right:0}body>header>nav>ul>li>a{color:orange;text-decoration:none}body>section>article>h1{font-size:125%;margin-bottom:1px;text-shadow:rgba(0,0,0,.4) 1px 1px 1px}body>section>article>p{font-family:'Segoe UI Light';font-size:100%;margin-top:2%;margin-bottom:2%;text-align:justify}body>section>article>h1+p{font-style:italic;font-size:110%}.callout{font-weight:700}a{padding-bottom:2px;text-decoration:none}a:hover{opacity:.8}a:active,a:focus{position:relative;top:1px}
 `,
 
-    scss: `
-    
-.links{&,& li,& ul{margin:0;padding:0;list-style:none}}nav ul{@extend .links;background:#ccc;box-shadow:0 -2px 4px rgba(0,0,0,.1) inset;text-align:center;cursor:default;li,a{display:inline-block}a{color:#333;text-decoration:none;padding:3px;&:hover{background:#ddd;background:rgba(255,255,255,.4)}}}body{margin:0;font:12px Ubuntu,Arial,sans-serif}
+    scss: `.links{&,& li,& ul{margin:0;padding:0;list-style:none}}nav ul{@extend .links;background:#ccc;box-shadow:0 -2px 4px rgba(0,0,0,.1) inset;text-align:center;cursor:default;li,a{display:inline-block}a{color:#333;text-decoration:none;padding:3px;&:hover{background:#ddd;background:rgba(255,255,255,.4)}}}body{margin:0;font:12px Ubuntu,Arial,sans-serif}
 `,
     python: `import random
 
@@ -570,8 +565,7 @@ Hobbies of <%=data.name%> are:<br/>
 </body> 
 </html>`,
 
-    htmlerb: `
-<!doctype html>
+    htmlerb: `<!doctype html>
 <html>
 <head>
 <meta charset="utf-8"/>
@@ -587,8 +581,7 @@ Time: <%= Time.now %>
 </html>
 `,
 
-    xml: `
-<?xml version="1.0" encoding="UTF-8"?>
+    xml: `<?xml version="1.0" encoding="UTF-8"?>
 <emails><email><to>Vimal</to><from>Sonoo</from><heading>Hello</heading><body>Hello brother, how are you!</body></email><email><to>Peter</to><from>Jack</from><heading>Birth day wish</heading><body>Happy birth day Tom!</body></email><email><to>James</to><from>Jaclin</from><heading>Morning walk</heading><body>Please start morning walk to stay fit!</body></email><email><to>Kartik</to><from>Kumar</from><heading>Health Tips</heading><body>Smoking is injurious to health!</body></email></emails>   
 `,
     svg: `
@@ -603,6 +596,72 @@ Time: <%= Time.now %>
 </g> 
 Sorry, your browser does not support inline SVG.
 </svg>
-`
+`,
+
+    ruby: `require("last")
+
+class Tree
+class Node
+include Follower
+
+def initialize(d)
+@val = d
+@lft, @rgt = nil
+end
+attr_reader :lft, :rgt, :val
+attr_writer :lft, :rgt
+
+def next
+return @rgt
+end
+
+def insert(new)
+if new.val < @val then
+if @lft == nil then
+@lft = new
+else
+@lft.insert(new)
+end
+else
+if @rgt == nil then
+@rgt = new
+else
+@rgt.insert(new)
+end
+end
+end
+
+def each(block)
+if @lft then @lft.each(block) end
+block.call(@val)
+if @rgt then @rgt.each(block) end
+end
+end
+
+def initialize(first)
+@root = Node.new(first)
+end
+
+def insert(v)
+@root.insert(Node.new(v))
+end
+
+def max
+return @root.last.val
+end
+
+def each(&blk)
+@root.each(blk)
+end
+end
+`,
+    sql: `select country.country_name_eng, sum(case when call.id is not null then 1 else 0 end) as calls, avg(isnull(datediff(second, call.start_time, call.end_time),0)) as avg_difference
+from country left join city on city.country_id = country.id
+left join customer on city.id = customer.city_id left join call on call.customer_id = customer.id
+group by country.id, country.country_name_eng
+having avg(isnull(datediff(second, call.start_time, call.end_time),0)) > (select avg(datediff(second, call.start_time, call.end_time)) from call)
+order by calls desc, country.id asc;
+`,
+    json: `{"colors":[{"color":"black","category":"hue","type":"primary","code":{"rgba":[255,255,255,1],"hex":"#000"}},{"color":"white","category":"value","code":{"rgba":[0,0,0,1],"hex":"#FFF"}}]}`
 
 }

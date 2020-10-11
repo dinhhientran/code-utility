@@ -1,4 +1,4 @@
-<div class="row h1-row">
+<div class="row" id="h1-row">
   <div class="col-md-5">
     <h1>Beautify Code</h1>
   </div>
@@ -6,14 +6,18 @@
     <span class="share-link btn-outline-primary"></span> <button class="btn btn-outline-secondary copy"><i class="fas fa-copy"></i></button>
   </div>
 </div>
-<div class="row input-options mb-4">
+<div class="row mb-4" id="input-options">
   <div class="col col-md-4 col-sm-12 mt-4">
     <div class="float-left mb-sm-3 mb-md-0">
       <label>Language</label>
       <select id="language"></select>
     </div>
+    <div class="float-left custom-control custom-switch ml-4 mt-1">
+      <input type="checkbox" class="custom-control-input" id="example-toggle" <%= @showSampleCode == 'true' ? 'checked="checked"' : '' %>>
+      <label class="custom-control-label" for="example-toggle">Sample code</label>
+    </div>
   </div>
-  <div class="col col-md-4 col-sm-12 mt-4 option-column">
+  <div class="col col-md-4 col-sm-12 mt-4" id="option-column">
   </div>
   <div class="col col-md-2 mt-4 text-md-right text-sm-left">
     <div>
@@ -26,10 +30,10 @@
   </div>
 </div>
 <div class="row row-eq-height">
-  <div class="col col-md-10 col-sm-12 source-column">
+  <div class="col col-md-10 col-sm-12" id="source-column">
     <div class="row">
       <div class="col-md-12">
-        <textarea id="source"></textarea>
+        <textarea id="source-editor" placeholder="Code goes here..."></textarea>
       </div>
     </div>
   </div>
@@ -49,7 +53,6 @@
     <div class="d-flex h-50 align-items-end">
       <div class="w-100">
         <button id="share-btn" class="btn btn-outline-primary" style="width: 100%;"><i class="fas fa-share-alt"></i> Share</button>
-        <button id="fork-btn" class="btn btn-outline-primary mt-2" style="width: 100%;"><i class="fas fa-code-branch"></i> Fork</button>
         <button id="new-btn" class="btn btn-outline-primary mt-2" style="width: 100%;"><i class="fas fa-plus"></i> New</button>
       </div>
     </div>

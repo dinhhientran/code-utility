@@ -1,4 +1,4 @@
-<div class="row h1-row">
+<div class="row" id="h1-row">
   <div class="col-md-6">
     <h1>Align Hash/Array</h1>
   </div>
@@ -6,7 +6,7 @@
     <span class="share-link btn-outline-primary"></span> <button class="btn btn-outline-secondary copy"><i class="fas fa-copy"></i></button>
   </div>
 </div>
-<div class="row input-options mb-4">
+<div class="row mb-4" id="input-options-row">
   <div class="col col-md-5_5 mt-4">
     <div class="float-left">
       <label>Language</label>
@@ -42,29 +42,29 @@
   </div>
 </div>
 <div class="row row-eq-height">
-  <div class="col col-md-5_5 col-sm-12 mb-3 source-column">
+  <div class="col col-md-5_5 col-sm-12 mb-3" id="source-column">
     <div class="row">
       <div class="col-md-12">
-        <textarea id="source"></textarea>
+        <textarea id="source-editor" placeholder="Code goes here..."></textarea>
       </div>
     </div>
   </div>
-  <div class="col-md-1 col-sm-12 align-self-center mb-3 button-column">
+  <div class="col-md-1 col-sm-12 align-self-center mb-3" id="button-column">
     <div class="d-flex h-50 align-items-end">
-      <button id="beautify-btn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></button>
+      <button id="beautify-btn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-angle-double-right"></i></button>
     </div>
     <div class="d-flex h-50 align-items-end">
-      <div>
+      <div class="w-100">
         <button id="share-btn" class="btn btn-outline-primary" style="width: 100%;display: none;"><i class="fas fa-share-alt"></i> Share</button>
         <button id="fork-btn" class="btn btn-outline-primary mt-2" style="width: 100%;display: none;"><i class="fas fa-code-branch"></i> Fork</button>
         <button id="new-btn" class="btn btn-outline-primary mt-2" style="width: 100%;display: none;"><i class="fas fa-plus"></i> New</button>
       </div>
     </div>
   </div>
-  <div class="col col-md-5_5 col-sm-12 target-column">
+  <div class="col col-md-5_5 col-sm-12" id="target-column">
     <div class="row">
       <div class="col-md-12">
-        <textarea id="target"></textarea>
+        <textarea id="target-editor"></textarea>
       </div>
     </div>
   </div>

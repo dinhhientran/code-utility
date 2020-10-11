@@ -1,15 +1,8 @@
-class PrettyDiffBeautifier
+class PrettyDiffBeautifier < CodeBeautifier
 
-  TEMP_DIRECTORY = Rails.root.to_s + '/tmp/files/'
+  def self.execute_command(tempFile, language, options)
+    optionStr = !options.nil? && !options[:indent_size].nil? ? "-o indent_size=#{options[:indent_size]}" : ""
 
-  def self.beautify(code, language, options)
-    # style = options.nil? || options.empty? ? DEFAULT_STYLE : options[:style]
-    tempFile = TEMP_DIRECTORY + SecureRandom.uuid
-    File.open(tempFile, "w+") do |f|
-      f.write(code)
-    end
-    result = `prettydiff beautify source:#{tempFile}`
-    File.delete(tempFile)
-    result
+    `prettydiff beautify #{optionStr} source:#{tempFile}`
   end
 end

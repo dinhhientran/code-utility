@@ -4,24 +4,25 @@ import Toastr from "toastr/build/toastr.min.js"
 import 'select2/dist/css/select2.css'
 import 'select2'
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner.js'
-import ToolPage from "./tool_page";
-import CodeEditor from "./code_editor";
-import {ALIGN_HASH_SAMPLE} from "./samples/align_hash";
+import ToolPage from "./abstracts/tool_page";
+import CodeEditor from "../code_editor";
+import {ALIGN_HASH_SAMPLE} from "../samples/align_hash";
 
 export default class AlignHashPage extends ToolPage {
 
     constructor(props) {
         super(props);
 
+        this.init = this.init.bind(this);
         this.initInputs = this.initInputs.bind(this);
         this.sendBeautifyRequest = this.sendBeautifyRequest.bind(this);
         this.onShareLoad = this.onShareLoad.bind(this);
         this.onThemeChange = this.onThemeChange.bind(this);
-        this.init = this.init.bind(this);
+        this.calculateEditorHeight = this.calculateEditorHeight.bind(this);
 
-        this.beautifyUrl = '/align_hash/beautify';
-        this.shareUrl = '/align_hash/share';
-        this.forkUrl = '/align_hash/fork';
+        this.beautifyUrl = window.gon.tool_url + '/beautify';
+        this.shareUrl = window.gon.tool_url + '/share';
+        this.forkUrl = window.gon.tool_url + '/fork';
 
         this.LANGUAGE = {
             php: {
@@ -59,14 +60,57 @@ export default class AlignHashPage extends ToolPage {
 
     init() {
         super.init();
+
+        this.$sourceColumn = $('#source-column');
+        this.$targetColumn = $('#target-column');
+        this.$buttonColumn = $('#button-column');
+
+        this.$beautifyBtn = $("#beautify-btn");
+
+        this.$languageDdl = $('#language');
+        this.$indentSpaceInput = $('#indent-spaces');
+        this.$valueAlignedCheckbox = $('#value-aligned-check');
+
+        this.$headerTextRow = $('#h1-row');
+        this.$inputOptionRow = $('#input-options-row');
+
         this.initInputs();
         this.initButtons();
         this.initShare();
+        let _this = this;
+
+        $(window).resize(function() {
+            _this.setColumnWidth();
+        });
+
+        _this.setColumnWidth();
+
+    }
+
+    setColumnWidth() {
+        if ($(window).width() > 768) {
+            let editorColumnWidth = (100 - (this.$buttonColumn.outerWidth() / $('main').width()) * 100) / 2;
+            let widthCss = {
+                width: editorColumnWidth + '%',
+                flex: '0 0 ' + editorColumnWidth + '%',
+                maxWidth: editorColumnWidth + '%',
+            };
+
+            this.$sourceColumn.css(widthCss);
+            this.$targetColumn.css(widthCss);
+        } else {
+            let widthCss = {
+                width: '100%%',
+                flex: '0 0 100%',
+                maxWidth: '100%',
+            };
+            this.$sourceColumn.css(widthCss);
+        }
     }
 
     initButtons() {
         let _this = this;
-        $("#beautify-btn").click(function() {
+        this.$beautifyBtn.click(function() {
             _this.sendBeautifyRequest();
         });
 
@@ -82,22 +126,24 @@ export default class AlignHashPage extends ToolPage {
 
         this.sourceEditor = new CodeEditor();
         this.sourceEditor.init({
-            elementId: 'source',
+            elementId: 'source-editor',
             theme: this.theme,
             onMaximize: this.onSourceEditorMaximize,
-            onMinimize: this.onSourceEditorMinimize
+            onMinimize: this.onSourceEditorMinimize,
+            calculateEditorHeight: this.calculateEditorHeight
         });
 
         this.targetEditor = new CodeEditor();
         this.targetEditor.init({
-            elementId: 'target',
+            elementId: 'target-editor',
             theme: this.theme,
             onMaximize: this.onTargetEditorMaximize,
-            onMinimize: this.onTargetEditorMinimize
+            onMinimize: this.onTargetEditorMinimize,
+            calculateEditorHeight: this.calculateEditorHeight
         });
 
-        $('#language').select2({width: 200, minimumResultsForSearch: Infinity, placeholder: "Select a language"});
-        $('#language').change(function() {
+        this.$languageDdl.select2({width: 200, minimumResultsForSearch: Infinity, placeholder: "Select a language"});
+        this.$languageDdl.change(function() {
             let language = $(this).val();
             _this.sourceEditor.setMode(_this.LANGUAGE[language].mode);
             _this.targetEditor.setMode(_this.LANGUAGE[language].mode);
@@ -117,9 +163,9 @@ export default class AlignHashPage extends ToolPage {
             }
         });
 
-        $('#indent-spaces').inputSpinner({groupClass: 'indent-spaces'});
+        this.$indentSpaceInput.inputSpinner({groupClass: 'indent-spaces'});
 
-        $('#value-aligned-check').change(function() {
+        this.$valueAlignedCheckbox.change(function() {
             if (_this.targetEditor.getContent() != "") {
                 _this.sendBeautifyRequest();
             }
@@ -152,7 +198,7 @@ export default class AlignHashPage extends ToolPage {
             }, function (response) {
                 _this.targetEditor.setContent(response.hash);
 
-                _this.afterSendBeautifyRequest();
+                _this.showShareButton();
             })
                 .fail(function (response) {
                     response = response.responseJSON;
@@ -167,7 +213,7 @@ export default class AlignHashPage extends ToolPage {
     }
 
     getInput(){
-        let language = $('#language').val();
+        let language = this.$languageDdl.val();
 
         if (language == undefined || language == "") {
             return null;
@@ -182,8 +228,8 @@ export default class AlignHashPage extends ToolPage {
         return {
             language: language,
             hash: code,
-            indent: $('.indent-spaces .form-control-sm').val(),
-            valueAligned: $('#value-aligned-check').is(":checked") ? 1 : 0
+            indent: this.$indentSpaceInput.val(),
+            valueAligned: this.$valueAlignedCheckbox.is(":checked") ? 1 : 0
         }
     }
 
@@ -194,11 +240,12 @@ export default class AlignHashPage extends ToolPage {
 
     onShareLoad(input) {
 
-        $('#language').val(input.language).trigger('change');
+        this.$languageDdl.val(input.language).trigger('change');
 
-        $('#indent-spaces').val(input.indent);
+        this.$indentSpaceInput.val(input.indent);
+
         if (input.valueAligned == "1") {
-            $('#value-aligned-check').attr('checked', 'checked');
+            this.$valueAlignedCheckbox.attr('checked', 'checked');
         }
         this.sourceEditor.setContent(input.hash);
 
@@ -206,47 +253,59 @@ export default class AlignHashPage extends ToolPage {
     }
 
     onSourceEditorMaximize() {
-        $('.target-column').hide();
-        $('.source-column').removeClass('col-md-5_5');
-        $('.source-column').addClass('col-md-12');
+        this.removeColumnWidthHeight();
 
-        $('.button-column').hide();
-        $('.h1-row').hide();
-        $('.input-options').hide();
-        $('footer').hide();
+        this.$targetColumn.hide();
+        this.$sourceColumn
+            .removeClass('col-md-5_5')
+            .addClass('col-md-12');
+
+        this.$buttonColumn.hide();
+        this.$headerTextRow.hide();
+        this.$inputOptionRow.hide();
+        this.$footer.hide();
     }
 
     onSourceEditorMinimize() {
-        $('.target-column').show();
-        $('.source-column').removeClass('col-md-12');
-        $('.source-column').addClass('col-md-5_5');
+        this.removeColumnWidthHeight();
 
-        $('.button-column').show();
-        $('.h1-row').show();
-        $('.input-options').show();
-        $('footer').show();
+        this.$targetColumn.show();
+        this.$sourceColumn
+            .removeClass('col-md-12')
+            .addClass('col-md-5_5');
+
+        this.$buttonColumn.show();
+        this.$headerTextRow.show();
+        this.$inputOptionRow.show();
+        this.$footer.show();
     }
 
     onTargetEditorMaximize() {
-        $('.source-column').hide();
-        $('.target-column').removeClass('col-md-5_5');
-        $('.target-column').addClass('col-md-12');
+        this.removeColumnWidthHeight();
 
-        $('.button-column').hide();
-        $('.h1-row').hide();
-        $('.input-options').hide();
-        $('footer').hide();
+        this.$sourceColumn.hide();
+        this.$targetColumn
+            .removeClass('col-md-5_5')
+            .addClass('col-md-12');
+
+        this.$buttonColumn.hide();
+        this.$headerTextRow.hide();
+        this.$inputOptionRow.hide();
+        this.$footer.hide();
     }
 
     onTargetEditorMinimize() {
-        $('.source-column').show();
-        $('.target-column').removeClass('col-md-12');
-        $('.target-column').addClass('col-md-5_5');
+        this.removeColumnWidthHeight();
 
-        $('.button-column').show();
-        $('.h1-row').show();
-        $('.input-options').show();
-        $('footer').show();
+        this.$sourceColumn.show();
+        this.$targetColumn
+            .removeClass('col-md-12')
+            .addClass('col-md-5_5');
+
+        this.$buttonColumn.show();
+        this.$headerTextRow.show();
+        this.$inputOptionRow.show();
+        this.$footer.show();
     }
 
 }

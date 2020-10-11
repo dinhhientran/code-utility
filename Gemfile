@@ -30,6 +30,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'gon', '~> 6.2'
 
+gem 'rubocop'
+
+gem 'html2haml'
+
+gem 'html2slim', '~> 0.2.0'
+
+gem 'sass'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

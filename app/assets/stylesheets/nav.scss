@@ -1,21 +1,16 @@
 @import "bootstrap/scss/bootstrap";
-
 $bd-purple-bright: #3b528c;
-
 .bd-navbar {
   min-height: 3.2rem;
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
-
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   @include media-breakpoint-down(md) {
-    padding-right: .5rem;
-    padding-left: .5rem;
-
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
     .navbar-nav-scroll {
       max-width: 100%;
       height: 2.5rem;
-      margin-top: .25rem;
+      margin-top: 0.25rem;
       overflow: hidden;
-
       .navbar-nav {
         padding-bottom: 2rem;
         overflow-x: auto;
@@ -23,57 +18,47 @@ $bd-purple-bright: #3b528c;
         -webkit-overflow-scrolling: touch;
       }
     }
-
     .navbar-nav-scroll span {
       font-family: "Proxima Nova Soft";
       font-size: 1.4rem;
     }
   }
-
   @include media-breakpoint-up(md) {
-    @supports (position: sticky) {
+    @supports(position: sticky) {
       top: 0;
       z-index: 1071; // over everything in bootstrap
     }
   }
-
   .navbar-nav-scroll {
     line-height: 0.9;
-
     span {
       font-family: "Proxima Nova Soft";
       font-size: 1.4rem;
     }
-
     span.slogan {
       color: #9b9dad;
       font-size: 0.8rem;
     }
   }
-
   .navbar-nav {
     .nav-link {
-      padding-right: .5rem;
-      padding-left: .5rem;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
       color: $primary;
-
       &.active,
       &:hover {
         color: $primary;
         background-color: transparent;
       }
-
       &.active {
         font-weight: 600;
       }
     }
-
-    .nav-item span{
+    .nav-item span {
       display: inline-block;
       padding-top: 0.5rem;
     }
   }
-
   .navbar-nav-svg {
     display: inline-block;
     width: 1rem;
@@ -81,17 +66,12 @@ $bd-purple-bright: #3b528c;
     vertical-align: text-top;
     fill: $primary;
   }
-
   .navbar-brand {
     padding-top: 0 !important;
   }
-
   .dropdown-menu {
-    @include font-size(.875rem);
+    @include font-size(0.875rem);
   }
-}
-
-.navbar-collapse {
 }
 
 .navbar-light .navbar-brand {
@@ -100,54 +80,55 @@ $bd-purple-bright: #3b528c;
 .navbar-light .navbar-nav .nav-link {
   color: #1ebdc2;
 }
-.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
   color: #1ebdc2;
 }
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
   color: #fff;
 }
-.navbar-light .navbar-nav .nav-link{
-  padding-top: 22px;
-  padding-bottom: 22px;
+.navbar-light .navbar-nav .nav-link {
+  padding: 22px 24px;
   transition: 0.3s;
-  padding-left: 24px;
-  padding-right: 24px;
   font-size: 14px;
 }
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
   background: #1ebdc2;
   transition: 0.3s;
 }
-.dropdown-item:focus, .dropdown-item:hover {
+.dropdown-item:focus,
+.dropdown-item:hover {
   color: #fff;
   text-decoration: none;
   background-color: #1ebdc2 !important;
 }
-.sm-menu{
-  border-radius: 0px;
-  border: 0px;
+.sm-menu {
+  border-radius: 0;
+  border: 0;
   top: 97%;
-  box-shadow: rgba(173, 173, 173, 0.2) 1px 3px 4px 0px;
+  box-shadow: rgba(173, 173, 173, 0.2) 1px 3px 4px 0;
 }
 .dropdown-item {
   color: #3c3c3c;
   font-size: 14px;
 }
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
   color: #fff;
   text-decoration: none;
   background-color: #2196F3;
 }
-.navbar-toggler{
+.navbar-toggler {
   outline: none !important;
 }
-.navbar-tog{
+.navbar-tog {
   color: #1ebdc2;
 }
 .megamenu-li {
   position: static;
 }
-
 .megamenu {
   position: absolute;
   width: 100%;
@@ -155,13 +136,14 @@ $bd-purple-bright: #3b528c;
   right: 0;
   padding: 15px;
 }
-.megamenu h6{
+.megamenu h6 {
   margin-left: 21px;
 }
-.megamenu i{
+.megamenu i {
   width: 20px;
 }
-
-.dropdown-item:focus, .dropdown-item:hover {
+.dropdown-item:focus,
+.dropdown-item:hover {
   background-color: #36a7f7 !important;
 }
+

@@ -1,14 +1,7 @@
-class PrettierBeautifier
+class PrettierBeautifier < CodeBeautifier
 
-  TEMP_DIRECTORY = Rails.root.to_s + '/tmp/files/'
+  def self.execute_command(tempFile, language, options)
 
-  def self.beautify(code, language, options)
-    tempFile = TEMP_DIRECTORY + SecureRandom.uuid
-    File.open(tempFile, "w+") do |f|
-      f.write(code)
-    end
-    result = `prettier --parser #{language} #{tempFile}`
-    File.delete(tempFile)
-    result
+    `prettier --parser #{language} #{tempFile}`
   end
 end
