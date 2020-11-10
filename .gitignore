@@ -38,6 +38,4 @@ yarn-debug.log*
 .idea/
 .rspec
 
-.env
-
 .sass-cache
