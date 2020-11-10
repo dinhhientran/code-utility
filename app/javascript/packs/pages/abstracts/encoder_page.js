@@ -1,4 +1,5 @@
 import ConverterPage from "./converter_page";
+import Toastr from "toastr/build/toastr.min.js";
 import $ from "jquery";
 
 export default class EncoderPage extends ConverterPage {
@@ -9,8 +10,8 @@ export default class EncoderPage extends ConverterPage {
         this.ENCODE = 'encode';
         this.DECODE = 'decode';
 
-        this.encodeUrl = window.gon.tool_url + '/encode';
-        this.decodeUrl = window.gon.tool_url + '/decode';
+        this.encodeUrl = window.gon.api_url + '/encode';
+        this.decodeUrl = window.gon.api_url + '/decode';
 
         this.sourceEditorPlaceholder = 'Text goes here...';
         this.targetEditorPlaceholder = 'Text goes here...';
@@ -39,7 +40,7 @@ export default class EncoderPage extends ConverterPage {
         if (string != "") {
             _this.showLoadingOverlay();
 
-            $.post(input.type == _this.ENCODE ? _this.encodeUrl : _this.decodeUrl, {
+            $.post(input.action == _this.ENCODE ? _this.encodeUrl : _this.decodeUrl, {
                 input: input,
             }, function (response) {
 
@@ -59,7 +60,7 @@ export default class EncoderPage extends ConverterPage {
 
     onAfterSendConvertRequest(response) {
 
-        if (response.type == this.ENCODE) {
+        if (response.action == this.ENCODE) {
             this.targetEditor.setContent(response.result);
         } else {
             this.sourceEditor.setContent(response.result);
@@ -69,8 +70,9 @@ export default class EncoderPage extends ConverterPage {
     }
 
     onShareLoad(input) {
+        super.onShareLoad();
 
-        if (input.type == this.ENCODE) {
+        if (input.action == this.ENCODE) {
             this.sourceEditor.setContent(input.string);
         } else {
             this.targetEditor.setContent(input.string);
@@ -79,10 +81,10 @@ export default class EncoderPage extends ConverterPage {
         this.sendConvertRequest(input);
     }
 
-    getInput(type){
+    getInput(action){
         let input;
 
-        if (type == undefined) {
+        if (action == undefined) {
             input = this.sourceEditor.getContent();
         } else {
             input = this.targetEditor.getContent();
@@ -90,7 +92,7 @@ export default class EncoderPage extends ConverterPage {
 
         return {
             string: input,
-            type: type != undefined ? type : 'encode'
+            action: action != undefined ? action : 'encode'
         }
     }
 

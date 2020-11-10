@@ -2,7 +2,7 @@ class ConverterController < ToolController
 
   def get_params
     input = params.require(:input).permit(:code)
-    { input: input, tool: TOOL }
+    { input: input, tool: self.class::TOOL }
   end
 
   def convert

@@ -25,6 +25,7 @@ export default class ToolPage extends BasePage {
 
         this.uploadUrl = '/file/upload';
         this.downloadUrl = '/file/download';
+        this.cookieSampleCodeSuffix = '_sample_code';
     }
 
     init() {
@@ -32,7 +33,8 @@ export default class ToolPage extends BasePage {
 
         this.theme = Cookies.get('theme') ? Cookies.get('theme') : 'light';
 
-        let showSampleCodeCookie = Cookies.get(window.gon.tool + '_showSampleCode');
+        let showSampleCodeCookie = Cookies.get(window.gon.tool + this.cookieSampleCodeSuffix);
+
         this.showSampleCode = showSampleCodeCookie ? showSampleCodeCookie == 'true' : true;
 
         this.shareBtnId = '#share-btn';
@@ -64,7 +66,7 @@ export default class ToolPage extends BasePage {
 
             new ClipboardJS(this.shareBtnId, {
                 text: function (trigger) {
-                    return window.gon.tool_url + window.gon.reference_number + '/' + window.gon.version;
+                    return window.gon.base_url + window.gon.reference_number + '/' + window.gon.version;
                 }
             }).on('success', function (e) {
                 setTimeout(function () {
@@ -90,7 +92,7 @@ export default class ToolPage extends BasePage {
                 }
             );
 
-            this.$copyLink.show().find('span').text(window.gon.tool_url + window.gon.reference_number + '/' + window.gon.version);
+            this.$copyLink.show().find('span').text(window.gon.base_url + window.gon.reference_number + '/' + window.gon.version);
 
             this.$copyLink.find('.copy').tooltip(
                 {
@@ -103,7 +105,7 @@ export default class ToolPage extends BasePage {
 
             new ClipboardJS(this.copyLinkClass + ' .copy', {
                 text: function (trigger) {
-                    return window.gon.tool_url + window.gon.reference_number + '/' + window.gon.version;
+                    return window.gon.base_url + window.gon.reference_number + '/' + window.gon.version;
                 }
             }).on('success', function (e) {
                 setTimeout(function () {
@@ -135,7 +137,7 @@ export default class ToolPage extends BasePage {
 
         this.$themeDdl.change(function($theme) {
             theme = $theme.target.value.toLowerCase();
-            Cookies.set('theme', theme);
+            _this.setCookie('theme', theme);
 
             if (theme == 'light') {
                 _this.$lightThemeStylesheet.removeAttr('disabled');
@@ -274,7 +276,7 @@ export default class ToolPage extends BasePage {
             $.post(_this.shareUrl, {
                 input: input
             }, function (response) {
-                window.location.href = window.gon.tool_url + response.reference_number + '/' + response.version;
+                window.location.href = window.gon.base_url + response.reference_number + '/' + response.version;
             })
                 .fail(function (response) {
                     response = response.responseJSON;
@@ -299,7 +301,7 @@ export default class ToolPage extends BasePage {
                 input: _this.getInput(),
                 reference_number: window.gon.reference_number
             }, function (response) {
-                window.location.href = window.gon.tool_url + response.reference_number + '/' + response.version;
+                window.location.href = window.gon.base_url + response.reference_number + '/' + response.version;
             })
                 .fail(function (response) {
                     response = response.responseJSON;
@@ -322,10 +324,12 @@ export default class ToolPage extends BasePage {
     }
 
     showShareButton() {
+        this.$shareBtn.parent().parent().show();
         this.$shareBtn.show();
     }
 
     onShareLoad() {
+        this.$shareBtn.parent().parent().show();
     }
 
     onThemeChange() {

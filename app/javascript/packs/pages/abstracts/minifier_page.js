@@ -5,7 +5,7 @@ export default class MinifierPage extends ConverterPage {
     constructor(props) {
         super(props);
 
-        this.convertUrl = window.gon.tool_url + '/minify';
+        this.convertUrl = window.gon.api_url + '/minify';
     }
 
     initButtons() {

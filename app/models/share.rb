@@ -8,7 +8,7 @@ class Share < ApplicationRecord
 
   def generate_reference_number
     self.reference_number = loop do
-      random_ref_no = SecureRandom.base36(8)
+      random_ref_no = SecureRandom.base36(6)
       break random_ref_no unless Share.exists?(reference_number: random_ref_no)
     end
   end

@@ -1,0 +1,78 @@
+map $http_host $page {
+	default codeutility.bar;
+
+	codeutility.bar /;
+	www.codeutility.bar /;
+	alignhash.codeutility.bar align_hash;
+	beautifycode.codeutility.bar beautify_code;
+	beautifyjson.codeutility.bar beautify_json;
+	beautifyjs.codeutility.bar beautify_code/javascript;
+	beautifyhtml.codeutility.bar beautify_code/html;
+	beautifysql.codeutility.bar beautify_code/sql;
+
+	html2haml.codeutility.bar html2haml;
+	html2jsx.codeutility.bar html2jsx;
+	html2pug.codeutility.bar html2pug;
+	html2slim.codeutility.bar html2slim;
+	json2yaml.codeutility.bar json2yaml;
+	css2scss.codeutility.bar css2scss;
+
+	minifycss.codeutility.bar minify_css;
+	minifyhtml.codeutility.bar minify_html;
+	minifyjs.codeutility.bar minify_javascript;
+	minifyjson.codeutility.bar minify_json;
+	minifysql.codeutility.bar minify_sql;
+
+	hexencode.codeutility.bar hex_encode;
+	base64encode.codeutility.bar base64_encode;
+	uriencode.codeutility.bar uri_encode;
+	htmlencode.codeutility.bar html_encode;
+	md5encrypt.codeutility.bar md5_encrypt;
+	shaencrypt.codeutility.bar sha_encrypt;
+}
+
+server {
+	set $base_domain codeutility.bar;
+	set $app_root /app;
+
+    listen       80;
+    server_name $page;
+
+	add_header Strict-Transport-Security "max-age=0;";
+	add_header Access-Control-Allow-Origin '*';
+
+	error_page 502 503 = @maintenance;
+    error_page 404 = @error_404;
+
+	access_log /app/log/nginx/access.log;
+	error_log /app/log/nginx/error.log;
+
+	location / {
+
+		rewrite ^ /$page$request_uri break;
+
+        proxy_set_header Host $base_domain;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Forwarded-Server $http_host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto http;
+        proxy_set_header X-Url-Scheme $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://127.0.0.1:3000;
+        proxy_buffering off;
+        proxy_buffer_size 128k;
+        proxy_buffers 100 128k;
+        proxy_set_header   X-NginX-Proxy  true;
+        proxy_read_timeout 120;
+    }
+
+    location @maintenance {
+        root  $app_root/public/;
+        rewrite ^ /maintenance.html break;
+    }
+
+    location @error_404 {
+        root $app_root/public/;
+        rewrite ^ /404.html break;
+    }
+}

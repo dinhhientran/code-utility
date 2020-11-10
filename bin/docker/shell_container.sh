@@ -1,0 +1,1 @@
+docker exec -it codeutility_web /bin/bash

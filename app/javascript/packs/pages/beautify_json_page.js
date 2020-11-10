@@ -31,9 +31,9 @@ export default class BeautifyJsonPage extends ToolPage {
         this.onTargetEditorMinimize = this.onTargetEditorMinimize.bind(this);
         this.calculateEditorHeight = this.calculateEditorHeight.bind(this);
 
-        this.beautifyUrl = window.gon.tool_url + '/beautify';
-        this.shareUrl = window.gon.tool_url + '/share';
-        this.forkUrl = window.gon.tool_url + '/fork';
+        this.beautifyUrl = window.gon.api_url + '/beautify';
+        this.shareUrl = window.gon.api_url + '/share';
+        this.forkUrl = window.gon.api_url + '/fork';
     }
 
     init() {
@@ -117,7 +117,7 @@ export default class BeautifyJsonPage extends ToolPage {
 
             _this.showSampleCode = showSampleCode;
 
-            Cookies.set(window.gon.tool + '_showSampleCode', showSampleCode);
+            _this.setCookie(window.gon.tool + _this.cookieSampleCodeSuffix, showSampleCode);
 
             let currentCode = _this.sourceEditor.getContent();
 
@@ -347,6 +347,7 @@ export default class BeautifyJsonPage extends ToolPage {
     }
 
     onShareLoad(input) {
+        super.onShareLoad();
 
         this.sourceEditor.setContent(input.json);
 
@@ -408,7 +409,9 @@ export default class BeautifyJsonPage extends ToolPage {
             .removeClass('col-md-5_5')
             .addClass('col-md-12');
 
-        this.$buttonColumn.hide();
+        this.$buttonColumn
+            .addClass('d-flex')
+            .hide();
         this.$headerTextRow.hide();
         this.$inputOptionRow.hide();
         this.$footer.hide();
@@ -422,7 +425,9 @@ export default class BeautifyJsonPage extends ToolPage {
             .removeClass('col-md-12')
             .addClass('col-md-5_5');
 
-        this.$buttonColumn.show();
+        this.$buttonColumn
+            .removeClass('d-flex')
+            .show();
         this.$headerTextRow.show();
         this.$inputOptionRow.show();
         this.$footer.show();

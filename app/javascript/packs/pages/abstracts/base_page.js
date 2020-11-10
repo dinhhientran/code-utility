@@ -1,5 +1,6 @@
 import $ from "jquery";
 import 'gasparesganga-jquery-loading-overlay/dist/loadingoverlay.min.js'
+import Cookies from "js-cookie";
 
 export default class BasePage {
 
@@ -18,7 +19,7 @@ export default class BasePage {
     }
 
     setMegaMenuButtonMargin() {
-        let megaMenuBtnMargin = parseInt($(window).width() / 2) - 285;
+        let megaMenuBtnMargin = parseInt($(window).width() / 2) - 305;
         this.$megamenuli.css("margin-left", megaMenuBtnMargin);
     }
 
@@ -28,6 +29,26 @@ export default class BasePage {
         $(window).resize(function() {
             _this.setMegaMenuButtonMargin();
         });
+
+        if (window.gon.page != 'home') {
+
+            if ($('.nav-link.dropdown-toggle').is(':visible')) {
+                $('.nav-link.dropdown-toggle').tooltip({
+                    placement: 'bottom',
+                    title: 'More tools here!',
+                    trigger: 'manual',
+                    boundary: 'window'
+                });
+
+                setTimeout(function () {
+                    $('.nav-link.dropdown-toggle').tooltip('show');
+                }, 5000);
+
+                setTimeout(function () {
+                    $('.nav-link.dropdown-toggle').tooltip('hide');
+                }, 10000);
+            }
+        }
     }
 
     showLoadingOverlay() {
@@ -53,6 +74,11 @@ export default class BasePage {
         $.LoadingOverlay("hide");
     }
 
+    setCookie(name, value) {
+        let url = new URL(window.gon.base_url);
+        Cookies.set(name, value, { path: '', domain: '.' + url.hostname });
+    }
+
     beforeInit() {
         this.showLoadingOverlay();
         $('main').css({visibility: 'hidden'});
@@ -60,6 +86,6 @@ export default class BasePage {
 
     afterInit() {
         this.closeLoadingOverlay();
-        $('main').css({visibility: 'visible'});
+        $('main').show().css({visibility: 'visible'});
     }
 }

@@ -1,4 +1,4 @@
-<div class="d-flex h-md-50 align-items-end">
+<div class="pt-md-6">
   <div class="w-100">
     <button id="convert-btn" class="btn btn-primary" style="width: 100%;">Convert
       <i class="fas fa-angle-double-right"></i>
@@ -18,16 +18,5 @@
       Download</button>
   </div>
 </div>
-<div class="d-flex h-md-50 align-items-end">
-  <div class="w-100">
-    <button id="share-btn" class="btn btn-outline-primary" style="width: 100%;display: none;">
-      <i class="fas fa-share-alt"></i>
-      Share</button>
-    <button id="fork-btn" class="btn btn-outline-primary mt-2" style="width: 100%;display: none;">
-      <i class="fas fa-code-branch"></i>
-      Fork</button>
-    <button id="new-btn" class="btn btn-outline-primary mt-2" style="width: 100%;display: none;">
-      <i class="fas fa-plus"></i>
-      New</button>
-  </div>
-</div>
+<%= render "pages/share_new_buttons" %>
+

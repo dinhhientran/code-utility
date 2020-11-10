@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    container_name: codeutility_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  web:
+    tty: true
+    image: codeutility:latest
+    container_name: codeutility_web
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

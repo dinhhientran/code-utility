@@ -19,10 +19,14 @@ export default class AlignHashPage extends ToolPage {
         this.onShareLoad = this.onShareLoad.bind(this);
         this.onThemeChange = this.onThemeChange.bind(this);
         this.calculateEditorHeight = this.calculateEditorHeight.bind(this);
+        this.onSourceEditorMaximize = this.onSourceEditorMaximize.bind(this);
+        this.onSourceEditorMinimize = this.onSourceEditorMinimize.bind(this);
+        this.onTargetEditorMaximize = this.onTargetEditorMaximize.bind(this);
+        this.onTargetEditorMinimize = this.onTargetEditorMinimize.bind(this);
 
-        this.beautifyUrl = window.gon.tool_url + '/beautify';
-        this.shareUrl = window.gon.tool_url + '/share';
-        this.forkUrl = window.gon.tool_url + '/fork';
+        this.beautifyUrl = window.gon.api_url + '/beautify';
+        this.shareUrl = window.gon.api_url + '/share';
+        this.forkUrl = window.gon.api_url + '/fork';
 
         this.LANGUAGE = {
             php: {
@@ -50,11 +54,11 @@ export default class AlignHashPage extends ToolPage {
                 sample: ALIGN_HASH_SAMPLE.perl,
                 comment: '#'
             },
-            groovy: {
-                mode: 'text/x-groovy',
-                sample: ALIGN_HASH_SAMPLE.groovy,
-                comment: '//'
-            }
+            // groovy: {
+            //     mode: 'text/x-groovy',
+            //     sample: ALIGN_HASH_SAMPLE.groovy,
+            //     comment: '//'
+            // }
         };
     }
 
@@ -99,12 +103,7 @@ export default class AlignHashPage extends ToolPage {
             this.$sourceColumn.css(widthCss);
             this.$targetColumn.css(widthCss);
         } else {
-            let widthCss = {
-                width: '100%%',
-                flex: '0 0 100%',
-                maxWidth: '100%',
-            };
-            this.$sourceColumn.css(widthCss);
+            this.removeColumnWidthHeight();
         }
     }
 
@@ -239,6 +238,7 @@ export default class AlignHashPage extends ToolPage {
     }
 
     onShareLoad(input) {
+        super.onShareLoad();
 
         this.$languageDdl.val(input.language).trigger('change');
 
@@ -278,6 +278,8 @@ export default class AlignHashPage extends ToolPage {
         this.$headerTextRow.show();
         this.$inputOptionRow.show();
         this.$footer.show();
+
+        this.setColumnWidth();
     }
 
     onTargetEditorMaximize() {
@@ -306,6 +308,8 @@ export default class AlignHashPage extends ToolPage {
         this.$headerTextRow.show();
         this.$inputOptionRow.show();
         this.$footer.show();
+
+        this.setColumnWidth();
     }
 
 }

@@ -1,4 +1,4 @@
-import Html2PugPage from "./pages/html2pug_page";
+import BasePage from "./pages/abstracts/base_page";
 
 require("@rails/ujs").start()
 require("turbolinks").start()
@@ -17,6 +17,7 @@ import BeautifyJsonPage from "./pages/beautify_json_page.js";
 import Html2HamlPage from "./pages/html2haml_page.js";
 import Html2SlimPage from "./pages/html2slim_page";
 import Html2JsxPage from "./pages/html2jsx_page";
+import Html2PugPage from "./pages/html2pug_page";
 import Css2scssPage from "./pages/css2scss_page";
 import Json2yamlPage from "./pages/json2yaml_page";
 import MinifyHtmlPage from "./pages/minify_html_page";
@@ -25,6 +26,12 @@ import MinifyCssPage from "./pages/minify_css_page";
 import MinifyJsonPage from "./pages/minify_json_page";
 import MinifySqlPage from "./pages/minify_sql_page";
 import UriEncodePage from "./pages/uri_encode_page";
+import HtmlEncodePage from "./pages/html_encode_page";
+import HexEncodePage from "./pages/hex_encode_page";
+import Base64EncodePage from "./pages/base64_encode_page";
+import Md5EncryptPage from "./pages/md5_encrypt_page";
+import ShaEncryptPage from "./pages/sha_encrypt_page";
+import HomePage from "./pages/home_page";
 
 $( document ).on('turbolinks:load', function() {
 
@@ -77,6 +84,27 @@ $( document ).on('turbolinks:load', function() {
         case 'uri_encode':
             page = new UriEncodePage();
             break;
+        case 'html_encode':
+            page = new HtmlEncodePage();
+            break;
+        case 'hex_encode':
+            page = new HexEncodePage();
+            break;
+        case 'base64_encode':
+            page = new Base64EncodePage();
+            break;
+        case 'md5_encrypt':
+            page = new Md5EncryptPage();
+            break;
+        case 'sha_encrypt':
+            page = new ShaEncryptPage();
+            break;
+    }
+
+    if (tool == null) {
+        if (window.gon.page == 'home') {
+            page = new HomePage();
+        }
     }
 
     if (page != null) {

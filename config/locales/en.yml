@@ -1,33 +1,103 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  page:
+    home:
+      title: 'CodeUtility: Online Tools to beautify, format, convert your code.'
+      description: 'CodeUtility is where you can find best online tools to beautify, format or convert your code.'
+      keywords: 'beautify code online, format code online, convert code online, minify code online, share code online, beautify html, beautify javascript, beautify css, beautify php, beautify json, convert html, html to jsx, html to pug, html to haml, html to slim, html converter'
+    align_hash:
+      title: 'CodeUtility: Online tool to align/format hash or array'
+      description: 'Best online tool to Align/Format your hash or array. Supports PHP, Ruby, Javascript, Python, Perl and Groovy.'
+      keywords: 'Align hash, format hash, format array'
+    beautify_code:
+      title: 'CodeUtility: Online tool to beautify code'
+      description: 'Best online tool to beautify code. Supports many languages such as HTML, JavaScript, CSS, JSON, PHP, Ruby, Java, C, C++ etc'
+      keywords: 'beautify code online, beautify html, beautify javascript, beautify css, beautify json, beautify php, beautify ruby, beautify java, beautify c, beautify c++, beautify go, beautify python, beautify erb, beautify jsx'
+    beautify_json:
+      title: 'CodeUtility: Online tool to beautify json'
+      description: 'Best online tool to beautify json.'
+      keywords: 'beautify json online, format json online, view json online, json beautifier, minify json'
+    beautify_js:
+      title: 'CodeUtility: Online tool to beautify JavaScript/TypeScript'
+      description: 'Best online tool to beautify JavaScript/TypeScript.'
+      keywords: 'beautify js, beautify javascript, beautify typescript, format js, format javascript, format typescript'
+    beautify_html:
+      title: 'CodeUtility: Online tool to beautify HTML'
+      description: 'Best online tool to beautify HTML and HTML templates.'
+      keywords: 'beautify html, beautify xhtml, beautify erb, beautify html+erb'
+    beautify_sql:
+      title: 'CodeUtility: Online tool to beautify/format SQL'
+      description: 'Best online tool to beautify/format SQL.'
+      keywords: 'beautify sql online, format sql'
+    html2haml:
+      title: 'CodeUtility: Online tool to convert HTML/ERB to Haml'
+      description: 'Best online tool to convert HTML/ERB to Haml.'
+      keywords: 'convert html to haml, erb to haml, rails, ruby, rails template, erb template'
+    html2slim:
+      title: 'CodeUtility: Online tool to convert HTML/ERB to Slim'
+      description: 'Best online tool to convert HTML/ERB to Slim.'
+      keywords: 'convert html to slim, erb to slim, rails, ruby, rails template, erb template'
+    html2jsx:
+      title: 'CodeUtility: Online tool to convert HTML to JSX'
+      description: 'Best online tool to convert HTML to JSX.'
+      keywords: 'convert html to jsx, javascript template, react, react html'
+    html2pug:
+      title: 'CodeUtility: Online tool to convert HTML to Pug'
+      description: 'Best online tool to convert HTML to Pug.'
+      keywords: 'convert html to pug, pug template'
+    css2scss:
+      title: 'CodeUtility: Online tool to convert CSS to SCSS/Sass'
+      description: 'Best online tool to convert CSS to SCSS/Sass.'
+      keywords: 'convert css to scss, sass, format css, scss compile, sass compile'
+    json2yaml:
+      title: 'CodeUtility: Online tool to convert JSON to YAML'
+      description: 'Best online tool to convert JSON to YAML.'
+      keywords: 'convert json to yaml, convert json, convert yaml'
+    minify_html:
+      title: 'CodeUtility: Online tool to minify HTML'
+      description: 'Best online tool to minify/compress HTML.'
+      keywords: 'minify code, minify HTML, compress HTML'
+    minify_javascript:
+      title: 'CodeUtility: Online tool to minify/compress JavaScript'
+      description: 'Best online tool to minify/compress JavaScript.'
+      keywords: 'minify code, minify javascript, minify js, compress javascript, compress js'
+    minify_css:
+      title: 'CodeUtility: Online tool to minify CSS'
+      description: 'Best online tool to minify/compress CSS.'
+      keywords: 'minify code, minify css, minify css, compress css, compress css'
+    minify_json:
+      title: 'CodeUtility: Online tool to minify JSON'
+      description: 'Best online tool to minify/compress JSON.'
+      keywords: 'minify code, minify json, minify json, compress json, compress json'
+    minify_sql:
+      title: 'CodeUtility: Online tool to minify SQL'
+      description: 'Best online tool to minify/compress SQL.'
+      keywords: 'minify code, minify sql, minify sql, compress sql, compress sql'
+    uri_encode:
+      title: 'CodeUtility: Online tool to encode/decode URI'
+      description: 'Best online tool to encode/decode URI.'
+      keywords: 'encode uri online, uri encoder online, decode uri online, uri decoder online'
+    html_encode:
+      title: 'CodeUtility: Online tool to encode/decode HTML'
+      description: 'Best online tool to encode/decode HTML.'
+      keywords: 'encode html online, html encoder online'
+    hex_encode:
+      title: 'CodeUtility: Online tool to encode/decode Hex'
+      description: 'Best online tool to encode/decode Hex.'
+      keywords: 'encode hex online, hex encoder online'
+    base64_encode:
+      title: 'CodeUtility: Online tool to encode/decode Base64'
+      description: 'Best online tool to encode/decode Base64.'
+      keywords: 'encode base64 online, base64 encoder online'
+    md5_encrypt:
+      title: 'CodeUtility: Online MD5 encrypter'
+      description: 'Best online tool to MD5 encrypt string.'
+      keywords: 'encrypt md5 online, md5 encrypter online'
+    sha_encrypt:
+      title: 'CodeUtility: Online SHA-1, SHA-256, SHA-384, SHA-512 encrypters'
+      description: 'Best online tool to encrypt string using SHA-1, SHA-256, SHA-384, SHA-512 encrypters.'
+      keywords: 'online sha-1, sha-256, sha-384, sha-512, encrypt string, encrypter'
+
+
+
+
+

@@ -59,6 +59,8 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)
+    base32 (0.3.4)
+    base58 (0.1.0)
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
@@ -76,6 +78,10 @@ GEM
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     diff-lcs (1.4.4)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.9.0)
     erubis (2.7.0)
     ffi (1.13.1)
@@ -260,9 +266,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  base32 (~> 0.3.4)
+  base58 (~> 0.1.0)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  dotenv-rails
   gon (~> 6.2)
   html2haml
   html2slim (~> 0.2.0)

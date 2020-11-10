@@ -4,8 +4,15 @@ class ApplicationController < ActionController::Base
   TOOL = nil
 
   def set_urls
-    gon.base_url = 'http://localhost:3000/'
-    gon.tool_url = gon.base_url + self.class::TOOL + '/'
+    gon.base_url = ENV['BASE_URL']
+
+    gon.api_url = ENV['BASE_URL'] + controller_name
+
+    unless self.class::TOOL.nil?
+      gon.tool_url = ENV[self.class::TOOL.upcase + "_URL"]
+    end
+
+    gon.page = controller_name
   end
 
   def render_error(message, status = 500)

@@ -9,7 +9,7 @@
     "@rails/webpacker": "4.3.0",
     "@tsuyoshiwada/htmltojsx": "^0.0.5",
     "@ttskch/select2-bootstrap4-theme": "1.4.0",
-    "bootstrap": "4.3.1",
+    "bootstrap": "^4.5.3",
     "bootstrap-input-spinner": "https://github.com/dinhhientran/bootstrap-input-spinner.git",
     "clipboard": "^2.0.6",
     "codemirror": "^5.57.0",
@@ -26,6 +26,7 @@
     "popper.js": "^1.16.1",
     "select2": "4.0.13",
     "toastr": "^2.1.2",
+    "javascript-detect-element-resize": "^0.5.3",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

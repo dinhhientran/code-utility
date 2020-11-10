@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Code Utility</title>
+    <title><%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.title') %></title>
+    <meta charset="UTF-8">
+    <meta name="description" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.description') %>">
+    <meta name="keywords" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.keywords') %>">
+    <meta name="author" content="Hien Tran">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'light', media: 'all', 'data-turbolinks-track': 'reload', 'id': 'light_theme_stylesheet', 'disabled': @theme == 'dark' %>
     <%= stylesheet_link_tag 'dark', media: 'all', 'data-turbolinks-track': 'reload', 'id': 'dark_theme_stylesheet', 'disabled': @theme == 'light' %>
@@ -13,7 +17,7 @@
   <body>
   <%= include_gon %>
   <%= render "layouts/header" %>
-  <main id="<%= !@tool.nil? ? @tool : 'default' %>_page">
+  <main id="<%= !@tool.nil? ? @tool : 'default' %>_page" style="visibility: hidden;">
     <%= yield %>
   </main>
   <%= render "layouts/footer" %>

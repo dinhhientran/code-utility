@@ -5,7 +5,7 @@ class UriEncodeController < ToolController
   TOOL = 'uri_encode'.freeze
 
   def get_params
-    input = params.require(:input).permit(:string, :type)
+    input = params.require(:input).permit(:string, :action)
     { input: input, tool: TOOL }
   end
 
@@ -14,7 +14,7 @@ class UriEncodeController < ToolController
 
     result = URI.encode(input[:string])
 
-    render json: { result: result, type: input[:type] }
+    render json: { result: result, action: input[:action] }
   rescue Exception => e
     render_error(e.message)
   end
@@ -24,7 +24,7 @@ class UriEncodeController < ToolController
 
     result = URI.decode(input[:string])
 
-    render json: { result: result, type: input[:type] }
+    render json: { result: result, action: input[:action] }
   rescue Exception => e
     render_error(e.message)
   end

@@ -24,10 +24,12 @@ export default class BeautifyCodePage extends ToolPage {
         this.onShareLoad = this.onShareLoad.bind(this);
         this.getCOptions = this.getCOptions.bind(this);
         this.getPhpOptions = this.getPhpOptions.bind(this);
+        this.onSourceEditorMaximize = this.onSourceEditorMaximize.bind(this);
+        this.onSourceEditorMinimize = this.onSourceEditorMinimize.bind(this);
 
-        this.beautifyUrl = window.gon.tool_url + '/beautify';
-        this.shareUrl = window.gon.tool_url + '/share';
-        this.forkUrl = window.gon.tool_url + '/fork';
+        this.beautifyUrl = window.gon.api_url + '/beautify';
+        this.shareUrl = window.gon.api_url + '/share';
+        this.forkUrl = window.gon.api_url + '/fork';
 
         this.LANGUAGE = {
             c: {
@@ -397,7 +399,7 @@ export default class BeautifyCodePage extends ToolPage {
 
             _this.showSampleCode = showSampleCode;
 
-            Cookies.set(window.gon.tool + '_showSampleCode', showSampleCode);
+            _this.setCookie(window.gon.tool + _this.cookieSampleCodeSuffix, showSampleCode);
 
             let language = _this.$languageDdl.val();
 
@@ -411,7 +413,7 @@ export default class BeautifyCodePage extends ToolPage {
                         break;
                     }
                 }
-            } else if (currentCode == "") {
+            } else if (currentCode == "" && _this.LANGUAGE[language] != undefined) {
                 _this.sourceEditor.setContent(_this.LANGUAGE[language].sample);
             }
         });
@@ -509,6 +511,8 @@ export default class BeautifyCodePage extends ToolPage {
     }
 
     onShareLoad(input) {
+        super.onShareLoad();
+
         this.input = {};
         this.input[input.language] = input;
 
@@ -534,7 +538,9 @@ export default class BeautifyCodePage extends ToolPage {
     }
 
     onSourceEditorMaximize() {
-        this.$buttonColumn.hide();
+        this.$buttonColumn
+            .removeClass('d-flex')
+            .hide();
 
         this.$sourceColumn
             .removeClass('col-md-10')
@@ -546,7 +552,9 @@ export default class BeautifyCodePage extends ToolPage {
     }
 
     onSourceEditorMinimize() {
-        this.$buttonColumn.show();
+        this.$buttonColumn
+            .addClass('d-flex')
+            .show();
 
         this.$sourceColumn
             .removeClass('col-md-12')

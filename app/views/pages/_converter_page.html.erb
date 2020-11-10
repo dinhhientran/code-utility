@@ -7,35 +7,43 @@
   </div>
 </div>
 <div class="row mb-4" id="input-options">
-  <div class="col col-md-5_5 mt-4">
-    <%= render "pages/source_options" %>
+  <div class="col col-md-5_5 col-12 mt-4">
+    <% if @tool == 'sha_encrypt' %>
+      <%= render "sha_encrypt/source_options" %>
+    <% else %>
+      <%= render "pages/source_options" %>
+    <% end %>
   </div>
-  <div class="col-md-1 col-sm-12 text-right">
+  <div class="col-md-1 col-sm-12 col-12 text-right">
   </div>
   <div class="col col-md-5_5 text-right mt-4 d-flex">
     <%= render "pages/target_options" %>
   </div>
 </div>
 <div class="row row-eq-height">
-  <div class="col col-md-5_5 col-sm-12 mb-3" id="source-column">
+  <div class="col col-md-5_5 col-sm-12 col-12 mb-3" id="source-column">
     <div class="row">
       <div class="col-md-12">
         <textarea id="source-editor" placeholder="Code goes here..."></textarea>
       </div>
     </div>
   </div>
-  <div class="col-md-1 col-sm-12 align-self-center mb-3" id="button-column">
-    <% if !@tool.nil? && @tool == 'css2scss' %>
-      <%= render "css2scss/buttons" %>
-    <% elsif !@tool.nil? && @tool == 'json2yaml' %>
-      <%= render "json2yaml/buttons" %>
-    <% elsif !@tool.nil? && @tool == 'uri_encode' %>
-      <%= render "uri_encode/buttons" %>
-    <% else %>
-      <%= render "pages/converter_buttons" %>
-    <% end %>
+  <div class="col-md-1 col-sm-12 col-12 mb-3" id="button-column">
+    <div class="d-flex flex-column w-100 h-100 align-self-center">
+      <% if !@tool.nil? && @tool == 'css2scss' %>
+        <%= render "css2scss/buttons" %>
+      <% elsif !@tool.nil? && @tool == 'json2yaml' %>
+        <%= render "json2yaml/buttons" %>
+      <% elsif !@tool.nil? && @tool.end_with?('encode') %>
+        <%= render "pages/encoder_buttons" %>
+      <% elsif !@tool.nil? && @tool.end_with?('encrypt') %>
+        <%= render "pages/encrypter_buttons" %>
+      <% else %>
+        <%= render "pages/converter_buttons" %>
+      <% end %>
+    </div>
   </div>
-  <div class="col col-md-5_5 col-sm-12" id="target-column">
+  <div class="col col-md-5_5 col-sm-12 col-12" id="target-column">
     <div class="row">
       <div class="col-md-12 json-view" id="source-view">
         <textarea id="target-editor"></textarea>

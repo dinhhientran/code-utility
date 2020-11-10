@@ -17,15 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: codeutility_dev
-  username: codeutility
-  password: codeutility
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -60,8 +62,6 @@ development:
 test:
   <<: *default
   database: codeutility_test
-  username: codeutility
-  password: codeutility
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,6 +84,3 @@ test:
 #
 production:
   <<: *default
-  database: codeutility_production
-  username: codeutility
-  password: <%= ENV['CODEUTILITY_DATABASE_PASSWORD'] %>

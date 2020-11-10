@@ -1,0 +1,90 @@
+map $http_host $page {
+	default codeutility.io;
+
+	codeutility.io /;
+	www.codeutility.io /;
+	alignhash.codeutility.io align_hash;
+	beautifycode.codeutility.io beautify_code;
+	beautifyjson.codeutility.io beautify_json;
+	beautifyjs.codeutility.io beautify_code/javascript;
+	beautifyhtml.codeutility.io beautify_code/html;
+	beautifysql.codeutility.io beautify_code/sql;
+
+	html2haml.codeutility.io html2haml;
+	html2jsx.codeutility.io html2jsx;
+	html2pug.codeutility.io html2pug;
+	html2slim.codeutility.io html2slim;
+	json2yaml.codeutility.io json2yaml;
+	css2scss.codeutility.io css2scss;
+
+	minifycss.codeutility.io minify_css;
+	minifyhtml.codeutility.io minify_html;
+	minifyjs.codeutility.io minify_javascript;
+	minifyjson.codeutility.io minify_json;
+	minifysql.codeutility.io minify_sql;
+
+	hexencode.codeutility.io hex_encode;
+	base64encode.codeutility.io base64_encode;
+	uriencode.codeutility.io uri_encode;
+	htmlencode.codeutility.io html_encode;
+	md5encrypt.codeutility.io md5_encrypt;
+	shaencrypt.codeutility.io sha_encrypt;
+}
+
+server {
+	set $base_domain codeutility.io;
+	set $app_root /app;
+
+	listen       80 ssl;
+    listen [::]:80 ssl;
+    server_name  $page;
+
+    ssl_certificate      /app/keystore/codeutility_prd.crt;
+    ssl_certificate_key  /app/keystore/codeutitlity_prd.key;
+
+    ssl_session_cache    shared:SSL:1m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+
+    ssl_protocols TLSv1.2;
+
+	add_header Strict-Transport-Security "max-age=0;";
+	add_header Access-Control-Allow-Origin '*';
+
+	error_page 502 503 = @maintenance;
+    error_page 404 = @error_404;
+
+	access_log /app/log/nginx/access.log; 
+	error_log /app/log/nginx/error.log;
+
+	location / {
+
+		rewrite ^ /$page$request_uri break;
+
+        proxy_set_header Host $base_domain;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Forwarded-Server $http_host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto http;
+        proxy_set_header X-Url-Scheme $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://127.0.0.1:3000;
+        proxy_buffering off;
+        proxy_buffer_size 128k;
+        proxy_buffers 100 128k;
+        proxy_set_header   X-NginX-Proxy  true;
+        proxy_read_timeout 120;
+    }
+
+    location @maintenance {
+        root  $app_root/public/;
+        rewrite ^ /maintenance.html break;
+    }
+
+    location @error_404 {
+        root $app_root/public/;
+        rewrite ^ /404.html break;
+    }
+}

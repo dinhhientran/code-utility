@@ -25,9 +25,9 @@ export default class ConverterPage extends ToolPage {
         this.setDownloadFileNameAfterUpload = this.setDownloadFileNameAfterUpload.bind(this);
         this.onAfterSendConvertRequest = this.onAfterSendConvertRequest.bind(this);
 
-        this.convertUrl = window.gon.tool_url + '/convert';
-        this.shareUrl = window.gon.tool_url + '/share';
-        this.forkUrl = window.gon.tool_url + '/fork';
+        this.convertUrl = window.gon.api_url + '/convert';
+        this.shareUrl = window.gon.api_url + '/share';
+        this.forkUrl = window.gon.api_url + '/fork';
 
         this.sourceEditorPlaceholder = 'Code goes here...';
         this.targetEditorPlaceholder = '';
@@ -107,7 +107,7 @@ export default class ConverterPage extends ToolPage {
 
             _this.showSampleCode = showSampleCode;
 
-            Cookies.set(window.gon.tool + '_showSampleCode', showSampleCode);
+            _this.setCookie(window.gon.tool + _this.cookieSampleCodeSuffix, showSampleCode);
 
             let currentCode = _this.sourceEditor.getContent();
 
@@ -233,6 +233,7 @@ export default class ConverterPage extends ToolPage {
     }
 
     onShareLoad(input) {
+        super.onShareLoad();
 
         this.sourceEditor.setContent(input.code);
 
@@ -265,6 +266,8 @@ export default class ConverterPage extends ToolPage {
         this.$headerTextRow.show();
         this.$inputOptionRow.show();
         this.$footer.show();
+
+        this.setColumnWidth();
     }
 
     onTargetEditorMaximize() {
@@ -293,6 +296,8 @@ export default class ConverterPage extends ToolPage {
         this.$headerTextRow.show();
         this.$inputOptionRow.show();
         this.$footer.show();
+
+        this.setColumnWidth();
     }
 
 }

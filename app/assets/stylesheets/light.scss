@@ -48,6 +48,31 @@ header, footer {
   background-color: #aaa;
 }
 
+.navbar-brand .page-name {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.navbar-nav .dropdown-toggle {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler {
+  border: 1px solid #999 !important;
+}
+
+.CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
+  background-color: #aaa !important;
+}
+
+.CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {
+  background-color: #ddd !important;
+  border: none !important;
+}
+
 .btn-light, .form-control-sm, .select2-search__field {
   background-color: #f8f9fa !important;
   color: #212529 !important;
