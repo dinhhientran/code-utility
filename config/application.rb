@@ -21,5 +21,7 @@ module Codeutility
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     config.asset_host = ENV['BASE_URL']
+
+    config.autoloader = :classic
   end
 end
