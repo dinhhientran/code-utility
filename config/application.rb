@@ -23,5 +23,7 @@ module Codeutility
     config.asset_host = ENV['BASE_URL']
 
     config.autoloader = :classic
+
+    config.log_level = :error
   end
 end
