@@ -32,11 +32,18 @@ map $http_host $page {
 }
 
 server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name $page;
+    return 301 https://$host$request_uri;
+}
+
+server {
 	set $base_domain codeutility.io;
 	set $app_root /app;
 
-	listen       80 ssl;
-    listen [::]:80 ssl;
+	listen       443 ssl;
+    listen [::]:443 ssl;
     server_name  $page;
 
     ssl_certificate      /app/keystore/codeutility_prd.crt;
@@ -58,6 +65,10 @@ server {
 
 	access_log /app/log/nginx/access.log; 
 	error_log /app/log/nginx/error.log;
+
+    location ~* \.(js|jpg|png|css|ico|eot|svg|ttf|woff|woff2|map)$ {
+        root  $app_root/public/;
+    }
 
 	location / {
 
