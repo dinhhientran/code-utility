@@ -15,13 +15,14 @@
  */
 @import "bootstrap/scss/bootstrap";
 @import "nav";
-@import 'select2/dist/css/select2.css';
-@import 'mdbootstrap/css/mdb.lite.min.css';
-@import 'toastr/build/toastr.min.css';
 @font-face {
   font-family: "Proxima Nova Soft";
-  src: url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.eot");
-  src: url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f_iefix.eot?#iefix") format("embedded-opentype"), url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.woff2") format("woff2"), url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.woff") format("woff"), url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.ttf") format("truetype"), url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.svg#Proxima Nova Soft") format("svg");
+  src: asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.eot");
+  src: asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f_iefix.eot?#iefix") format("embedded-opentype"),
+       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.woff2") format("woff2"),
+       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.woff") format("woff"),
+       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.ttf") format("truetype"),
+       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.svg") format("svg");
 }
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

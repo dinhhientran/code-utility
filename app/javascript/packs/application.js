@@ -1,5 +1,3 @@
-import BasePage from "./pages/abstracts/base_page";
-
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -11,27 +9,27 @@ import $ from 'jquery'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '@fortawesome/fontawesome-free/js/all.min.js'
 
-import AlignHashPage from "./pages/align_hash_page.js";
-import BeautifyCodePage from "./pages/beautify_code_page.js";
-import BeautifyJsonPage from "./pages/beautify_json_page.js";
-import Html2HamlPage from "./pages/html2haml_page.js";
-import Html2SlimPage from "./pages/html2slim_page";
-import Html2JsxPage from "./pages/html2jsx_page";
-import Html2PugPage from "./pages/html2pug_page";
-import Css2scssPage from "./pages/css2scss_page";
-import Json2yamlPage from "./pages/json2yaml_page";
-import MinifyHtmlPage from "./pages/minify_html_page";
-import MinifyJavascriptPage from "./pages/minify_javascript_page";
-import MinifyCssPage from "./pages/minify_css_page";
-import MinifyJsonPage from "./pages/minify_json_page";
-import MinifySqlPage from "./pages/minify_sql_page";
-import UriEncodePage from "./pages/uri_encode_page";
-import HtmlEncodePage from "./pages/html_encode_page";
-import HexEncodePage from "./pages/hex_encode_page";
-import Base64EncodePage from "./pages/base64_encode_page";
-import Md5EncryptPage from "./pages/md5_encrypt_page";
-import ShaEncryptPage from "./pages/sha_encrypt_page";
-import HomePage from "./pages/home_page";
+import AlignHashPage from "../components/pages/align_hash_page";
+import BeautifyCodePage from "../components/pages/beautify_code_page";
+import BeautifyJsonPage from "../components/pages/beautify_json_page";
+import Html2HamlPage from "../components/pages/html2haml_page";
+import Html2SlimPage from "../components/pages/html2slim_page";
+import Html2JsxPage from "../components/pages/html2jsx_page";
+import Html2PugPage from "../components/pages/html2pug_page";
+import Css2scssPage from "../components/pages/css2scss_page";
+import Json2yamlPage from "../components/pages/json2yaml_page";
+import MinifyHtmlPage from "../components/pages/minify_html_page";
+import MinifyJavascriptPage from "../components/pages/minify_javascript_page";
+import MinifyCssPage from "../components/pages/minify_css_page";
+import MinifyJsonPage from "../components/pages/minify_json_page";
+import MinifySqlPage from "../components/pages/minify_sql_page";
+import UriEncodePage from "../components/pages/uri_encode_page";
+import HtmlEncodePage from "../components/pages/html_encode_page";
+import HexEncodePage from "../components/pages/hex_encode_page";
+import Base64EncodePage from "../components/pages/base64_encode_page";
+import Md5EncryptPage from "../components/pages/md5_encrypt_page";
+import ShaEncryptPage from "../components/pages/sha_encrypt_page";
+import HomePage from "../components/pages/home_page";
 
 $( document ).on('turbolinks:load', function() {
 

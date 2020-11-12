@@ -35,6 +35,7 @@ class BeautifyCodeController < ToolController
       raise ArgumentError.new('Code cannot be empty!')
     end
   rescue Exception => e
+    puts e.inspect
     render_error(e.message)
   end
 end
