@@ -1,6 +1,4 @@
 class FileController < ApplicationController
-  BASE_URL = 'http://localhost:3000/tool/'.freeze
-
   skip_before_action :verify_authenticity_token
 
   def upload
@@ -14,6 +12,7 @@ class FileController < ApplicationController
       extension: extension
     }
   rescue Exception => e
+    puts e.inspect
     render_error(e.message)
   end
 
@@ -25,6 +24,7 @@ class FileController < ApplicationController
 
     send_data code, filename: fileName, type: mimeType, disposition: 'download'
   rescue Exception => e
+    puts e.inspect
     render_error(e.message)
   end
 end

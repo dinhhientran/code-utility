@@ -20,6 +20,6 @@ module Codeutility
     #
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
-    config.asset_host = ENV['BASE_URL']
+    config.asset_host = ENV['ASSET_HOST']
   end
 end

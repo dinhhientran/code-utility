@@ -6,6 +6,7 @@
     <meta name="description" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.description') %>">
     <meta name="keywords" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.keywords') %>">
     <meta name="author" content="Hien Tran">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag %>
@@ -13,6 +14,17 @@
     <%= stylesheet_link_tag 'light', media: 'all', 'data-turbolinks-track': 'reload', 'id': 'light_theme_stylesheet', 'disabled': @theme == 'dark' %>
     <%= stylesheet_link_tag 'dark', media: 'all', 'data-turbolinks-track': 'reload', 'id': 'dark_theme_stylesheet', 'disabled': @theme == 'light' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <% if Rails.env.production? %>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_TAG_MANAGER_ID'] %>"></script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '<%= ENV['GOOGLE_TAG_MANAGER_ID'] %>');
+      </script>
+    <% end %>
   </head>
   <body>
   <%= include_gon %>

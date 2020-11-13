@@ -29,6 +29,7 @@ class Json2yamlController < ConverterController
 
     render json: { code: result, language: input[:to] }
   rescue Exception => e
+    puts e.inspect
     render_error(e.message)
   end
 
