@@ -41,3 +41,5 @@ yarn-debug.log*
 .env
 
 .sass-cache
+
+/config/credentials/production.key
