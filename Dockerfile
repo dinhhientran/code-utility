@@ -52,6 +52,9 @@ RUN npm -g install prettier
 # install prettydiff
 RUN npm -g install prettydiff
 
+# install json2yaml
+RUN npm install -g json2yaml
+
 # install rubocop
 RUN gem install rubocop
 

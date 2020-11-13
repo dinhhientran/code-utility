@@ -23,8 +23,8 @@ export default class ToolPage extends BasePage {
         this.calculateEditorHeight = this.calculateEditorHeight.bind(this);
         this.removeColumnWidthHeight = this.removeColumnWidthHeight.bind(this);
 
-        this.uploadUrl = '/file/upload';
-        this.downloadUrl = '/file/download';
+        this.uploadUrl = window.gon.base_url + '/file/upload';
+        this.downloadUrl = window.gon.base_url + '/file/download';
         this.cookieSampleCodeSuffix = '_sample_code';
     }
 
