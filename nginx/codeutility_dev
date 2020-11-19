@@ -47,10 +47,6 @@ server {
 	access_log /app/log/nginx/access.log;
 	error_log /app/log/nginx/error.log;
 
-    location ~* \.(js|jpg|png|css|ico|eot|svg|ttf|woff|woff2|map)$ {
-        root  $app_root/public/;
-    }
-
 	location / {
 
 		rewrite ^ /$page$request_uri break;

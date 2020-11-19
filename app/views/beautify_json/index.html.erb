@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <h1>Beautify JSON</h1>
   </div>
-  <div class="col-md-6 text-right link-copy" style="display: none">
+  <div class="col-md-6 text-left text-md-right link-copy" style="display: none">
     <span class="share-link btn-outline-primary"></span> <button class="btn btn-outline-secondary copy"><i class="fas fa-copy"></i></button>
   </div>
 </div>
@@ -10,7 +10,7 @@
   <div class="col col-md-5_5 mt-4">
     <div class="float-left custom-control custom-switch mt-1">
       <input type="checkbox" class="custom-control-input" id="example-toggle" <%= @sample_code == 'true' ? 'checked="checked"' : '' %>>
-      <label class="custom-control-label" for="example-toggle">Sample code</label>
+      <label class="custom-control-label" for="example-toggle">Sample</label>
     </div>
     <div class="float-right">
     </div>
@@ -56,7 +56,7 @@
           <button data-toggle="modal" data-target="#download_file_name_modal" class="btn btn-outline-primary mt-4" style="width: 100%;"><i class="fas fa-download"></i> Download</button>
         </div>
       </div>
-      <div class="mt-md-auto mt-sm-4 w-100">
+      <div class="mt-md-auto mt-4 w-100">
         <div class="w-100">
           <button id="share-btn" class="btn btn-outline-primary" style="width: 100%;display: none;"><i class="fas fa-share-alt"></i> Share</button>
           <button id="fork-btn" class="btn btn-outline-primary mt-2" style="width: 100%;display: none;"><i class="fas fa-code-branch"></i> Fork</button>

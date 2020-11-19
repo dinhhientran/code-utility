@@ -17,6 +17,7 @@
     "gasparesganga-jquery-loading-overlay": "2.1.7",
     "graphql": "^15.3.0",
     "html2pug": "^4.0.0",
+    "javascript-detect-element-resize": "^0.5.3",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
     "json2yaml": "^1.1.0",
@@ -26,7 +27,6 @@
     "popper.js": "^1.16.1",
     "select2": "4.0.13",
     "toastr": "^2.1.2",
-    "javascript-detect-element-resize": "^0.5.3",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

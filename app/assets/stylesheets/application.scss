@@ -86,6 +86,29 @@ label {
   }
 }
 
+@media(max-width: 350px) {
+  .d-xxs-none {
+    display: none;
+  }
+
+  .site-name-xxs {
+    margin-top: 12px;
+    display: block;
+  }
+}
+
+@media(max-width: 768px) {
+  .col-md-5_5, .col-md-1, .col-md-6 {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  .pt-md-6 {
+    padding-top: 0px !important;
+  }
+}
+
 .pt-6 {
   padding-top: 5rem !important;
 }

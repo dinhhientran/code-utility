@@ -13,7 +13,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'light', media: 'all', 'data-turbolinks-track': 'reload', 'id': 'light_theme_stylesheet', 'disabled': @theme == 'dark' %>
     <%= stylesheet_link_tag 'dark', media: 'all', 'data-turbolinks-track': 'reload', 'id': 'dark_theme_stylesheet', 'disabled': @theme == 'light' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_packs_with_chunks_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <% if Rails.env.production? %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
