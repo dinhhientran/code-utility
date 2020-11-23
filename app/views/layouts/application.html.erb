@@ -6,6 +6,9 @@
     <meta name="description" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.description') %>">
     <meta name="keywords" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.keywords') %>">
     <meta name="author" content="Hien Tran">
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
