@@ -1,8 +1,8 @@
 en:
   page:
     home:
-      title: 'CodeUtility: Online Tools to beautify, format, convert your code.'
-      description: 'CodeUtility is where you can find best online tools to beautify, format or convert your code. They support very nice features and many popular languages such as HTML, JSON, JavaScript, CSS, PHP, Ruby, C, C++, Java etc.'
+      title: 'CodeUtility: Online Tools to beautify, minify or convert your code'
+      description: 'Where you can find best beautifiers, formatters or converters. Supports many popular languages such as HTML, JavaScript, CSS/SCSS/Sass, JSON, PHP, Ruby, C++ etc'
       keywords: 'beautify code online, format code online, convert code online, minify code online, share code online, beautify html, beautify javascript, beautify css, beautify php, beautify json, convert html, html to jsx, html to pug, html to haml, html to slim, html converter'
     align_hash:
       title: 'CodeUtility: Online tool to align/format hash or array'

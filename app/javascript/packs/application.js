@@ -6,8 +6,8 @@ require("bootstrap/dist/js/bootstrap")
 
 import $ from 'jquery'
 
-import '@fortawesome/fontawesome-free/css/all.min.css'
-import '@fortawesome/fontawesome-free/js/all.min.js'
+import '../lib/font_awesome/min.css'
+import '../lib/font_awesome/min.js'
 
 import AlignHashPage from "../components/pages/align_hash_page";
 import BeautifyCodePage from "../components/pages/beautify_code_page";

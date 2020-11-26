@@ -4,7 +4,7 @@ import Toastr from "toastr/build/toastr.min.js"
 import 'select2/dist/css/select2.css'
 import 'select2'
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner.js'
-import JSONEditor from "jsoneditor/dist/jsoneditor.min.js";
+import JSONEditor from "jsoneditor/dist/jsoneditor-minimalist.min.js";
 import 'jsoneditor/dist/jsoneditor.min.css'
 import ToolPage from "./abstracts/tool_page";
 import CodeEditor from "../code_editor";

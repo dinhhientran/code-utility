@@ -97,6 +97,12 @@ label {
   }
 }
 
+@media(max-width: 540px) {
+  .dropdown-menu .border-right {
+    border-right: none !important;
+  }
+}
+
 @media(max-width: 768px) {
   .col-md-5_5, .col-md-1, .col-md-6 {
     width: 100% !important;
@@ -107,6 +113,14 @@ label {
   .pt-md-6 {
     padding-top: 0px !important;
   }
+
+  .dropdown-menu .border-right.even {
+    border-right: none !important;
+  }
+}
+
+.dropdown-menu .border-right:last-child {
+  border-right: none !important;
 }
 
 .pt-6 {

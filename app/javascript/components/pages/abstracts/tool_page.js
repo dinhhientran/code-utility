@@ -3,7 +3,6 @@ import BasePage from "./base_page";
 import Toastr from "toastr/build/toastr.min.js"
 import Cookies from "js-cookie"
 import ClipboardJS from 'clipboard/dist/clipboard.min.js'
-import moment from 'moment/dist/moment.js'
 import {DOWNLOAD_FILE_NAME_MODAL} from "../../modals/download_file_name";
 
 export default class ToolPage extends BasePage {
@@ -232,7 +231,17 @@ export default class ToolPage extends BasePage {
                 let language = _this.getSelectedLanguage();
                 let extension = language != null && language.extensions && language.extensions.length > 0 ?
                     language.extensions[0] : '.txt';
-                _this.$downloadFileNameInput.val(moment().format("MMM_DD_YY_h_mm_ss_A") + extension);
+
+                let m = new Date();
+                let date =
+                    m.getUTCFullYear() + "_" +
+                    ("0" + (m.getUTCMonth()+1)).slice(-2) + "_" +
+                    ("0" + m.getUTCDate()).slice(-2) + "_" +
+                    ("0" + m.getUTCHours()).slice(-2) + "_" +
+                    ("0" + m.getUTCMinutes()).slice(-2) + "_" +
+                    ("0" + m.getUTCSeconds()).slice(-2);
+
+                _this.$downloadFileNameInput.val(date + extension);
             }
 
             _this.$downloadFileNameInput.on('input', function() {

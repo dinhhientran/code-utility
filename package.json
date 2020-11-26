@@ -12,7 +12,7 @@
     "bootstrap": "^4.5.3",
     "bootstrap-input-spinner": "https://github.com/dinhhientran/bootstrap-input-spinner.git",
     "clipboard": "^2.0.6",
-    "codemirror": "^5.57.0",
+    "codemirror": "^5.58.3",
     "codemirror-graphql": "^0.12.2",
     "gasparesganga-jquery-loading-overlay": "2.1.7",
     "graphql": "^15.3.0",
