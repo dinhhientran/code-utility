@@ -13,11 +13,11 @@
     <link rel="canonical" href="<%= ENV[(!@tool.nil? ? @tool.upcase : 'BASE') + "_URL"] %>" />
     <meta property="og:title" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.title') %>">
     <meta property="og:description" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.description') %>">
-    <meta property="og:image" content="<%= ENV['ASSET_HOST'] %>thumbnail.png">
+    <meta property="og:image" content="<%= ENV['ASSET_HOST'] %>/thumbnail.png">
     <meta property="og:url" content="<%= ENV[(!@tool.nil? ? @tool.upcase : 'BASE') + "_URL"] %>">
     <meta name="twitter:title" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.title') %>">
     <meta name="twitter:description" content="<%= I18n.t('page.' + (!@page.nil? ? @page : @tool) + '.description') %>">
-    <meta name="twitter:image" content="<%= ENV['ASSET_HOST'] %>thumbnail.png">
+    <meta name="twitter:image" content="<%= ENV['ASSET_HOST'] %>/thumbnail.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="shortcut icon" type="image/x-icon" href="<%= ENV['BASE_URL'] %>favicon.ico">
     <%= csrf_meta_tags %>
