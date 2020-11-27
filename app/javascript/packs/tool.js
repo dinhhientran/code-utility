@@ -11,7 +11,6 @@ import '../lib/font_awesome/min.js'
 
 import AlignHashPage from "../components/pages/align_hash_page";
 import BeautifyCodePage from "../components/pages/beautify_code_page";
-import BeautifyJsonPage from "../components/pages/beautify_json_page";
 import Html2HamlPage from "../components/pages/html2haml_page";
 import Html2SlimPage from "../components/pages/html2slim_page";
 import Html2JsxPage from "../components/pages/html2jsx_page";
@@ -29,7 +28,6 @@ import HexEncodePage from "../components/pages/hex_encode_page";
 import Base64EncodePage from "../components/pages/base64_encode_page";
 import Md5EncryptPage from "../components/pages/md5_encrypt_page";
 import ShaEncryptPage from "../components/pages/sha_encrypt_page";
-import HomePage from "../components/pages/home_page";
 
 $( document ).on('turbolinks:load', function() {
 
@@ -42,9 +40,6 @@ $( document ).on('turbolinks:load', function() {
             break;
         case 'beautify_code':
             page = new BeautifyCodePage();
-            break;
-        case 'beautify_json':
-            page = new BeautifyJsonPage();
             break;
         case 'html2haml':
             page = new Html2HamlPage();
@@ -97,12 +92,6 @@ $( document ).on('turbolinks:load', function() {
         case 'sha_encrypt':
             page = new ShaEncryptPage();
             break;
-    }
-
-    if (tool == null) {
-        if (window.gon.page == 'home') {
-            page = new HomePage();
-        }
     }
 
     if (page != null) {

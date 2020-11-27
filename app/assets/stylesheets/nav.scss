@@ -1,7 +1,7 @@
-@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 $bd-purple-bright: #3b528c;
-
-
 
 .bd-navbar {
   min-height: 3.2rem;
