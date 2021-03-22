@@ -1,0 +1,86 @@
+<%= render "tools/partials/converter_page", name: 'CSS to SCSS/Sass', tool: 'css2scss' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online converter tool which helps to convert HTML to Pug template.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your HTML code directly into the editor, then click the convert button to convert the code.</p>
+    <p>After converting, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <h3>What is CSS?</h3>
+
+    <p>Pug is a high-performance template engine heavily influenced by <a href="http://haml.info/" rel="nofollow">Haml</a>
+      and implemented with JavaScript for <a href="http://nodejs.org" rel="nofollow">Node.js</a> and browsers.</p>
+
+    <p><a href="https://pugjs.org/" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">Pug Syntax</p>
+    <pre class="code-block">
+      <code class="javascript">
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+      if (foo) bar(1 + 5)
+  body
+    h1 Pug - node template engine
+    #container.col
+      if youAreUsingPug
+        p You are amazing
+      else
+        p Get on it!
+      p.
+        Pug is a terse and simple templating language with a
+        strong focus on performance and powerful features.
+      </code>
+    </pre>
+
+    <h3>What is SCSS?</h3>
+
+    <h3>What is SASS</h3>
+
+  </div>
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>HTML</small></p>
+
+    <pre class="code-block">
+      <code class="xml">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;Pug&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+      if (foo) bar(1 + 5)
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Pug - node template engine&lt;/h1&gt;
+    &lt;div id=&quot;container&quot; class=&quot;col&quot;&gt;
+      &lt;p&gt;You are amazing&lt;/p&gt;
+      &lt;p&gt;Pug is a terse and simple templating language with a strong focus on performance and powerful features.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </code>
+    </pre>
+
+    <p><small>Pug</small></p>
+
+    <pre class="code-block">
+      <code class="javascript">
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+      if (foo) bar(1 + 5)
+  body
+    h1 Pug - node template engine
+    #container.col
+      p You are amazing
+      p Pug is a terse and simple templating language with a strong focus on performance and powerful features.
+    </code>
+    </pre>
+  </div>
+</div>

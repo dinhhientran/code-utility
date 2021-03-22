@@ -2,32 +2,39 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("bootstrap/dist/js/bootstrap")
+
+import 'bootstrap/js/dist/popover.js'
+import 'bootstrap/js/dist/tooltip.js'
+import 'bootstrap/js/dist/dropdown.js'
+import 'bootstrap/js/dist/modal.js'
+import 'bootstrap/js/dist/tab.js'
+import 'bootstrap/js/dist/util.js'
+import 'bootstrap/js/dist/collapse.js'
 
 import $ from 'jquery'
 
 import '../lib/font_awesome/min.css'
 import '../lib/font_awesome/min.js'
 
-import AlignHashPage from "../components/pages/align_hash_page";
-import BeautifyCodePage from "../components/pages/beautify_code_page";
-import Html2HamlPage from "../components/pages/html2haml_page";
-import Html2SlimPage from "../components/pages/html2slim_page";
-import Html2JsxPage from "../components/pages/html2jsx_page";
-import Html2PugPage from "../components/pages/html2pug_page";
-import Css2scssPage from "../components/pages/css2scss_page";
-import Json2yamlPage from "../components/pages/json2yaml_page";
-import MinifyHtmlPage from "../components/pages/minify_html_page";
-import MinifyJavascriptPage from "../components/pages/minify_javascript_page";
-import MinifyCssPage from "../components/pages/minify_css_page";
-import MinifyJsonPage from "../components/pages/minify_json_page";
-import MinifySqlPage from "../components/pages/minify_sql_page";
-import UriEncodePage from "../components/pages/uri_encode_page";
-import HtmlEncodePage from "../components/pages/html_encode_page";
-import HexEncodePage from "../components/pages/hex_encode_page";
-import Base64EncodePage from "../components/pages/base64_encode_page";
-import Md5EncryptPage from "../components/pages/md5_encrypt_page";
-import ShaEncryptPage from "../components/pages/sha_encrypt_page";
+import AlignHashPage from "../components/pages/tools/align_hash_page";
+import BeautifyCodePage from "../components/pages/tools/beautify_code_page";
+import Html2HamlPage from "../components/pages/tools/html2haml_page";
+import Html2SlimPage from "../components/pages/tools/html2slim_page";
+import Html2JsxPage from "../components/pages/tools/html2jsx_page";
+import Html2PugPage from "../components/pages/tools/html2pug_page";
+import Css2scssPage from "../components/pages/tools/css2scss_page";
+import Json2yamlPage from "../components/pages/tools/json2yaml_page";
+import MinifyHtmlPage from "../components/pages/tools/minify_html_page";
+import MinifyJavascriptPage from "../components/pages/tools/minify_javascript_page";
+import MinifyCssPage from "../components/pages/tools/minify_css_page";
+import MinifyJsonPage from "../components/pages/tools/minify_json_page";
+import MinifySqlPage from "../components/pages/tools/minify_sql_page";
+import UriEncodePage from "../components/pages/tools/uri_encode_page";
+import HtmlEncodePage from "../components/pages/tools/html_encode_page";
+import HexEncodePage from "../components/pages/tools/hex_encode_page";
+import Base64EncodePage from "../components/pages/tools/base64_encode_page";
+import Md5EncryptPage from "../components/pages/tools/md5_encrypt_page";
+import ShaEncryptPage from "../components/pages/tools/sha_encrypt_page";
 
 $( document ).on('turbolinks:load', function() {
 

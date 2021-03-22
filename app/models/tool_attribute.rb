@@ -1,0 +1,2 @@
+class ToolAttribute < ApplicationRecord
+end

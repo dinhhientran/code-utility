@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<script language="JavaScript">
+  document.domain = 'codeutility.bar';
+  function closeAndRefreshParent() {
+      window.opener.location.reload();
+      this.close();
+  }
+</script>
+<body onload="closeAndRefreshParent();">
+</body>
+</html>

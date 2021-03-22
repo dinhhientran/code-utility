@@ -1,0 +1,22 @@
+<div class="container text-center">
+  <div class="row tag-page" id="h1-row">
+      <div class="col-md-12">
+          <h1>Tag: <span class="badge badge-pill"><%= @tag.slug %></span></h1>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="tools-container" class="card-deck mt-5">
+        <% @tools.each do |tool| %>
+          <div class="card tool-item">
+            <a href="<%= tool_url(tool) %>">
+              <p class="name"><%= tool.name %></p>
+              <p class="description"><%= tool.description %></p>
+              <p class="badge badge-light badge-pill"><%= host_from_url(tool_url(tool)) %></p>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,157 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/badge";
+
+@media (min-width: 576px) {
+  .card-deck {
+    padding-right: 30px;
+  }
+  .card-deck .card {
+    min-width: 100%; /* 1 Column */
+    margin-bottom: 40px;
+  }
+}
+@media (min-width: 768px) {
+  .card-deck {
+    padding-right: 30px;
+  }
+  .card-deck .card {
+    min-width: 100%;  /* 2 Columns */
+  }
+  #tools-container .card {
+    min-width: 40% !important;
+  }
+  #tools-container .card-deck {
+    padding-right: 0px;
+  }
+}
+@media (min-width: 1200px) {
+  .card-deck {
+    padding-right: 0px;
+  }
+  .card-deck .card {
+    min-width: 40%;  /* 3 Columns */
+  }
+}
+
+.shares-container .card-deck {
+}
+
+.shares-container .card {
+  position: relative;
+}
+
+.shares-container .card .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #fbfbfb;
+  outline: 0;
+  display: none;
+}
+
+.shares-container .card:hover .close {
+  display: block !important;
+}
+
+.shares-container .card, #tools-container .card {
+  border: 1px solid #444444 !important;
+  background-color: transparent !important;
+}
+
+.shares-container .card-footer {
+  border-top: 1px solid #444444 !important;
+  background-color: transparent !important;
+}
+
+.shares-container .card .card-title {
+  font-size: 1em !important;
+}
+
+.shares-container .card .card-text {
+  font-size: 0.9em !important;
+  color: #6C7679 !important;
+  font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
+}
+
+.shares-container .card .share-link a:hover {
+  text-decoration: none;
+}
+
+.shares-container .card .share-link a {
+  font-size: 0.9rem;
+}
+
+.shares-container .card-footer .tool-tag {
+  margin-top: 3px;
+}
+
+.beautify_code-tag {
+  @extend .badge-primary;
+}
+
+.beautify_json-tag {
+  @extend .badge-info;
+}
+
+.html2haml-tag, .html2pug-tag, .html2slim-tag, .html2jsx-tag, .json2yaml-tag, .css2scss-tag {
+  @extend .badge-success;
+}
+
+.minify_sql-tag, .minify_html-tag, .minify_css-tag, .minify_js-tag, minify_json-tag {
+  @extend .badge-warning;
+}
+
+.html_encode-tag, .hex_encode-tag, .uri_encode-tag, .base64_encode-tag, .md5_encrypt-tag, .sha_encrypt-tag {
+  @extend  .badge-danger;
+}
+
+.add-favorite-tool-btn {
+  font-size: 0.8em;
+}
+
+#tools-container .card {
+  text-align: center;
+  padding: 0px !important;
+}
+
+#tools-container .card a {
+  display: block;
+  padding: 20px;
+}
+
+#tools-container .card a .name {
+  font-weight: bold;
+  font-family: "Proxima Nova Soft";
+}
+
+#tools-container .card a p {
+  text-decoration: none;
+}
+
+#tools-container .card:hover a {
+  text-decoration: none;
+}
+
+#tools-container .card:hover {
+  background-color: #36a7f7 !important;
+}
+
+#tools-container .card:hover .name {
+  color: #f8f9fa !important;
+}
+
+#tools-container .card:hover .description {
+  color: #f8f9fa !important;
+}
+
+#tools-container .card .name {
+
+}
+
+#tools-container .card .description {
+  font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
+  font-size: 0.8em;
+  color: #9b9dad;
+}

@@ -111,7 +111,6 @@ export default class ConverterPage extends ToolPage {
 
             let currentCode = _this.sourceEditor.getContent();
 
-
             if (currentCode == _this.sampleCode) {
                 _this.sourceEditor.setContent('');
             } else if (currentCode == "") {
@@ -165,21 +164,32 @@ export default class ConverterPage extends ToolPage {
         if (code != "") {
             _this.showLoadingOverlay();
 
-            $.post(_this.convertUrl, {
-                input: input,
-            }, function (response) {
+            $.ajax({
+                type: 'POST',
+                url: _this.convertUrl,
+                crossDomain: true,
+                data: {
+                    input: input,
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                dataType: 'json',
+                success: function(response, textStatus, jqXHR) {
+                    _this.onAfterSendConvertRequest(response);
 
-                _this.onAfterSendConvertRequest(response);
-            })
-                .fail(function (response) {
+                    _this.showShareButton();
+                },
+                error: function (response, textStatus, errorThrown) {
                     response = response.responseJSON;
                     if (response && response.error) {
                         Toastr.error(response.error, "Error");
                     }
-                })
-                .always(function () {
+                },
+                complete: function () {
                     _this.closeLoadingOverlay();
-                });
+                }
+            });
         }
     }
 

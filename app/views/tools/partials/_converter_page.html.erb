@@ -1,0 +1,61 @@
+<div class="row" id="h1-row">
+  <div class="col-md-8">
+    <h1><%= name %></h1>
+    <% if !@tool.nil? %>
+      <p class="tool-description"><%= @tool.description %></p>
+      <% if !@tool.tags.empty? %>
+        <p class="tool-tags mb-0 pb-0"> <span class="tags-label">Tags:</span>
+        <% @tool.tags.each do |tag| %>
+          <a href="<%= tag_url(tag) %>  " class="badge badge-pill badge-success"><%= tag.name %></a>
+        <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render "tools/partials/share_options" %>
+</div>
+<div class="row mb-4" id="input-options">
+  <div class="col col-md-5_5 col-12 mt-4">
+    <% if @page == 'sha_encrypt' %>
+      <%= render "tools/sha_encrypt/source_options" %>
+    <% else %>
+      <%= render "tools/partials/source_options" %>
+    <% end %>
+  </div>
+  <div class="col-md-1 col-sm-12 col-12 text-right">
+  </div>
+  <div class="col col-md-5_5 text-right mt-4 d-flex">
+    <%= render "tools/partials/target_options" %>
+  </div>
+</div>
+<div class="row row-eq-height">
+  <div class="col col-md-5_5 col-sm-12 col-12 mb-3" id="source-column">
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="source-editor" placeholder="Code goes here..."></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-12 col-12 mb-3" id="button-column">
+    <div class="d-flex flex-column w-100 h-100 align-self-center">
+      <% if !@page.nil? && @page == 'css2scss' %>
+        <%= render "tools/css2scss/buttons" %>
+      <% elsif !@page.nil? && @page == 'json2yaml' %>
+        <%= render "tools/json2yaml/buttons" %>
+      <% elsif !@page.nil? && @page.end_with?('encode') %>
+        <%= render "tools/partials/encoder_buttons" %>
+      <% elsif !@page.nil? && @page.end_with?('encrypt') %>
+        <%= render "tools/partials/encrypter_buttons" %>
+      <% else %>
+        <%= render "tools/partials/converter_buttons" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col col-md-5_5 col-sm-12 col-12" id="target-column">
+    <div class="row">
+      <div class="col-md-12 json-view" id="source-view">
+        <textarea id="target-editor"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

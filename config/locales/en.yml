@@ -4,6 +4,21 @@ en:
       title: 'CodeUtility: Online Tools to beautify, minify or convert your code'
       description: 'Where you can find best beautifiers, formatters or converters. Supports many popular languages such as HTML, JavaScript, CSS/SCSS/Sass, JSON, PHP, Ruby, C++ etc'
       keywords: 'beautify code online, format code online, convert code online, minify code online, share code online, beautify html, beautify javascript, beautify css, beautify php, beautify json, convert html, html to jsx, html to pug, html to haml, html to slim, html converter'
+    user:
+      title: 'CodeUtility: User Profile'
+      description: 'User Profile'
+      keywords: 'user profile'
+    shares:
+      title: 'CodeUtility: Your Shares'
+      description: 'Your Shares'
+      keywords: 'your shares'
+    sessions:
+      title: 'CodeUtility: Sign in'
+      description: 'Sign in to CodeUtility'
+      keywords: 'sign in'
+    tag:
+      title: 'CodeUtility: Tag'
+      description: 'tag'
     align_hash:
       title: 'CodeUtility: Online tool to align/format hash or array'
       description: 'This is the best online tool to Align/Format your hash or array. Supports PHP, Ruby, Javascript, Python, Perl and Groovy.'
@@ -14,7 +29,7 @@ en:
       keywords: 'beautify code online, beautify html, beautify javascript, beautify css, beautify json, beautify php, beautify ruby, beautify java, beautify c, beautify c++, beautify go, beautify python, beautify erb, beautify jsx'
     beautify_json:
       title: 'CodeUtility: Online tool to beautify json'
-      description: 'This is the best online tool to beautify/format json. It supports a very nice editor and allow you to save or share your JSON to other users.'
+      description: 'This is the best online tool to beautify/format json. It supports a very nice editor and allow you to save or share your JSON to other user.'
       keywords: 'beautify json online, format json online, view json online, json beautifier, minify json'
     beautify_js:
       title: 'CodeUtility: Online tool to beautify JavaScript/TypeScript'
@@ -22,79 +37,79 @@ en:
       keywords: 'beautify js, beautify javascript, beautify typescript, format js, format javascript, format typescript'
     beautify_html:
       title: 'CodeUtility: Online tool to beautify HTML'
-      description: 'This is the best online tool to beautify HTML and HTML templates. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to beautify HTML and HTML templates. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'beautify html, beautify xhtml, beautify erb, beautify html+erb'
     beautify_sql:
       title: 'CodeUtility: Online tool to beautify/format SQL'
-      description: 'This is the best online tool to beautify/format SQL. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to beautify/format SQL. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'beautify sql online, format sql'
     html2haml:
       title: 'CodeUtility: Online tool to convert HTML/ERB to Haml'
-      description: 'This is the best online tool to convert HTML/ERB to Haml. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to convert HTML/ERB to Haml. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'convert html to haml, erb to haml, rails, ruby, rails template, erb template'
     html2slim:
       title: 'CodeUtility: Online tool to convert HTML/ERB to Slim'
-      description: 'This is the best online tool to convert HTML/ERB to Slim. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to convert HTML/ERB to Slim. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'convert html to slim, erb to slim, rails, ruby, rails template, erb template'
     html2jsx:
       title: 'CodeUtility: Online tool to convert HTML to JSX'
-      description: 'This is the best online tool to convert HTML to JSX. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to convert HTML to JSX. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'convert html to jsx, javascript template, react, react html'
     html2pug:
       title: 'CodeUtility: Online tool to convert HTML to Pug'
-      description: 'This is the best online tool to convert HTML to Pug. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to convert HTML to Pug. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'convert html to pug, pug template'
     css2scss:
       title: 'CodeUtility: Online tool to convert CSS to SCSS/Sass'
-      description: 'This is the best online tool to convert CSS to SCSS/Sass. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to convert CSS to SCSS/Sass. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'convert css to scss, sass, format css, scss compile, sass compile'
     json2yaml:
       title: 'CodeUtility: Online tool to convert JSON to YAML'
-      description: 'This is the best online tool to convert JSON to YAML. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to convert JSON to YAML. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'convert json to yaml, convert json, convert yaml'
     minify_html:
       title: 'CodeUtility: Online tool to minify HTML'
-      description: 'This is the best online tool to minify/compress HTML. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to minify/compress HTML. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'minify code, minify HTML, compress HTML'
     minify_javascript:
       title: 'CodeUtility: Online tool to minify/compress JavaScript'
-      description: 'This is the best online tool to minify/compress JavaScript. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to minify/compress JavaScript. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'minify code, minify javascript, minify js, compress javascript, compress js'
     minify_css:
       title: 'CodeUtility: Online tool to minify CSS'
-      description: 'This is the best online tool to minify/compress CSS. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to minify/compress CSS. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'minify code, minify css, minify css, compress css, compress css'
     minify_json:
       title: 'CodeUtility: Online tool to minify JSON'
-      description: 'This is the best online tool to minify/compress JSON. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to minify/compress JSON. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'minify code, minify json, minify json, compress json, compress json'
     minify_sql:
       title: 'CodeUtility: Online tool to minify SQL'
-      description: 'This is the best online tool to minify/compress SQL. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to minify/compress SQL. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'minify code, minify sql, minify sql, compress sql, compress sql'
     uri_encode:
       title: 'CodeUtility: Online tool to encode/decode URI'
-      description: 'This is the best online tool to encode/decode URI. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to encode/decode URI. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'encode uri online, uri encoder online, decode uri online, uri decoder online'
     html_encode:
       title: 'CodeUtility: Online tool to encode/decode HTML'
-      description: 'This is the best online tool to encode/decode HTML. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to encode/decode HTML. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'encode html online, html encoder online'
     hex_encode:
       title: 'CodeUtility: Online tool to encode/decode Hex'
-      description: 'This is the best online tool to encode/decode Hex. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to encode/decode Hex. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'encode hex online, hex encoder online'
     base64_encode:
       title: 'CodeUtility: Online tool to encode/decode Base64'
-      description: 'This is the best online tool to encode/decode Base64. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to encode/decode Base64. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'encode base64 online, base64 encoder online'
     md5_encrypt:
       title: 'CodeUtility: Online MD5 encrypter'
-      description: 'This is the best online tool to MD5 encrypt string. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to MD5 encrypt string. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'encrypt md5 online, md5 encrypter online'
     sha_encrypt:
       title: 'CodeUtility: Online SHA-1, SHA-256, SHA-384, SHA-512 encrypters'
-      description: 'This is the best online tool to encrypt string using SHA-1, SHA-256, SHA-384, SHA-512 encrypters. It supports a very nice editor and allow you to save or share your code to other users.'
+      description: 'This is the best online tool to encrypt string using SHA-1, SHA-256, SHA-384, SHA-512 encrypters. It supports a very nice editor and allow you to save or share your code to other user.'
       keywords: 'online sha-1, sha-256, sha-384, sha-512, encrypt string, encrypter'
 
 

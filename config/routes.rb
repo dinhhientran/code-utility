@@ -10,42 +10,63 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get "/:reference_number/:version", to: "tool#redirect_tool", constraints: { version: /\d+/ }
+  get "/:reference_number/:version", to: "tools/tool#redirect_tool", constraints: { version: /\d+/ }
 
   tools.each do |tool|
-    get tool, to: tool + '#index'
-    get "/#{tool}/:reference_number/:version", to: "#{tool}#index", constraints: { version: /\d+/ }
+    get tool, to: 'tools/' + tool + '#index'
+    get "#{tool}/:reference_number/:version", to: "tools/#{tool}#index", constraints: { version: /\d+/ }
 
     if tool == 'beautify_code'
-      get "/#{tool}/:language", to: "#{tool}#index"
+      get "/#{tool}/:language", to: "tools/#{tool}#index"
     end
 
     if beautify_tools.include?(tool)
-      post "/#{tool}/beautify", to: "#{tool}#beautify"
+      post "/#{tool}/beautify", to: "tools/#{tool}#beautify"
     end
 
     if convert_tools.include?(tool)
-      post "/#{tool}/convert", to: "#{tool}#convert"
+      post "/#{tool}/convert", to: "tools/#{tool}#convert"
     end
 
     if minify_tools.include?(tool)
-      post "/#{tool}/minify", to: "#{tool}#minify"
+      post "/#{tool}/minify", to: "tools/#{tool}#minify"
     end
 
     if encode_tools.include?(tool)
-      post "/#{tool}/encode", to: "#{tool}#encode"
-      post "/#{tool}/decode", to: "#{tool}#decode"
+      post "/#{tool}/encode", to: "tools/#{tool}#encode"
+      post "/#{tool}/decode", to: "tools/#{tool}#decode"
     end
 
     if encrypt_tools.include?(tool)
-      post "/#{tool}/encrypt", to: "#{tool}#encrypt"
+      post "/#{tool}/encrypt", to: "tools/#{tool}#encrypt"
     end
 
-    post "/#{tool}/share", to: "#{tool}#share"
-    post "/#{tool}/fork", to: "#{tool}#fork"
+    post "/#{tool}/share", to: "tools/#{tool}#share"
+    post "/#{tool}/fork", to: "tools/#{tool}#fork"
   end
 
   post '/file/upload', to: 'file#upload'
   post '/file/download', to: 'file#download'
+
+  devise_for :users,
+       :controllers => {
+         :omniauth_callbacks => "users/omniauth_callbacks",
+         :sessions => "users/sessions"
+       },
+       :path_names => {
+         :sign_in => 'login',
+         :sign_out => 'logout'
+       }
+
+  get "user/profile", to: "users/user#profile"
+  get "user/shares", to: "users/shares#index"
+  delete "users/shares/delete", to: "users/shares#delete_share"
+
+  post "user/update_name", to: "users/user#update_name"
+  post "user/update_avatar", to: "users/user#update_avatar"
+
+  put "user/add_favorite_tool", to: "users/user#add_favorite_tool"
+
+  get "/tag/:slug", to: "tag#index", constraints: {slug: /[a-z0-9]+(?:-[a-z0-9]+)*/}
 
 end

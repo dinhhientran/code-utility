@@ -1,3 +1,13 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/badge";
+
+@import 'highlight.js/scss/darcula';
+
 body {
   background-color: #1f2227 !important;
   color: #fbfbfb !important;
@@ -5,6 +15,26 @@ body {
 
 header, footer {
   background-color: #1f2227;
+}
+
+.supported-language-table.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #1f2227;
+}
+
+.supported-language-table {
+  @extend .table-dark;
+  background-color: #2B2B2B;
+}
+.supported-language-table .badge {
+  @extend .badge-secondary;
+}
+
+.hljs-tag, .hljs-name, .hljs-attribute {
+  color: #007bff;
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-section, .hljs-attribute, .hljs-name, .hljs-variable {
+  color: #cb7832 !important;
 }
 
 .modal ::-webkit-scrollbar, .CodeMirror ::-webkit-scrollbar, .select2-results ::-webkit-scrollbar, #json-editor ::-webkit-scrollbar {
@@ -36,6 +66,24 @@ header, footer {
 
 .modal ::-webkit-resizer, .CodeMirror ::-webkit-resizer, .select2-results ::-webkit-resizer, #json-editor ::-webkit-resizer {
   background-color: #666;
+}
+
+.modal-dialog {
+  border: 1px solid #30363d !important;
+  border-radius: 10px !important;
+}
+
+.modal-header {
+  border-bottom: none !important;
+}
+
+.modal-footer {
+  border-top: none !important;
+}
+
+.modal-content {
+  border: none !important;
+  border-radius: 10px;
 }
 
 .navbar-brand .page-name {
@@ -71,6 +119,76 @@ header, footer {
   .modal-content {
     background-color: #1f2227 !important;
   }
+}
+
+#cookie-law-info-bar {
+  box-shadow: 0rem 0rem 0.5rem 0.1rem rgba(0, 0, 0, 0.25), inset 0 -1px 0 black !important;
+  background-color: #1f2227 !important;
+  color: #fbfbfb !important;
+}
+
+#cookie-law-info-bar .cli-settings-button {
+  margin: 5px 20px;
+  color: rgb(98, 163, 41);
+}
+
+#cookie-law-info-bar #cookie-settings-accept {
+  display: inline-block;
+  margin: 5px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  padding: 5px 7px;
+}
+
+#cookie_settings_modal {
+  font-family: Muli, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fbfbfb;
+  text-align: left;
+}
+
+#cookie_settings_modal .modal-header {
+  padding-bottom: 0px !important;
+}
+
+#cookie_settings_modal .cookie-setting-tab-header {
+  border-radius: 5px;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color .2s ease-out .3s,color .2s ease-out 0s;
+  background-color: #ccc;
+  color: #212529;
+}
+
+#cookie_settings_modal .cookie-setting-tab-header a {
+  text-decoration: none;
+}
+
+#cookie_settings_modal .cookie-setting-tab-header a .fa-angle-right {
+  display: none;
+}
+
+#cookie_settings_modal .cookie-setting-tab-header a .fa-angle-down {
+  display: inline;
+}
+
+#cookie_settings_modal .cookie-setting-tab-header a.collapsed .fa-angle-right {
+  display: inline !important;
+}
+
+#cookie_settings_modal .cookie-setting-tab-header a.collapsed .fa-angle-down {
+  display: none !important;
+}
+
+#cookie_settings_modal .cookie-setting-tab-content p {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+#cookie_settings_modal .cookie-setting-necessary-caption {
+  float: right;
 }
 
 .bd-navbar {
@@ -208,3 +326,129 @@ div.jsoneditor-readonly {
 }
 
 .CodeMirror pre.CodeMirror-placeholder { color: #999; }
+
+.modal-backdrop {
+  background-color: rgb(0, 0, 0) !important;
+}
+
+.modal-backdrop.show {
+  opacity: 0.4 !important;
+}
+
+#sign_in_modal.fade.show ~ .modal-backdrop {
+  background-color: rgb(21, 21, 21) !important;
+  opacity: 1 !important;
+}
+
+#profile_dropdown_menu {
+  border: 1px solid #aaa !important;
+  background-color: #343a40 !important;
+}
+
+#profile_dropdown_menu span.signed-in-as {
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 12px;
+}
+
+#profile_dropdown_menu span.signed-in-as:hover,
+#profile_dropdown_menu span.avatar:hover {
+  background-color: transparent !important;
+}
+
+#profile_dropdown_menu span.avatar img {
+  border-radius: 50%;
+}
+
+#profile-page .nav-tabs {
+  border-bottom: 1px solid #444 !important;
+}
+
+#profile-page .nav-link {
+  font-size: 0.9em !important;
+  border: 1px solid #444 !important;
+  padding: 0.2rem 1rem !important;
+  font-family: "Proxima Nova Soft";
+}
+
+#profile-page .nav-link.active {
+  background-color: $primary !important;
+  border-top: 1px solid $primary !important;
+  border-left: 1px solid $primary !important;
+  border-right: 1px solid $primary !important;
+}
+
+.no-data {
+  padding-top: 10px;
+  font-size: 1.2em;
+  color: #c9d1d9;
+  text-align: center;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  font-family: "Proxima Nova Soft";
+}
+
+.tool-description {
+  font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
+  font-size: 0.8em;
+  color: #9b9dad;
+  margin-top: -5px;
+}
+
+.tags-label {
+  font-family: "Proxima Nova Soft";
+}
+
+.tool-tags .badge, .tag-page .badge {
+  background-color: #36a7f7 !important;
+}
+
+.tool-tags .badge:hover {
+  background-color: #007bff !important;
+}
+
+.form-control-borderless {
+  border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+#my-shares-page #search-box input[type=search] {
+  border: 1px solid #aaa;
+  background-color: #343a40 !important;
+  color: #fbfbfb !important;
+  border-radius: 20px;
+  margin-left: 15px;
+}
+
+#my-shares-page #search-box .btn {
+  border-radius: 20px;
+  margin-left: 30px;
+}
+
+#my-shares-page #search-box .fa-search {
+  color: #fbfbfb !important;
+  margin-top: 8px;
+}
+
+.pagination .page-item .page-link {
+  border: 1px solid #aaa;
+  background-color: #343a40 !important;
+  color: #007bff !important;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #fbfbfb !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff !important;
+  color: #fff !important;
+}
+
+.keyword-badge {
+  font-size: 1rem;
+}

@@ -1,0 +1,285 @@
+<div class="row" id="h1-row">
+  <div class="col-md-8 mb-sm-4 mb-md-0">
+    <h1>Beautify Code</h1>
+    <% if !@tool.nil? %>
+      <p class="tool-description"><%= @tool.description %></p>
+      <% if !@tool.tags.empty? %>
+        <p class="tool-tags mb-0 pb-0"> <span class="tags-label">Tags:</span>
+          <% @tool.tags.each do |tag| %>
+            <a href="<%= tag_url(tag) %>  " class="badge badge-pill badge-success"><%= tag.name %></a>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render "tools/partials/share_options" %>
+</div>
+<div class="row mb-4" id="input-options">
+  <div class="col col-md-4 col-sm-12 mt-4">
+    <div class="float-left mb-sm-3 mb-md-0">
+      <label>Language</label>
+      <select id="language"></select>
+    </div>
+    <div class="float-left custom-control custom-switch ml-0 ml-md-4 mt-1">
+      <input type="checkbox" class="custom-control-input" id="example-toggle" <%= @sample_code == 'true' ? 'checked="checked"' : '' %>>
+      <label class="custom-control-label" for="example-toggle">Sample</label>
+    </div>
+  </div>
+  <div class="col col-md-4 col-sm-12 mt-4" id="option-column">
+  </div>
+  <div class="col col-md-2 mt-4 text-md-right text-sm-left">
+    <div>
+      <label>Theme</label>
+      <select id="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row row-eq-height">
+  <div class="col col-md-10 col-sm-12 col-12" id="source-column">
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="source-editor" placeholder="Code goes here..."></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-12 col-12 text-center mt-4 mt-md-0" id="button-column" style="min-height: 400px">
+    <div class="d-flex flex-column w-100 h-100 align-self-center">
+      <div class="d-flex h-25 align-items-md-start">
+        <div class="w-100">
+          <button id="beautify-btn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-code"></i> Beautify</button>
+          <button id="share-btn" class="btn btn-outline-primary mt-2" style="width: 100%;"><i class="fas fa-share-alt"></i> Share</button>
+        </div>
+      </div>
+      <div>
+        <div class="w-100">
+          <button id="upload-btn" class="btn btn-outline-primary mt-4" style="width: 100%;"><i class="fas fa-upload"></i> Upload</button>
+          <form id="source_file_form" enctype="multipart/form-data" method="post" name="source_file">
+            <input type="file" style="display: none" name="file" />
+          </form>
+          <button data-toggle="modal" data-target="#download_file_name_modal" class="btn btn-outline-primary mt-2" style="width: 100%;"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+      <div class="mt-md-auto mt-4">
+        <div class="w-100">
+          <% if !current_user.nil? %>
+          <button id="favorite-btn" class="btn btn-outline-primary" style="width: 100%;"><i class="fas fa-star"></i> Add to Favorites</button>
+          <% end %>
+          <button id="new-btn" class="btn btn-outline-primary mt-2" style="width: 100%;"><i class="fas fa-plus"></i> New</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online tool which can help you to beautify, format and clean your code in many popular languages.
+      Currently it supports 22 various languages including markup, front-end, back-end languages.
+      You can see what languages the tool supports in the table on the right side.</p>
+    <p>This tool is powered by strong beautifiers, and it will be upgraded frequently. Each beautifier supports many options, styles to beautify your code in the way you want.</p>
+
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your code directly into the editor or upload your code file using the Upload button. You can find which file types the tool support to upload on the right.</p>
+    <p>After beautifying/formatting your code, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+
+    <h3>Examples</h3>
+    <p><small>Unbeautified:</small></p>
+
+    <pre class="code-block">
+      <code class="c">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+int n, count, sum = 0;
+
+printf("Enter the value of n(positive integer): ");
+scanf("%d",&n);
+
+for(count=1; count <= n; count++){sum = sum + count;}
+
+printf("Sum of first %d natural numbers is: %d",n, sum);
+
+return 0;
+}
+      </code>
+    </pre>
+
+    <p><small>After beautified:</small></p>
+
+    <pre class="code-block">
+      <code class="c">
+#include &lt;stdio.h&gt;
+
+int main() {
+  int n, count, sum = 0;
+
+  printf("Enter the value of n(positive integer): ");
+  scanf("%d", &n);
+
+  for (count = 1; count <= n; count++) {
+    sum = sum + count;
+  }
+
+  printf("Sum of first %d natural numbers is: %d", n, sum);
+
+  return 0;
+}
+    </code>
+    </pre>
+  </div>
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Supported languages</h3>
+    <table class="table table-striped supported-language-table mt-3" style="font-size: 0.8em; border-radius: 10px; overflow: hidden">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Language</th>
+        <th scope="col">Beautifiers</th>
+        <th scope="col">Supported Upload Files</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=c">C</a></td>
+        <td><a href="https://clang.llvm.org/docs/ClangFormat.html" target="_blank">ClangFormat</a></td>
+        <td><span class="badge">**/*.c</span> <span class="badge">**/*.cats</span> <span class="badge">**/*.cl</span> <span class="badge">**/*.h</span> <span class="badge">**/*.idc</span></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=csharp">C#</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.cs</span> <span class="badge">**/*.cake</span> <span class="badge">**/*.cshtml</span> <span class="badge">**/*.csx</span></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=cpp">C++</a></td>
+        <td><a href="https://clang.llvm.org/docs/ClangFormat.html" target="_blank">ClangFormat</a></td>
+        <td><span class="badge">**/*.cpp</span> <span class="badge">**/*.c</span> <span class="badge">**/*.c++</span> <span class="badge">**/*.cc</span> <span class="badge">**/*.cp</span> <span class="badge">**/*.cxx</span> <span class="badge">**/*.h</span>
+          <span class="badge">**/*.h++</span> <span class="badge">**/*.hh</span> <span class="badge">**/*.hpp</span> <span class="badge">**/*.hxx</span> <span class="badge">**/*.inc</span> <span class="badge">**/*.inl</span> <span class="badge">**/*.ino</span> <span class="badge">**/*.ipp</span> <span class="badge">**/*.re</span> <span class="badge">**/*.tcc</span> <span class="badge">**/*.tpp</span></td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=css">CSS</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.css</span></td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=coldfusion">ColdFusion</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.cfc</span> <span class="badge">**/*.cfm</span> <span class="badge">**/*.cfml</span></td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=go">Go</a></td>
+        <td><a href="https://unibeautify.com/docs/beautifier-gofmt" target="_blank">Gofmt</a></td>
+        <td><span class="badge">**/*.go</span></td>
+      </tr>
+      <tr>
+        <th scope="row">7</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=graphql">GraphQL</a></td>
+        <td><a href="https://github.com/prettier/prettier" target="_blank">Prettier</a></td>
+        <td><span class="badge">**/*.gql</span> <span class="badge">**/*.graphql</span></td>
+      </tr>
+      <tr>
+        <th scope="row">8</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=html">HTML</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.htm</span> <span class="badge">**/*.html</span> <span class="badge">**/*.xhtml</span></td>
+      </tr>
+      <tr>
+        <th scope="row">9</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=htmlerb">HTML+ERB</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.html.erb</span> <span class="badge">**/*.html.erb</span> <span class="badge">**/*.erb</span></td>
+      </tr>
+      <tr>
+        <th scope="row">10</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=jsx">JSX</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.js</span> <span class="badge">**/*.jsx</span></td>
+      </tr>
+      <tr>
+        <th scope="row">11</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=java">Java</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.java</span></td>
+      </tr>
+      <tr>
+        <th scope="row">12</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=javascript">JavaScript</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.js</span> <span class="badge">**/*.es</span> <span class="badge">**/*.es6</span> <span class="badge">**/*.frag</span> <span class="badge">**/*.gs</span> <span class="badge">**/*.jake</span> <span class="badge">**/*.jsb</span>
+          <span class="badge">**/*.jscad</span> <span class="badge">**/*.jsfl</span> <span class="badge">**/*.jsm</span> <span class="badge">**/*.jss</span> <span class="badge">**/*.mjs</span> <span class="badge">**/*.njs</span> <span class="badge">**/*.pac</span> <span class="badge">**/*.sjs</span> <span class="badge">**/*.ssjs</span> <span class="badge">**/*.xsjs</span> <span class="badge">**/*.xsjslib</span></td>
+      </tr>
+      <tr>
+        <th scope="row">13</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=less">Less</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.less</span></td>
+      </tr>
+      <tr>
+        <th scope="row">14</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=objectiveC">Objective-C</a></td>
+        <td><a href="https://clang.llvm.org/docs/ClangFormat.html" target="_blank">ClangFormat</a></td>
+        <td><span class="badge">**/*.h</span> <span class="badge">**/*.m</span> <span class="badge">**/*.mm</span></td>
+      </tr>
+      <tr>
+        <th scope="row">15</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=php">PHP</a></td>
+        <td><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer" target="_blank">PHP-CS-Fixer</a></td>
+        <td><span class="badge">**/*.php</span> <span class="badge">**/*.php_cs</span> <span class="badge">**/*.php_cs.dist</span> <span class="badge">**/*.aw</span> <span class="badge">**/*.ctp</span> <span class="badge">**/*.fcgi</span> <span class="badge">**/*.inc</span> <span class="badge">**/*.module</span> <span class="badge">**/*.php3</span>
+          <span class="badge">**/*.php4</span> <span class="badge">**/*.php5</span> <span class="badge">**/*.phps</span> <span class="badge">**/*.phpt</span></td>
+      </tr>
+      <tr>
+        <th scope="row">16</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=python">Python</a></td>
+        <td><a href="https://github.com/psf/black" target="_blank">Black</a></td>
+        <td><span class="badge">**/*.py</span> <span class="badge">**/*.gclient</span> <span class="badge">**/*.bzl</span> <span class="badge">**/*.cgi</span> <span class="badge">**/*.fcgi</span> <span class="badge">**/*.gyp</span> <span class="badge">**/*.gypi</span>
+          <span class="badge">**/*.lmi</span> <span class="badge">**/*.py3</span> <span class="badge">**/*.pyde</span> <span class="badge">**/*.pyi</span> <span class="badge">**/*.pyp</span> <span class="badge">**/*.pyt</span> <span class="badge">**/*.pyw</span> <span class="badge">**/*.rpy</span> <span class="badge">**/*.spec</span> <span class="badge">**/*.tac</span> <span class="badge">**/*.wsgi</span> <span class="badge">**/*.xpy</span></td>
+      </tr>
+      <tr>
+        <th scope="row">17</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=ruby">Ruby</a></td>
+        <td><a href="https://rubocop.org/" target="_blank">RuboCop</a></td>
+        <td><span class="badge">**/*.rb</span></td>
+      </tr>
+      <tr>
+        <th scope="row">18</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=scss">SCSS</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.scss</span></td>
+      </tr>
+      <tr>
+        <th scope="row">19</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=sql">SQL</a></td>
+        <td><a href="https://github.com/andialbrecht/sqlparse" target="_blank">sqlformat</a></td>
+        <td><span class="badge">**/*.sql</span> <span class="badge">**/*.cql</span> <span class="badge">**/*.ddl</span> <span class="badge">**/*.inc</span> <span class="badge">**/*.mysql</span> <span class="badge">**/*.prc</span> <span class="badge">**/*.tab</span> <span class="badge">**/*.udf</span> <span class="badge">**/*.viw</span></td>
+      </tr>
+      <tr>
+        <th scope="row">20</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=svg">SVG</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.svg</span></td>
+      </tr>
+      <tr>
+        <th scope="row">21</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=typescript">TypeScript</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.ts</span> <span class="badge">**/*.tsx</span></td>
+      </tr>
+      <tr>
+        <th scope="row">22</th>
+        <td><a href="<%= ENV["BEAUTIFY_CODE_URL"] %>?language=xml">XML</a></td>
+        <td><a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a></td>
+        <td><span class="badge">**/*.xml</span> <span class="badge">**/*.xhtml</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

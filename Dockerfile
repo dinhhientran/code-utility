@@ -55,6 +55,9 @@ RUN npm -g install prettydiff
 # install json2yaml
 RUN npm install -g json2yaml
 
+# install sql-minify
+RUN npm install -g sql-minify
+
 # install rubocop
 RUN gem install rubocop
 

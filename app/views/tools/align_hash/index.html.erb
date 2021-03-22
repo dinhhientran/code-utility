@@ -1,0 +1,163 @@
+<div class="row" id="h1-row">
+  <div class="col-md-8">
+    <h1>Align Hash/Array</h1>
+    <% if !@tool.nil? %>
+      <p class="tool-description"><%= @tool.description %></p>
+      <% if !@tool.tags.empty? %>
+        <p class="tool-tags mb-0 pb-0"> <span class="tags-label">Tags:</span>
+          <% @tool.tags.each do |tag| %>
+            <a href="<%= tag_url(tag) %>  " class="badge badge-pill badge-success"><%= tag.name %></a>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render "tools/partials/share_options" %>
+</div>
+<div class="row mb-4" id="input-options-row">
+  <div class="col col-md-5_5 mt-4">
+    <div class="float-left">
+      <label>Language</label>
+      <select id="language">
+        <option></option>
+        <option value="php">PHP</option>
+        <option value="ruby">Ruby</option>
+        <option value="javascript">Javascript/Typescript</option>
+        <option value="python">Python</option>
+        <option value="perl">Perl</option>
+        <option value="groovy">Groovy</option>
+      </select>
+    </div>
+    <div class="float-right">
+      <label>Indent</label>
+      <input alt="Spaces" id="indent-spaces" type="number" value="2" min="0" max="50" step="1"/>
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-12 text-right">
+  </div>
+  <div class="col col-md-5_5 text-right mt-4">
+    <div class="float-left form-check-inline">
+      <input type="checkbox" class="form-check-input" checked="checked" value="1" id="value-aligned-check" />
+      <label class="form-check-label" for="value-aligned-check">Value Aligned</label>
+    </div>
+    <div class="float-right">
+      <label>Theme</label>
+      <select id="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row row-eq-height">
+  <div class="col col-md-5_5 col-sm-12 col-12 mb-3" id="source-column">
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="source-editor" placeholder="Code goes here..."></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-12 col-12 mb-3 pt-md-6" id="button-column">
+    <div class="d-flex flex-column align-self-center h-100 w-100">
+      <div class="p-0">
+        <button id="beautify-btn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-angle-double-right"></i></button>
+        <button id="share-btn" class="btn btn-outline-primary mt-4" style="width: 100%;display: none;">
+          <i class="fas fa-share-alt"></i>
+          Share</button>
+      </div>
+      <%= render "tools/partials/bottom_buttons" %>
+    </div>
+  </div>
+  <div class="col col-md-5_5 col-sm-12 col-12" id="target-column">
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="target-editor"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online beautifier which help to beautify, align items in nested an array or a hash to nice, organized structure.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your hash/array code directly into the editor. Modify the indent size you want. You can also check the "Value Aligned" to align values in a same vertical line.</p>
+    <p>After beautifying/formatting your hash/array code, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <h3>What is the difference between an array and a hash?</h3>
+    <p>An array is initially fixed number of memory locations. At each location it should store a predetermined type (e.g. an integer). It may or may not have repeated values.</p>
+
+    <p>Hash, on the other hand, is implemented as a set. It is based on an array. The position of an item in an array is given by a hash function. A hash should not contain duplicates. If duplicates happen this is called a collision and there are a number of strategies to resolve this (e.g. chain duplicates, rehash and so on).</p>
+
+    <p class="mt-5">Array in Ruby</p>
+    <pre class="code-block">
+      <code class="ruby">
+days =  ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+arr = [1, 2, 3, 4, 5, 6]
+      </code>
+    </pre>
+
+    <p>Hash in Ruby</p>
+    <pre class="code-block">
+      <code class="ruby">
+{
+  :one  => "eins",
+  :two  => "zwei",
+  :three=> "drei"
+}
+      </code>
+    </pre>
+
+  </div>
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Unbeautified (Hash in PHP):</small></p>
+
+    <pre class="code-block">
+      <code class="php">
+array(
+  "Product ID" => 10440, "SKU" => "KOI-721",
+  "Name" => "Basic Beauty Off-The-Shoulder Dress",
+  "Product URL" => "https://www.domain.com/product/koi-721",
+  "Price" => 52, "Retail Price" => 78,
+  "Thumbnail URL" => "https://www.domain.com/images/koi-721_600x600.png",
+  "Search Keywords" => "lorem, ipsum, dolor, ...",
+  "Description" => "Sociosqu facilisis duis ...",
+  "Color Swatches" => array(array("color" => "Rosewood","family" => "Red","price" => 42), array("color" => "Thyme Green","family" => "Green","price" => 59.99)),
+  "Date Created" => "2018-03-03 17:38:50"
+)
+      </code>
+    </pre>
+
+    <p><small>After beautified (Hash in PHP):</small></p>
+
+    <pre class="code-block">
+      <code class="php">
+array(
+  "Product ID"     => 10440,
+  "SKU"            => "KOI-721",
+  "Name"           => "Basic Beauty Off-The-Shoulder Dress",
+  "Product URL"    => "https://www.domain.com/product/koi-721",
+  "Price"          => 52,
+  "Retail Price"   => 78,
+  "Thumbnail URL"  => "https://www.domain.com/images/koi-721_600x600.png",
+  "Search Keywords"=> "lorem, ipsum, dolor, ...",
+  "Description"    => "Sociosqu facilisis duis ...",
+  "Color Swatches" => array(
+    array(
+      "color" => "Rosewood",
+      "family"=> "Red",
+      "price" => 42
+    ),
+    array(
+      "color" => "Thyme Green",
+      "family"=> "Green",
+      "price" => 59.99
+    )
+  ),
+  "Date Created"   => "2018-03-03 17:38:50"
+)
+    </code>
+    </pre>
+  </div>
+</div>

@@ -63,4 +63,8 @@ Rails.application.configure do
   config.hosts << 'codeutility.bar'
   config.hosts << /[a-z0-9]+\.codeutility\.bar/
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_controller.default_url_options = { host:'codeutility.bar' , protocol: 'http'}
+
 end

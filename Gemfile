@@ -44,9 +44,24 @@ gem 'base32', '~> 0.3.4'
 
 gem 'dotenv-rails'
 
+gem 'devise', '~> 4.7.3'
+
+gem 'omniauth', '~> 1.3', '>= 1.3.1'
+
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+
+gem 'omniauth-github', '~> 1.4'
+
+gem 'mini_magick', '~> 4.11.0'
+
+gem 'rails-timeago', '~> 2.0'
+
+gem 'pagy', '~> 3.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.6'
 end
 

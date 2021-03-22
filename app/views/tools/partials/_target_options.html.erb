@@ -1,0 +1,14 @@
+<div class="w-33 text-left ml-md-1 ml-sm-0">
+  <% if !@page.nil? && @page == 'css2scss' %>
+    <%= render "tools/css2scss/target_options" %>
+  <% end %>
+</div>
+<div class="w-33">
+</div>
+<div class="w-34">
+  <label>Theme</label>
+  <select id="theme">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+</div>

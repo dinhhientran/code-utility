@@ -40,6 +40,9 @@ server {
 
 	add_header Strict-Transport-Security "max-age=0;";
 	add_header Access-Control-Allow-Origin '*';
+	add_header Access-Control-Allow-Methods 'POST, GET, PUT, PATCH, DELETE, OPTIONS';
+	add_header Access-Control-Allow-Headers 'Origin, Content-Type, Accept, Authorization, Token, Auth-Token, Email, X-User-Token, X-User-Email, x-csrf-token';
+	add_header Access-Control-Max-Age 1728000;
 
 	error_page 502 503 = @maintenance;
     error_page 404 = @error_404;
@@ -51,13 +54,18 @@ server {
 
 		rewrite ^ /$page$request_uri break;
 
+        proxy_redirect off;
         proxy_set_header Host $base_domain;
+        proxy_set_header Origin $scheme://$base_domain;
         proxy_set_header X-Forwarded-Host $http_host;
         proxy_set_header X-Forwarded-Server $http_host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto http;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Ssl off; # Optional
+        proxy_set_header X-Forwarded-Port $server_port;
         proxy_set_header X-Url-Scheme $scheme;
         proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass_header X-CSRF-TOKEN;
         proxy_pass http://127.0.0.1:3000;
         proxy_buffering off;
         proxy_buffer_size 128k;

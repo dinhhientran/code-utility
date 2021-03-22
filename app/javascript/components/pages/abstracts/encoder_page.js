@@ -40,21 +40,32 @@ export default class EncoderPage extends ConverterPage {
         if (string != "") {
             _this.showLoadingOverlay();
 
-            $.post(input.action == _this.ENCODE ? _this.encodeUrl : _this.decodeUrl, {
-                input: input,
-            }, function (response) {
+            $.ajax({
+                type: 'POST',
+                url: input.action == _this.ENCODE ? _this.encodeUrl : _this.decodeUrl,
+                crossDomain: true,
+                data: {
+                    input: input,
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                dataType: 'json',
+                success: function(response, textStatus, jqXHR) {
+                    _this.onAfterSendConvertRequest(response);
 
-                _this.onAfterSendConvertRequest(response);
-            })
-                .fail(function (response) {
+                    _this.showShareButton();
+                },
+                error: function (response, textStatus, errorThrown) {
                     response = response.responseJSON;
                     if (response && response.error) {
                         Toastr.error(response.error, "Error");
                     }
-                })
-                .always(function () {
+                },
+                complete: function () {
                     _this.closeLoadingOverlay();
-                });
+                }
+            });
         }
     }
 
@@ -70,7 +81,6 @@ export default class EncoderPage extends ConverterPage {
     }
 
     onShareLoad(input) {
-        super.onShareLoad();
 
         if (input.action == this.ENCODE) {
             this.sourceEditor.setContent(input.string);
@@ -79,6 +89,8 @@ export default class EncoderPage extends ConverterPage {
         }
 
         this.sendConvertRequest(input);
+
+        this.$shareBtn.parent().parent().show();
     }
 
     getInput(action){

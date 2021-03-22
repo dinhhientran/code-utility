@@ -38,3 +38,33 @@
     }
   }
 }
+
+#cookie-law-info-bar {
+  font-size: 15px;
+  margin: 0 auto;
+  padding: 12px 10px;
+  position: absolute;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  z-index: 9999;
+  display: none;
+  left: 0;
+  font-weight: 300;
+  font-family: inherit;
+  bottom: 0px;
+  position: fixed;
+  display: block;
+}
+#cookie-law-info-again {
+  font-size: 10pt;
+  margin: 0;
+  padding: 5px 10px;
+  text-align: center;
+  z-index: 9999;
+  cursor: pointer;
+  box-shadow: #161616 2px 2px 5px 2px
+}
+#cookie-law-info-bar span {
+  vertical-align: middle
+}

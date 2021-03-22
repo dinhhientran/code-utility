@@ -1,0 +1,76 @@
+<div class="container text-center" id="my-shares-page">
+  <div class="row text-center">
+    <div class="col-md-12">
+      <h1>Your shares:</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <form method="get" url="">
+        <div class="card-body row no-gutters align-items-center" id="search-box">
+          <div class="col-auto">
+            <i class="fas fa-search h4 text-body"></i>
+          </div>
+          <!--end of col-->
+          <div class="col">
+            <input name="keyword" value="<%= @keyword %>" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search your shares">
+          </div>
+          <!--end of col-->
+          <div class="col-auto">
+            <button class="btn btn-lg btn-primary" type="submit">Search</button>
+          </div>
+          <!--end of col-->
+        </div>
+      </form>
+    </div>
+  </div>
+  <% if !@keyword.nil? && !@keyword.empty? %>
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div><span class="badge badge-pill badge-warning keyword-badge">"<%= @keyword %>" <a href="<%= user_shares_url %>"><i class="far fa-times-circle"></i></a></span></div>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
+    <div id="your-shares-container" class="col-md-12 shares-container text-left">
+      <% if @shares.empty? %>
+        <% if !@keyword.nil? && @keyword.empty? %>
+          <div class="no-data">You have not had any shares yet.</div>
+        <% else %>
+          <div class="no-data">No result found.</div>
+        <% end %>
+      <% else %>
+        <div class="card-deck deck-1 deck-md-2 deck-lg-3 mt-5">
+          <% @shares.each do |version| %>
+            <div class="card">
+              <button type="button" class="close" aria-label="Close" title="Delete this share" data-version-id="<%= version.id %>">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="card-body">
+                <h5 class="card-title"><a href="<%= share_link(version) %>"><%= version.name %></a></h5>
+                <p class="card-text">
+                  <%= sub_code(version) %>
+                </p>
+                <p class="share">
+                  <span class="share-link btn btn-sm btn-outline-primary"><a href="<%= share_link(version) %>"><%= share_link(version) %></a></span>
+                  <button class="btn btn-sm btn-outline-secondary copy"><i class="fas fa-copy"></i></button>
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Created <%= time_ago_in_words version.created_at %> ago</small>
+                <small class="tool-tag float-right badge <%=version.share.tool %>-tag"><%= version.share.tool %></small>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% if !@shares.empty? %>
+    <div class="row">
+      <div class="col-md-12 justify-content-center">
+        <%== render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
+      </div>
+    </div>
+  <% end %>
+</div>

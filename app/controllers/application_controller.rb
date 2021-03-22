@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :set_urls
+  before_action :set_urls, :fetch_user_recent_tools
 
   TOOL = nil
+
+  include Pagy::Backend
 
   def set_urls
     gon.base_url = ENV['BASE_URL']
@@ -12,7 +14,23 @@ class ApplicationController < ActionController::Base
       gon.tool_url = ENV[self.class::TOOL.upcase + "_URL"]
     end
 
-    gon.page = controller_name
+    @page = gon.page = controller_name
+    gon.action = action_name
+
+    gon.github_auth_url = user_github_omniauth_authorize_url
+    gon.google_auth_url = user_google_oauth2_omniauth_authorize_url
+
+    if current_user
+      gon.current_user = current_user
+    end
+  end
+
+  def fetch_user_recent_tools
+    if !current_user.nil?
+      favorite_tool_aliases = current_user.favorite_tools.nil? ? [] : current_user.favorite_tools
+      @favorite_tools = Tool.where(:alias => favorite_tool_aliases)
+      @recent_tools = current_user.recent_tools ? [] : current_user.recent_tools
+    end
   end
 
   def render_error(message, status = 500)

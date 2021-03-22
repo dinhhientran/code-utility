@@ -1,0 +1,118 @@
+<%= render "tools/partials/converter_page", name: 'HTML+ERB to Slim' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online converter tool which helps to convert HTML+ERB to Slim template.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your hash/array code directly into the editor. Modify the indent size you want. You can also check the "Value Aligned" to align values in a same vertical line.</p>
+    <p>After converting, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <h3>What is Slim?</h3>
+
+    <p>
+      Slim is a Ruby template language whose goal is reduce the syntax to the essential parts without becoming cryptic.
+    </p>
+
+    <p>
+      The initial design of Slim is what you see on the home page.  It started as an exercise to see how much could be removed from a standard html template (&lt;, &gt;, closing tags, etc...). As more people took an interest in Slim, the functionality grew and so did the flexibility of the syntax.
+    </p>
+
+    <p>
+      Slim will strive to maintain simplicity, but not everyone's definition of a readable syntax is the same. The <a href="http://rdoc.info/gems/slim">docs</a> will show you the options.
+    </p>
+
+    <p>
+      Slim uses <a href="https://github.com/judofyr/temple">Temple</a> and <a href="http://github.com/rtomayko/tilt">Tilt</a>.  If you want to learn how Slim works, you'll need to study these projects.
+    </p>
+
+    <p><a href="http://slim-lang.com/" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">Slim Syntax</p>
+    <pre class="code-block">
+      <code class="yaml">
+doctype html
+html
+  head
+    title Slim Examples
+    meta name="keywords" content="template language"
+    meta name="author" content=author
+    javascript:
+      alert('Slim supports embedded javascript!')
+
+  body
+    h1 Markup examples
+
+    #content
+      p This example shows you what a basic Slim file looks like.
+
+      == yield
+
+      - unless items.empty?
+        table
+          - items.each do |item|
+            tr
+              td.name = item.name
+              td.price = item.price
+      - else
+        p
+         | No items found.  Please add some inventory.
+           Thank you!
+
+    div id="footer"
+      = render 'footer'
+      | Copyright © #{year} #{author}
+      </code>
+    </pre>
+
+  </div>
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>HTML+ERB</small></p>
+
+    <pre class="code-block">
+      <code class="xml erb">
+&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Blogg&lt;/h1&gt;
+        &lt;p&gt;
+            Time:
+          &lt;%= Time.now %&gt;
+        &lt;/p&gt;
+        &lt;% Post.all.each do |post| %&gt;
+            &lt;article&gt;
+                &lt;h2&gt;&lt;%= post.title %&gt;&lt;/h2&gt;
+                &lt;div&gt;&lt;%= post.body %&gt;&lt;/div&gt;
+            &lt;/article&gt;
+        &lt;% end %&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+      </code>
+    </pre>
+
+    <p><small>Slim</small></p>
+
+    <pre class="code-block">
+      <code class="yaml">
+| <!doctype html>
+html
+  head
+    meta[charset="utf-8"]
+  body
+    h1
+      | Blogg
+    p
+      |  Time:
+      = Time.now
+    - Post.all.each do |post|
+      article
+        h2
+          = post.title
+        div
+          = post.body
+    </code>
+    </pre>
+  </div>
+</div>

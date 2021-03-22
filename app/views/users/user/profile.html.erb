@@ -1,0 +1,89 @@
+<div class="container text-center" id="profile-page">
+  <div class="row pt-5">
+    <div class="col-12 col-md-3 mb-5">
+      <div class="row">
+        <div class="col-12">
+          <div class="avatar">
+            <% if current_user.avatar.attached? %>
+              <img width="200" height="200" src="<%= polymorphic_url(current_user.avatar) %>" />
+            <% else %>
+              <img width="200" height="200" src="<%= asset_url('/images/default-profile.png') %>" />
+            <% end %>
+            <button id="upload-avatar-btn" class="btn btn-sm btn-primary">Change</button>
+            <form id="avatar-file-form" enctype="multipart/form-data" method="post">
+              <input type="file" name="avatar" style="display: none" accept="image/x-png,image/jpeg" />
+            </form>
+          </div>
+          <div class="mt-4 info">
+            <div class="name font-weight-bold">
+              <span><%= current_user.full_name %></span> <a id="full-name-edit-btn"><i class="fas fa-pencil-alt"></i></a>
+            </div>
+            <div class="edit-name form-group text-center d-none">
+              <input type="input" class="form-control form-control-sm" value="<%= current_user.full_name %>" />
+              <button class="btn btn-sm btn-primary" id="full-name-update-btn"><i class="fas fa-check"></i></button>
+            </div>
+            <div class="email"><%= current_user.email %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-9 text-left">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a id="recent-share-tab" class="nav-link bg-dark text-light active" data-toggle="tab" href="#recent-shares-container" role="tab" aria-controls="recent-shares-container" aria-selected="true">Recent shares</a>
+        </li>
+        <li class="nav-item ml-3" role="presentation">
+          <a id="favorite-tool-tab" class="nav-link bg-dark text-light"  data-toggle="tab" href="#favorite-tools-container" role="tab" aria-controls="favorite-tools-container" aria-selected="false">Favorite tools</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active shares-container" id="recent-shares-container" role="tabpanel" aria-labelledby="recent-share-tab">
+          <% if @recent_shares.empty? %>
+            <div class="no-data">You have not had any shares yet.</div>
+          <% else %>
+            <div class="card-deck deck-1 deck-md-2 deck-lg-3 mt-5">
+              <% @recent_shares.each do |version| %>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="<%= share_link(version) %>"><%= version.name %></a></h5>
+                  <p class="card-text">
+                    <%= sub_code(version) %>
+                  </p>
+                  <p class="share">
+                    <span class="share-link btn btn-sm btn-outline-primary"><a href="<%= share_link(version) %>"><%= share_link(version) %></a></span>
+                    <button class="btn btn-sm btn-outline-secondary copy"><i class="fas fa-copy"></i></button>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Created <%= time_ago_in_words version.created_at %> ago</small>
+                  <small class="tool-tag float-right badge <%=version.share.tool %>-tag"><%= version.share.tool %></small>
+                </div>
+              </div>
+              <% end %>
+            </div>
+            <div class="text-center">
+              <a href="<%= user_shares_url %>">View all of your shares</a>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="favorite-tools-container" role="tabpanel" aria-labelledby="favorite-tool-tab">
+          <% if @favorite_tools.empty? %>
+            <div class="no-data">You have not added any tool to favorites yet.</div>
+          <% else %>
+            <div id="tools-container" class="card-deck deck-1 deck-md-2 deck-lg-3 mt-5">
+              <% @favorite_tools.each do |tool| %>
+                <div class="card tool-item">
+                  <a href="<%= tool_url(tool) %>">
+                    <p class="name"><%= tool.name %></p>
+                    <p class="description"><%= tool.description %></p>
+                    <p class="badge badge-light badge-pill"><%= host_from_url(tool_url(tool)) %></p>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

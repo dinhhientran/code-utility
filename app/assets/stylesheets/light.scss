@@ -1,3 +1,11 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/badge";
+
+@import 'highlight.js/scss/github';
+
 body {
   background-color: #efefef !important;
   color: rgba(0, 0, 0, 0.85) !important;
@@ -5,6 +13,25 @@ body {
 
 header, footer {
   background-color: #fcfcfc;
+}
+
+#cookie-law-info-bar {
+  box-shadow: 0 -1px 10px rgba(172, 171, 171, 0.3) !important;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.supported-language-table.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #efefef;
+}
+
+.supported-language-table {
+  @extend .table-light;
+  background-color: #f6f8fa;
+}
+
+.supported-language-table .badge {
+  @extend .badge-light;
 }
 
 .modal {
@@ -46,6 +73,20 @@ header, footer {
 
 .modal ::-webkit-resizer, .CodeMirror ::-webkit-resizer, .select2-results ::-webkit-resizer, #json-editor ::-webkit-resizer {
   background-color: #aaa;
+}
+
+.modal-dialog {
+  border: 1px solid #aaa !important;
+  border-radius: 10px !important;
+}
+
+#sign_in_modal.fade.show ~ .modal-backdrop {
+  background-color: #efefef !important;
+  opacity: 1 !important;
+}
+
+#cookie_settings_modal {
+  color: inherit !important;
 }
 
 .navbar-brand .page-name {

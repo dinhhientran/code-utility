@@ -1,0 +1,165 @@
+<div class="row" id="h1-row">
+  <div class="col-md-8">
+    <h1>Beautify JSON</h1>
+    <% if !@tool.nil? %>
+      <p class="tool-description"><%= @tool.description %></p>
+      <% if !@tool.tags.empty? %>
+        <p class="tool-tags mb-0 pb-0"> <span class="tags-label">Tags:</span>
+          <% @tool.tags.each do |tag| %>
+            <a href="<%= tag_url(tag) %>  " class="badge badge-pill badge-success"><%= tag.name %></a>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render "tools/partials/share_options" %>
+</div>
+<div class="row mb-4" id="input-options">
+  <div class="col col-md-5_5 mt-4">
+    <div class="float-left custom-control custom-switch mt-1">
+      <input type="checkbox" class="custom-control-input" id="example-toggle" <%= @sample_code == 'true' ? 'checked="checked"' : '' %>>
+      <label class="custom-control-label" for="example-toggle">Sample</label>
+    </div>
+    <div class="float-right">
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-12 text-right">
+  </div>
+  <div class="col col-md-5_5 text-right mt-4 d-flex">
+    <div class="w-33 text-left ml-md-1 ml-sm-0">
+      <div class="btn-group" role="group" aria-label="Json View Mode">
+        <button type="button" class="btn btn-sm btn-success" id="source-view-btn">Source</button>
+        <button type="button" class="btn btn-sm btn-secondary" id="tree-view-btn">Tree</button>
+      </div>
+    </div>
+    <div class="w-33">
+      <div id="indent-group">
+        <label>Indent</label>
+        <input alt="Spaces" id="indent-spaces" type="number" value="2" min="0" max="50" step="1"/>
+      </div>
+    </div>
+    <div class="w-34">
+      <label>Theme</label>
+      <select id="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row row-eq-height">
+  <div class="col col-md-5_5 col-sm-12 col-12 mb-3" id="source-column">
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="source-editor" placeholder="JSON goes here..."></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-12 col-12 mb-3" id="button-column">
+    <div class="d-flex flex-column w-100 h-100 align-self-center">
+      <div>
+        <div class="w-100 pt-md-5 pt-0">
+          <button id="beautify-btn" class="btn btn-primary" style="width: 100%;">Beautify <i class="fas fa-angle-double-right"></i></button>
+          <button id="minify-btn" class="btn btn-primary mt-4" style="width: 100%;"><i class="fas fa-angle-double-left"></i> Minify</button>
+          <button id="share-btn" class="btn btn-outline-primary mt-4" style="width: 100%;display: none;"><i class="fas fa-share-alt"></i> Share</button>
+          <button data-toggle="modal" data-target="#download_file_name_modal" class="btn btn-outline-primary mt-4" style="width: 100%;"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+      <div class="mt-md-auto mt-4 w-100">
+        <div class="w-100">
+          <% if !current_user.nil? %>
+            <button id="favorite-btn" class="btn btn-outline-primary" style="width: 100%;"><i class="fas fa-star"></i> Add to Favorites</button>
+          <% end %>
+          <button id="new-btn" class="btn btn-outline-primary mt-2" style="width: 100%;"><i class="fas fa-plus"></i> New</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col-md-5_5 col-sm-12 col-12" id="target-column">
+    <div class="row">
+      <div class="col-md-12 json-view" id="source-view">
+        <textarea id="target-editor"></textarea>
+      </div>
+      <div class="col-md-12 json-view" id="tree-view" style="display: none;">
+        <div id="json-editor"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online JSON beautifier. It helps to convert un-formatted JSON to a nice JSON structure. This convert tool is powered by <a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a> beautifier. You can select to see the result in code view or tree view mode.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your JSON code directly into the editor or upload JSON file using the Upload button.</p>
+    <p>After beautifying/formatting your code, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <h3>What is JSON?</h3>
+    <p>
+      JSON (JavaScript Object Notation, pronounced /ˈdʒeɪsən/; also /ˈdʒeɪˌsɒn/) is an open standard file format, and data interchange format, that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and array data types (or any other serializable value). It is a very common data format, with a diverse range of applications, such as serving as a replacement for XML in AJAX systems.
+    </p>
+    <h3>JSON Syntax</h3>
+    <p>JSON defines only two data structures: objects and arrays. An object is a set of name-value pairs, and an array is a list of values. JSON defines seven value types: string, number, object, array, true, false, and null.</p>
+    <p>The following example shows JSON data for a sample object that contains name-value pairs. The value for the name "phoneNumbers" is an array whose elements are two objects.</p>
+    <pre class="code-block">
+      <code class="json">
+{
+  "firstName": "Duke",
+  "lastName": "Java",
+  "age": 18,
+  "streetAddress": "100 Internet Dr",
+  "city": "JavaTown",
+  "state": "JA",
+  "postalCode": "12345",
+  "phoneNumbers": [
+    {
+      "Mobile": "111-111-1111"
+    }, {
+      "Home": "222-222-2222"
+    }
+  ]
+}
+      </code>
+    </pre>
+  </div>
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Unbeautified:</small></p>
+
+    <pre class="code-block">
+      <code class="json">
+{"colors":[{"color":"black","category":"hue","type":"primary","code":{"rgba":[255,255,255,1],"hex":"#000"}},{"color":"white","category":"value","code":{"rgba":[0,0,0,1],"hex":"#FFF"}}]}
+      </code>
+    </pre>
+
+    <p><small>After beautified:</small></p>
+
+    <pre class="code-block">
+      <code class="json">
+{
+  "colors": [
+    {
+      "color": "black",
+      "category": "hue",
+      "type": "primary",
+      "code": {
+        "rgba": [
+          255, 255, 255, 1
+        ],
+        "hex": "#000"
+      }
+    }, {
+      "color": "white",
+      "category": "value",
+      "code": {
+        "rgba": [
+          0, 0, 0, 1
+        ],
+        "hex": "#FFF"
+      }
+    }
+  ]
+}
+    </code>
+    </pre>
+  </div>
+</div>

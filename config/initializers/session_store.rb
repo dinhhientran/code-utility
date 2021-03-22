@@ -1,0 +1,1 @@
+Codeutility::Application.config.session_store :cookie_store, key: '_codeutilityio_session', domain: '.codeutility.bar'

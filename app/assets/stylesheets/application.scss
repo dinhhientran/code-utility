@@ -22,6 +22,8 @@
 @import "bootstrap/scss/images";
 @import "bootstrap/scss/code";
 @import "bootstrap/scss/grid";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/badge";
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
 @import "bootstrap/scss/dropdown";
@@ -37,16 +39,13 @@
 @import "bootstrap/scss/tooltip";
 @import "bootstrap/scss/popover";
 @import "bootstrap/scss/utilities";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/tables";
+@import "toastr/build/toastr.min.css";
 @import "nav";
-@font-face {
-  font-family: "Proxima Nova Soft";
-  src: asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.eot");
-  src: asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f_iefix.eot?#iefix") format("embedded-opentype"),
-       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.woff2") format("woff2"),
-       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.woff") format("woff"),
-       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.ttf") format("truetype"),
-       asset-url("fonts/b4e4280eacbbd2ed88862d648b0b1f2f.svg") format("svg");
-}
+@import "carddeck";
+@import "fonts";
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.28;
@@ -61,9 +60,21 @@ h1 {
   text-rendering: optimizelegibility;
   font-family: "Proxima Nova Soft";
 }
+h3 {
+  font-family: "Proxima Nova Soft" !important;
+}
 h6 {
   font-family: "Proxima Nova Soft" !important;
 }
+
+a:focus {
+  outline: none !important;
+}
+
+.table thead th {
+  border-bottom: none !important;
+}
+
 .side-description {
   font-size: 27px;
   line-height: 40px;
@@ -214,10 +225,9 @@ textarea#source {
   width: 100%;
 }
 .CodeMirror {
-  border: 1px solid #cacaca;
+  border: 1px solid #aaa;
   border-radius: 10px;
   font-size: 14px !important;
-  border-top: 2px solid #cacaca;
   overflow:hidden !important;
   -ms-overflow-x: hidden;
   -ms-overflow-y: hidden;
@@ -305,4 +315,102 @@ textarea#source {
 .bs-tooltip-bottom {
   z-index: 10000 !important;
   left: -8px !important;
+}
+
+#sign_in_modal .modal-content {
+  border-radius: 10px; border: 1px solid #aaa;
+  font-family: "Proxima Nova Soft";
+}
+
+#sign_in_modal .modal-body {
+  padding: 0;
+}
+
+#sign_in_modal .modal-body .btn-outline-primary {
+  color: $primary !important;
+}
+
+#sign_in_modal .modal-body .btn-outline-primary:hover {
+  color: $white !important;
+}
+
+#sign_in_modal.show {
+  display: flex !important;
+  height: 100%;
+  padding-bottom: 10%;
+}
+
+#sign_in_modal .modal-dialog {
+  margin: auto;
+  width: 100% !important;
+}
+
+.primary-color {
+  color: $primary !important;
+}
+
+.more-nice-features .bullet {
+  font-size: 0.7rem;
+}
+
+.more-nice-features .feature {
+  font-size: 1.2rem;
+}
+
+.more-nice-features .description {
+  color: rgb(153, 153, 153);
+  font-size: 12px;
+  padding-left: 0.8rem;
+  font-weight: lighter;
+}
+
+.more-nice-features ul {
+  list-style-type: none;
+  padding: 0 0 0 0.9rem;
+  margin-top: 0.8rem;
+}
+
+#profile-page .avatar img {
+  border-radius: 50%;
+}
+
+#profile-page .avatar {
+  position: relative;
+}
+
+#profile-page .avatar button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#profile-page .info .name a {
+  position: absolute;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+#profile-page .info .email {
+  font-size: 0.8rem;
+}
+
+#profile-page .edit-name .form-control {
+  width: 50%;
+  margin: auto;
+  display: inline;
+}
+
+#profile-page .edit-name button {
+  display: inline;
+}
+
+.code-block {
+  font-size: 0.8em !important;
+  margin-bottom: 0px;
+}
+
+.supported-language-table .badge {
+  font-size: 85%;
 }

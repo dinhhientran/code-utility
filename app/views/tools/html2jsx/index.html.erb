@@ -1,0 +1,65 @@
+<%= render "tools/partials/converter_page", name: 'HTML to JSX' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online converter tool which helps to convert HTML to JSX template.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your HTML code directly into the editor, then click the convert button to convert the code.</p>
+    <p>After converting, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <h3>What is JSX?</h3>
+
+    <pre class="code-block">
+      <code class="javascript">
+const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;
+      </code>
+    </pre>
+
+    <p>This funny tag syntax is neither a string nor HTML.</p>
+
+    <p>It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.</p>
+
+    <p><a href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">JSX Syntax</p>
+    <pre class="code-block">
+      <code class="javascript">
+const element = (
+  &lt;h1 className=&quot;greeting&quot;&gt;
+    Hello, world!
+  &lt;/h1&gt;
+);
+      </code>
+    </pre>
+
+  </div>
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>HTML</small></p>
+
+    <pre class="code-block">
+      <code class="xml">
+&lt;div&gt;
+  &lt;div class=&quot;awesome&quot; style=&quot;border: 1px solid red&quot;&gt;
+    &lt;label for=&quot;name&quot;&gt;Enter your name: &lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;name&quot; /&gt;
+  &lt;/div&gt;
+  &lt;p&gt;Enter your HTML here&lt;/p&gt;
+&lt;/div&gt;
+      </code>
+    </pre>
+
+    <p><small>JSX</small></p>
+
+    <pre class="code-block">
+      <code class="xml">
+&lt;div&gt;
+  &lt;div className=&quot;awesome&quot; style={{border: '1px solid red'}}&gt;
+    &lt;label htmlFor=&quot;name&quot;&gt;Enter your name: &lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;name&quot; /&gt;
+  &lt;/div&gt;
+  &lt;p&gt;Enter your HTML here&lt;/p&gt;
+&lt;/div&gt;
+    </code>
+    </pre>
+  </div>
+</div>

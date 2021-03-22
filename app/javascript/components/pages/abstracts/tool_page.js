@@ -4,6 +4,34 @@ import Toastr from "toastr/build/toastr.min.js"
 import Cookies from "js-cookie"
 import ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import {DOWNLOAD_FILE_NAME_MODAL} from "../../modals/download_file_name";
+import {ENTER_SHARE_NAME_MODAL} from "../../modals/enter_share_name";
+
+import hljs from 'highlight.js/lib/core';
+import c from 'highlight.js/lib/languages/c';
+import json from 'highlight.js/lib/languages/json';
+import php from 'highlight.js/lib/languages/php';
+import ruby from 'highlight.js/lib/languages/ruby';
+import xml from 'highlight.js/lib/languages/xml';
+import erb from 'highlight.js/lib/languages/erb';
+import haml from 'highlight.js/lib/languages/haml';
+import yaml from 'highlight.js/lib/languages/yaml';
+import css from 'highlight.js/lib/languages/css';
+import scss from 'highlight.js/lib/languages/scss';
+import sass from 'highlight.js/lib/languages/sas';
+import javascript from 'highlight.js/lib/languages/javascript';
+
+hljs.registerLanguage('c', c);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('php', php);
+hljs.registerLanguage('ruby', ruby);
+hljs.registerLanguage('erb', erb);
+hljs.registerLanguage('haml', haml);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('yaml', yaml);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('scss', scss);
+hljs.registerLanguage('sass', sass);
+hljs.registerLanguage('javascript', javascript);
 
 export default class ToolPage extends BasePage {
 
@@ -12,10 +40,12 @@ export default class ToolPage extends BasePage {
 
         this.init = this.init.bind(this);
         this.initShareButtons = this.initShareButtons.bind(this);
+        this.initFavoriteButton = this.initFavoriteButton.bind(this);
         this.initShare = this.initShare.bind(this);
         this.initUploadDownloadButtons = this.initUploadDownloadButtons.bind(this);
         this.initUploadButton = this.initUploadButton.bind(this);
         this.initDownloadButton = this.initDownloadButton.bind(this);
+        this.initScreenshotPage = this.initScreenshotPage.bind(this);
         this.showShareButton = this.showShareButton.bind(this);
         this.sendShareRequest = this.sendShareRequest.bind(this);
         this.sendForkRequest = this.sendForkRequest.bind(this);
@@ -24,6 +54,7 @@ export default class ToolPage extends BasePage {
 
         this.uploadUrl = window.gon.base_url + '/file/upload';
         this.downloadUrl = window.gon.base_url + '/file/download';
+        this.addFavoriteToolUrl = window.gon.base_url + '/user/add_favorite_tool'
         this.cookieSampleCodeSuffix = '_sample_code';
     }
 
@@ -37,9 +68,11 @@ export default class ToolPage extends BasePage {
         this.showSampleCode = showSampleCodeCookie ? showSampleCodeCookie == 'true' : true;
 
         this.shareBtnId = '#share-btn';
+        this.favoriteBtnId = '#favorite-btn';
         this.copyLinkClass = '.link-copy';
         this.$copyLink = $(this.copyLinkClass);
         this.$shareBtn = $(this.shareBtnId);
+        this.$favoriteBtn = $(this.favoriteBtnId);
         this.$forkBtn = $('#fork-btn');
         this.$newBtn = $('#new-btn');
         this.downloadBtnId = '#download-btn';
@@ -51,6 +84,17 @@ export default class ToolPage extends BasePage {
         this.downloadFileNameInputId = '#download_file_name';
 
         this.initThemeButton();
+
+        this.$shareBtn.hide();
+
+        if (window.gon.screenshot) {
+            this.initScreenshotPage();
+        }
+    }
+
+    initScreenshotPage() {
+        $('header').hide();
+        $('footer').hide();
     }
 
     isThisShare() {
@@ -75,6 +119,7 @@ export default class ToolPage extends BasePage {
         }
 
         this.initShareButtons();
+        this.initFavoriteButton();
     }
 
     initShareButtons() {
@@ -123,8 +168,108 @@ export default class ToolPage extends BasePage {
 
         this.$shareBtn.click(function () {
             if (!_this.isThisShare()) {
-                _this.sendShareRequest();
+                if (window.gon.current_user != undefined) {
+                    if (_this.$shareNameModal == undefined) {
+                        _this.$shareNameModal = $(ENTER_SHARE_NAME_MODAL);
+                        $('body').append(_this.$shareNameModal);
+                    }
+
+                    _this.$shareNameModal.modal('show');
+
+                    let m = new Date();
+                    let date =
+                        m.getUTCFullYear() + "-" +
+                        ("0" + (m.getUTCMonth()+1)).slice(-2) + "-" +
+                        ("0" + m.getUTCDate()).slice(-2) + "_" +
+                        ("0" + m.getUTCHours()).slice(-2) + ":" +
+                        ("0" + m.getUTCMinutes()).slice(-2) + ":" +
+                        ("0" + m.getUTCSeconds()).slice(-2);
+
+                    let $shareNameInput = $('#share_name');
+
+                    let shareNamePrefix = _this.getShareNamePrefix();
+                    if (shareNamePrefix != "") {
+                        shareNamePrefix += " ";
+                    }
+
+                    $shareNameInput.val(shareNamePrefix +  date);
+
+                    let validateShareName = function() {
+                        let fileName = $shareNameInput.val();
+                        if (fileName == "") {
+                            $shareNameInput.addClass('is-invalid');
+                            _this.$shareNameModal.find('.invalid-feedback').show();
+                            return false;
+                        } else {
+                            $shareNameInput.removeClass('is-invalid');
+                            _this.$shareNameModal.find('.invalid-feedback').hide();
+                            return true;
+                        }
+                    };
+
+                    validateShareName();
+
+                    $shareNameInput.on('input', function() {
+                        validateShareName()
+                    });
+
+                    $('#do-share-btn').click(function() {
+                        if (validateShareName()) {
+                            _this.sendShareRequest();
+                        }
+                    });
+
+                } else {
+                    _this.sendShareRequest();
+                }
             }
+        });
+    }
+
+    initFavoriteButton() {
+        let _this = this;
+        this.$favoriteBtn.click(function () {
+            let tool = window.gon.tool;
+
+            _this.showLoadingOverlay();
+
+            $.ajax({
+                type: 'PUT',
+                url: _this.addFavoriteToolUrl,
+                crossDomain: true,
+                data: {
+                    tool: tool
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                dataType: 'json',
+                success: function(response, textStatus, jqXHR) {
+                    _this.$favoriteBtn.tooltip(
+                        {
+                            placement: 'top',
+                            title: response.message,
+                            trigger: 'manual',
+                            delay: {show: 300, hide: 0}
+                        }
+                    );
+
+                    _this.$favoriteBtn.tooltip('show');
+
+                    setTimeout(function () {
+                        _this.$favoriteBtn.tooltip('hide');
+                    }, 4000);
+                },
+                error: function (response, textStatus, errorThrown) {
+                    response = response.responseJSON;
+                    if (response && response.error) {
+                        Toastr.error(response.error, "Error");
+                    }
+                },
+                complete: function () {
+                    _this.closeLoadingOverlay();
+                }
+            });
         });
     }
 
@@ -278,24 +423,39 @@ export default class ToolPage extends BasePage {
         let _this = this;
 
         let input = this.getInput();
+        let name = $('#share_name').val();
+        let _public = $('#share_public').is(':checked');
 
         if (input != null) {
             this.showLoadingOverlay();
 
-            $.post(_this.shareUrl, {
-                input: input
-            }, function (response) {
-                window.location.href = window.gon.base_url + response.reference_number + '/' + response.version;
-            })
-                .fail(function (response) {
+            $.ajax({
+                type: 'POST',
+                url: _this.shareUrl,
+                crossDomain: true,
+                data: {
+                    input: input,
+                    name: name,
+                    public: _public
+                },
+                dataType: 'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(response, textStatus, jqXHR) {
+                    window.location.href = window.gon.base_url + response.reference_number + '/' + response.version;
+                    _this.showShareButton();
+                },
+                error: function (response, textStatus, errorThrown) {
                     response = response.responseJSON;
                     if (response && response.error) {
                         Toastr.error(response.error, "Error");
                     }
-                })
-                .always(function () {
+                },
+                complete: function () {
                     _this.closeLoadingOverlay();
-                });
+                }
+            });
         }
     }
 
@@ -329,6 +489,10 @@ export default class ToolPage extends BasePage {
     }
 
     getCodeToDownload() {
+        return null;
+    }
+
+    getShareNamePrefix() {
         return null;
     }
 
@@ -377,5 +541,15 @@ export default class ToolPage extends BasePage {
         if (this.$targetColumn != undefined) {
             this.$targetColumn.css(widthCss);
         }
+    }
+
+    afterInit() {
+        super.afterInit();
+
+        // first, find all the div.code blocks
+        document.querySelectorAll('pre.code-block code').forEach(block => {
+            // then highlight each
+            hljs.highlightBlock(block);
+        });
     }
 }
