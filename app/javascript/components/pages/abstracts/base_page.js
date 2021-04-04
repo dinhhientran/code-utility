@@ -18,7 +18,7 @@ export default class BasePage {
 
     init() {
         this.$footer = $('footer');
-        this.$megamenuli = $('.megamenu-li');
+        this.$megamenuli = $('#main-menu-li');
 
         this.initMegaMenu();
 
@@ -102,6 +102,7 @@ export default class BasePage {
     setMegaMenuButtonMargin() {
         let megaMenuBtnMargin = parseInt($(window).width() / 2) - 305;
         this.$megamenuli.css("margin-left", megaMenuBtnMargin);
+        this.$megamenuli.show();
     }
 
     initMegaMenu() {
@@ -110,6 +111,8 @@ export default class BasePage {
         $(window).resize(function() {
             _this.setMegaMenuButtonMargin();
         });
+
+
 
         if (window.gon.page != 'home') {
 

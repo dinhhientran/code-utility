@@ -20,6 +20,7 @@ import HomePage from "../components/pages/home_page";
 import ProfilePage from "../components/pages/profile_page";
 import YourSharesPage from "../components/pages/your_shares_page";
 import LoginPage from "../components/pages/login_page";
+import ReleasesPage from "../components/pages/releases_page";
 
 $( document ).on('turbolinks:load', function() {
 
@@ -34,6 +35,9 @@ $( document ).on('turbolinks:load', function() {
             break;
         case 'sessions':
             page = new LoginPage();
+            break;
+        case 'releases':
+            page = new ReleasesPage();
             break;
     }
 

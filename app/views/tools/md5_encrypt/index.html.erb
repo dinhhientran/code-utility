@@ -1,1 +1,35 @@
 <%= render "tools/partials/converter_page", name: 'Md5 Encrypter', tool: 'md5_encrypt' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online MD5 encrypter tool which helps to encrypt a string using MD5 algorithm.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your string directly into the editor, then click the encrypt button to encrypt your input.</p>
+    <p>After encrypting, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save result into your account.</p>
+    <h3>What is MD5?</h3>
+
+    <p>The MD5 message-digest algorithm is a widely used hash function producing a 128-bit hash value. Although MD5 was initially designed to be used as a cryptographic hash function, it has been found to suffer from extensive vulnerabilities. It can still be used as a checksum to verify data integrity, but only against unintentional corruption. It remains suitable for other non-cryptographic purposes, for example for determining the partition for a particular key in a partitioned database</p>
+
+    <p><a href="https://en.wikipedia.org/wiki/MD5" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Before encrypted</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+Hello, World!
+      </code>
+    </pre>
+
+    <p><small>After encrypted</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+65a8e27d8879283831b664bd8b7f0ad4
+      </code>
+    </pre>
+  </div>
+</div>

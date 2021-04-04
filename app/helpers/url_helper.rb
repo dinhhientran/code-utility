@@ -9,8 +9,12 @@ module UrlHelper
     html_escape(version.input[key].slice(0, 200))
   end
 
-  def share_link(version)
-    ENV['BASE_URL'] + version.share.reference_number.to_s + '/' + version.version_number.to_s
+  def share_link(version, slug = false)
+    url = ENV['BASE_URL'] + version.share.reference_number.to_s + '/' + version.version_number.to_s
+    if slug && !version.name.nil? && !version.name.blank?
+      url += "/" + version.name.parameterize
+    end
+    url
   end
 
   def tag_url(tag)

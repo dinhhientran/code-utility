@@ -123,13 +123,13 @@ header, footer {
 
 #cookie-law-info-bar {
   box-shadow: 0rem 0rem 0.5rem 0.1rem rgba(0, 0, 0, 0.25), inset 0 -1px 0 black !important;
-  background-color: #1f2227 !important;
+  background-color: #36a7f7 !important;
   color: #fbfbfb !important;
 }
 
 #cookie-law-info-bar .cli-settings-button {
   margin: 5px 20px;
-  color: rgb(98, 163, 41);
+  color: #b9dd9a;
 }
 
 #cookie-law-info-bar #cookie-settings-accept {
@@ -209,7 +209,11 @@ header, footer {
   color: #fbfbfb;
 }
 
-.btn-light, .form-control-sm, .select2-search__field {
+.dropdown-item:hover {
+  color: #fff;
+}
+
+.form-control-sm, .select2-search__field, .indent-spaces .btn-light {
   background-color: #343a40 !important;
   color: #fbfbfb !important;
 }
@@ -342,7 +346,7 @@ div.jsoneditor-readonly {
 
 #profile_dropdown_menu {
   border: 1px solid #aaa !important;
-  background-color: #343a40 !important;
+  background-color: #343a40;
 }
 
 #profile_dropdown_menu span.signed-in-as {
@@ -418,8 +422,8 @@ div.jsoneditor-readonly {
 
 #my-shares-page #search-box input[type=search] {
   border: 1px solid #aaa;
-  background-color: #343a40 !important;
-  color: #fbfbfb !important;
+  background-color: #343a40;
+  color: #fbfbfb;
   border-radius: 20px;
   margin-left: 15px;
 }
@@ -430,25 +434,41 @@ div.jsoneditor-readonly {
 }
 
 #my-shares-page #search-box .fa-search {
-  color: #fbfbfb !important;
+  color: #fbfbfb;
   margin-top: 8px;
 }
 
 .pagination .page-item .page-link {
   border: 1px solid #aaa;
-  background-color: #343a40 !important;
-  color: #007bff !important;
+  background-color: #343a40;
+  color: #007bff;
 }
 
 .pagination .page-item.disabled .page-link {
-  color: #fbfbfb !important;
+  color: #fbfbfb;
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #007bff !important;
-  color: #fff !important;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.shares-container .card .close {
+  color: #fbfbfb;
+}
+
+.shares-container .card, #tools-container .card {
+  border: 1px solid #444444;
+}
+
+.shares-container .card-footer {
+  border-top: 1px solid #444444;
 }
 
 .keyword-badge {
   font-size: 1rem;
+}
+
+.share-link svg {
+  color: #fbfbfb;
 }

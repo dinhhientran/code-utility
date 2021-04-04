@@ -39,11 +39,7 @@
       </div>
     </div>
     <div class="w-34">
-      <label>Theme</label>
-      <select id="theme">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
+      <%= render "tools/partials/theme_buttons" %>
     </div>
   </div>
 </div>
@@ -92,11 +88,12 @@
     <p>This is an online JSON beautifier. It helps to convert un-formatted JSON to a nice JSON structure. This convert tool is powered by <a href="https://github.com/prettydiff/prettydiff" target="_blank">Pretty Diff</a> beautifier. You can select to see the result in code view or tree view mode.</p>
     <h3>How to use this tool?</h3>
     <p>You can input/paste your JSON code directly into the editor or upload JSON file using the Upload button.</p>
-    <p>After beautifying/formatting your code, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <p>After beautifying/formatting your code, you can download or save/share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
     <h3>What is JSON?</h3>
     <p>
       JSON (JavaScript Object Notation, pronounced /ˈdʒeɪsən/; also /ˈdʒeɪˌsɒn/) is an open standard file format, and data interchange format, that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and array data types (or any other serializable value). It is a very common data format, with a diverse range of applications, such as serving as a replacement for XML in AJAX systems.
     </p>
+    <p><a href="https://www.json.org/json-en.html" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
     <h3>JSON Syntax</h3>
     <p>JSON defines only two data structures: objects and arrays. An object is a set of name-value pairs, and an array is a list of values. JSON defines seven value types: string, number, object, array, true, false, and null.</p>
     <p>The following example shows JSON data for a sample object that contains name-value pairs. The value for the name "phoneNumbers" is an array whose elements are two objects.</p>

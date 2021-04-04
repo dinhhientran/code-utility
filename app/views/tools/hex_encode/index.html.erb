@@ -1,1 +1,48 @@
 <%= render "tools/partials/converter_page", name: 'Hex Encoder', tool: 'hex_encode' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online Hexadecimal encoder tool which helps to convert to string to hexadecimal.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your string directly into the editor, then click the encode/decode button to encode/decode the string.</p>
+    <p>After encoding/decoding, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save result into your account.</p>
+    <h3>What is Hexadecimal?</h3>
+
+    <p>Text and numbers can be encoded in a computer as patterns of binary digits. Hexadecimal is a shortcut for representing binary. ASCII and Unicode are important character sets that are used as standard.</p>
+
+    <p>Hexadecimal (or hex) is a base 16 system used to simplify how binary is represented. A hex digit can be any of the following 16 digits: 0 1 2 3 4 5 6 7 8 9 A B C D E F.</p>
+
+    <p>Each hex digit reflects a 4-bit binary sequence.</p>
+
+    <p>This means an 8-bit binary number can be written using only two different hex digits - one hex digit for each nibble (or group of 4-bits). It is much easier to write numbers as hex than to write them as binary numbers.</p>
+
+    <p>For example:</p>
+
+    <ul>
+      <li><b>11010100</b> in binary would be <b>D4</b> in hex</li>
+      <li><b>FFFF3</b> in hex would be <b>11111111111111110011</b> in binary</li>
+    </ul>
+
+    <p><a href="https://www.bbc.co.uk/bitesize/guides/zp73wmn/revision/1" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Before encoded</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+Hello, World!
+      </code>
+    </pre>
+
+    <p><small>After encoded</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+48656c6c6f2c20576f726c6421
+      </code>
+    </pre>
+  </div>
+</div>

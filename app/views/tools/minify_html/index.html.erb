@@ -1,1 +1,94 @@
 <%= render "tools/partials/converter_page", name: 'Minify HTML' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online minifier tool which helps to minify/compress HTML code.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your HTML code directly into the editor, then click the minify button to minify the code.</p>
+    <p>After minifying, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save minifyed result into your account.</p>
+    <h3>What is HTML?</h3>
+
+    <p>HTML stands for Hypertext Markup Language. It allows the user to create and structure sections, paragraphs, headings, links, and blockquotes for web pages and applications.</p>
+
+  <p>HTML is not a programming language, meaning it doesn’t have the ability to create dynamic functionality. Instead, it makes it possible to organize and format documents, similarly to Microsoft Word.</p>
+
+    <p><a href="https://www.w3schools.com/html/html_intro.asp" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">HTML Syntax</p>
+    <pre class="code-block">
+      <code class="xml">
+&lt;html
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;content&quot;&gt;
+      &lt;h1 class=&quot;title&quot;&gt;Hello World!&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </code>
+    </pre>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>What is Minification?</h3>
+
+    <p>Minification is the process of minimizing code and markup in your web pages and script files. It’s one of the main methods used to reduce load times and bandwidth usage on websites. Minification dramatically improves site speed and accessibility, directly translating into a better user experience. It’s also beneficial to users accessing your website through a limited data plan and who would like to save on their bandwidth usage while surfing the web.</p>
+
+    <h3>Why minify HTML?</h3>
+
+    <p>When creating HTML developers tend to use spacing, comments and well-named variables to make code and markup readable for themselves. It also helps others who might later work on the assets. While this is a plus in the development phase, it becomes a negative when it comes to serving your pages. Web servers and browsers can parse file content without comments and well-structured code, both of which create additional network traffic without providing any functional benefit.</p>
+
+    <p>To minify HTML files, comments and extra spaces need to be removed, as well as crunch variable names so as to minimize code and reduce file size. The minified file version provides the same functionality while reducing the bandwidth of network requests.</p>
+
+    <h3>Examples</h3>
+    <p><small>Before minified</small></p>
+
+    <pre class="code-block">
+      <code class="xml">
+&lt;html
+    style=&quot;color: green&quot;&gt;
+    &lt;!-- this is a comment --&gt;
+    &lt;head&gt;
+        &lt;title&gt;Mixed HTML Example&lt;/title&gt;
+        &lt;style&gt;
+            h1 {
+                font-family: comic sans;
+                color: #f0f;
+            }
+            div {
+                background: yellow !important;
+            }
+            body {
+                max-width: 50em;
+                margin: 1em 2em 1em 5em;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Mixed HTML Example&lt;/h1&gt;
+        &lt;script&gt;
+            function jsFunc(arg1, arg2) {
+                if (arg1 &amp;&amp; arg2)
+                    document.body.innerHTML = &quot;achoo&quot;;
+
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+      </code>
+    </pre>
+
+    <p><small>After minified</small></p>
+
+    <pre class="code-block">
+      <code class="xml">
+&lt;html style=&quot;color: green&quot;&gt; &lt;head&gt;&lt;title&gt;Mixed HTML Example&lt;/title&gt;&lt;style&gt;h1{font-family:comic sans;color:#f0f;}div{background:yellow !important;}body{max-width:50em;margin:1em 2em 1em 5em;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Mixed HTML Example&lt;/h1&gt;&lt;script&gt;function jsFunc(arg1,arg2){if(arg1&amp;&amp;arg2)document.body.innerHTML=&quot;achoo&quot;;}&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+      </code>
+    </pre>
+  </div>
+</div>

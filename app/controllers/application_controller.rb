@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
-  before_action :set_urls, :fetch_user_recent_tools
+  before_action :set_vars, :fetch_user_recent_tools
 
   TOOL = nil
 
   include Pagy::Backend
 
-  def set_urls
+  def set_vars
     gon.base_url = ENV['BASE_URL']
 
     gon.api_url = ENV['BASE_URL'] + controller_name
@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
     if current_user
       gon.current_user = current_user
     end
+
+    @theme = cookies[:theme]
   end
 
   def fetch_user_recent_tools

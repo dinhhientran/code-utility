@@ -1,1 +1,87 @@
 <%= render "tools/partials/converter_page", name: 'Minify JSON' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online minifier tool which helps to minify/compress JSON code.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your JSON code directly into the editor, then click the minify button to minify the code.</p>
+    <p>After minifying, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save minifyed result into your account.</p>
+    <h3>What is JSON?</h3>
+    <p>
+      JSON (JavaScript Object Notation, pronounced /ˈdʒeɪsən/; also /ˈdʒeɪˌsɒn/) is an open standard file format, and data interchange format, that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and array data types (or any other serializable value). It is a very common data format, with a diverse range of applications, such as serving as a replacement for XML in AJAX systems.
+    </p>
+
+    <p><a href="https://www.json.org/json-en.html" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <h3>JSON Syntax</h3>
+    <p>JSON defines only two data structures: objects and arrays. An object is a set of name-value pairs, and an array is a list of values. JSON defines seven value types: string, number, object, array, true, false, and null.</p>
+    <p>The following example shows JSON data for a sample object that contains name-value pairs. The value for the name "phoneNumbers" is an array whose elements are two objects.</p>
+    <pre class="code-block">
+      <code class="json">
+{
+  "firstName": "Duke",
+  "lastName": "Java",
+  "age": 18,
+  "streetAddress": "100 Internet Dr",
+  "city": "JavaTown",
+  "state": "JA",
+  "postalCode": "12345",
+  "phoneNumbers": [
+    {
+      "Mobile": "111-111-1111"
+    }, {
+      "Home": "222-222-2222"
+    }
+  ]
+}
+      </code>
+    </pre>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>What is Minification?</h3>
+
+    <p>Minification is the process of minimizing code and markup in your web pages and script files. It’s one of the main methods used to reduce load times and bandwidth usage on websites. Minification dramatically improves site speed and accessibility, directly translating into a better user experience. It’s also beneficial to users accessing your website through a limited data plan and who would like to save on their bandwidth usage while surfing the web.</p>
+
+    <h3>Examples</h3>
+    <p><small>Before minified</small></p>
+
+    <pre class="code-block">
+      <code class="json">
+{
+  "colors": [
+    {
+      "color": "black",
+      "category": "hue",
+      "type": "primary",
+      "code": {
+        "rgba": [
+          255, 255, 255, 1
+        ],
+        "hex": "#000"
+      }
+    }, {
+      "color": "white",
+      "category": "value",
+      "code": {
+        "rgba": [
+          0, 0, 0, 1
+        ],
+        "hex": "#FFF"
+      }
+    }
+  ]
+}
+      </code>
+    </pre>
+
+    <p><small>After minified</small></p>
+
+    <pre class="code-block">
+      <code class="json">
+{"colors":[{"color":"black","category":"hue","type":"primary","code":{"rgba":[255,255,255,1],"hex":"#000"}},{"color":"white","category":"value","code":{"rgba":[0,0,0,1],"hex":"#FFF"}}]}
+      </code>
+    </pre>
+  </div>
+</div>

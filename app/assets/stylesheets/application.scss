@@ -204,6 +204,11 @@ $input-btn-line-height-xs: 1.1 !default;
 .modal {
   top: 80px !important;
 }
+
+#theme-mode .btn {
+  border-radius: 15px 15px 15px 15px;
+}
+
 div.editor-buttons {
   z-index: 500;
   min-width: 506px;
@@ -413,4 +418,21 @@ textarea#source {
 
 .supported-language-table .badge {
   font-size: 85%;
+}
+
+.share-link span {
+  margin-right: 10px;
+}
+
+#privacy_page, #privacy_page p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
+#privacy_page h1, #privacy_page h2, #privacy_page h3, #privacy_page h4 {
+  text-rendering: optimizelegibility;
+  font-family: "Proxima Nova Soft" !important;
+}
+
+#privacy_page p, #privacy_page li {
+  font-size: 1rem !important;
 }

@@ -1,1 +1,62 @@
 <%= render "tools/partials/converter_page", name: 'Minify SQL' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online minifier tool which helps to minify/compress SQL code.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your SQL code directly into the editor, then click the minify button to minify the code.</p>
+    <p>After minifying, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save minifyed result into your account.</p>
+    <h3>What is SQL?</h3>
+    <p>
+      SQL is the standard language for dealing with Relational Databases. SQL can be used to insert, search, update, and delete database records. SQL can do lots of other operations, including optimizing and maintenance of databases.
+    </p>
+    <p><a href="https://www.w3schools.com/sql/sql_intro.asp" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <h3>SQL Syntax</h3>
+
+    <pre class="code-block">
+      <code class="sql">
+SELECT employee.first_name,
+       employee.last_name,
+       call.start_time,
+       call.end_time,
+       call_outcome.outcome_text
+FROM employee
+INNER JOIN CALL ON call.employee_id = employee.id
+INNER JOIN call_outcome ON call.call_outcome_id = call_outcome.id
+ORDER BY call.start_time ASC;
+      </code>
+    </pre>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Before minified</small></p>
+
+    <pre class="code-block">
+      <code class="sql">
+SELECT
+    first_name,
+    last_name,
+    employees.department_id,
+    departments.department_id,
+    department_name
+FROM
+    employees
+        INNER JOIN
+    departments ON departments.department_id = employees.department_id
+WHERE
+    employees.department_id IN (1 , 2, 3);
+      </code>
+    </pre>
+
+    <p><small>After minified</small></p>
+
+    <pre class="code-block">
+      <code class="sql">
+SELECT first_name, last_name, employees.department_id, departments.department_id, department_name FROM employees INNER JOIN departments ON departments.department_id=employees.department_id WHERE employees.department_id IN (1 , 2, 3);
+      </code>
+    </pre>
+  </div>
+</div>

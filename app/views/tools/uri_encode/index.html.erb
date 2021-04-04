@@ -1,1 +1,42 @@
 <%= render "tools/partials/converter_page", name: 'URI Encoder', tool: 'uri_encode' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online URL encoder tool which helps to encode/decode an URL.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your URL directly into the editor, then click the encode/decode button to encode/decode the URL.</p>
+    <p>After encoding/decoding, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save result into your account.</p>
+    <h3>What is URL Encode?</h3>
+
+    <p>URL encoding converts characters into a format that can be transmitted over the Internet.</p>
+
+    <p>URLs can only be sent over the Internet using the ASCII character-set.</p>
+
+    <p>Since URLs often contain characters outside the ASCII set, the URL has to be converted into a valid ASCII format.</p>
+
+    <p>URL encoding replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits.</p>
+    <p>URLs cannot contain spaces. URL encoding normally replaces a space with a plus (+) sign or with %20.</p>
+
+    <p><a href="https://www.w3schools.com/tags/ref_urlencode.ASP" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Before encoded</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+http://www.example.com/new pricing.htm
+      </code>
+    </pre>
+
+    <p><small>After encoded</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+http://www.example.com/new%20pricing.htm
+      </code>
+    </pre>
+  </div>
+</div>

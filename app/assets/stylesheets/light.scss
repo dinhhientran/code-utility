@@ -85,6 +85,14 @@ header, footer {
   opacity: 1 !important;
 }
 
+#profile_dropdown_menu {
+  background-color: #fff;
+}
+
+.dropdown-item:hover {
+  color: #1f2227;
+}
+
 #cookie_settings_modal {
   color: inherit !important;
 }
@@ -224,4 +232,57 @@ div.jsoneditor-readonly {
   background-color: #f8f9fa !important;
   border: 1px solid #aaa !important;
   border-radius: 7px !important;
+}
+
+#my-shares-page #search-box input[type=search] {
+  border: 1px solid #aaa;
+  background-color: #fbfbfb;
+  color: #1f2227;
+  border-radius: 20px;
+  margin-left: 15px;
+}
+
+#my-shares-page #search-box .btn {
+  border-radius: 20px;
+  margin-left: 30px;
+}
+
+#my-shares-page #search-box .fa-search {
+  color: #fbfbfb;
+  margin-top: 8px;
+}
+
+.pagination .page-item .page-link {
+  border: 1px solid #aaa;
+  background-color: #343a40;
+  color: #007bff;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #1f2227;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.shares-container .card .close {
+  color: #1f2227;
+}
+
+.shares-container .card, #tools-container .card {
+  border: 1px solid #1115;
+}
+
+.shares-container .card-footer {
+  border-top: 1px solid #1115;
+}
+
+span.dropdown-item:hover {
+  color: #1f2227;
+}
+
+.share-link svg {
+  color: #4448;
 }

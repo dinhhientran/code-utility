@@ -111,9 +111,9 @@ export default class CodeEditor {
 
         this.$wrapBtn.click(function() {
             if (!$(this).hasClass('active')) {
-                _this.$codeMirror.setOption('lineWrapping', true);
+                _this.wrap();
             } else {
-                _this.$codeMirror.setOption('lineWrapping', false);
+                _this.unwrap();
             }
         });
 
@@ -229,6 +229,7 @@ export default class CodeEditor {
 
     unwrap() {
         this.$codeMirror.setOption('lineWrapping', false);
+        this.$wrapBtn.removeClass('active');
     }
 
     getEditorTheme(theme) {

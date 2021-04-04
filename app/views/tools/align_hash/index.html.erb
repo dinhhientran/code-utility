@@ -41,11 +41,7 @@
       <label class="form-check-label" for="value-aligned-check">Value Aligned</label>
     </div>
     <div class="float-right">
-      <label>Theme</label>
-      <select id="theme">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
+      <%= render "tools/partials/theme_buttons" %>
     </div>
   </div>
 </div>
@@ -83,7 +79,7 @@
     <p>This is an online beautifier which help to beautify, align items in nested an array or a hash to nice, organized structure.</p>
     <h3>How to use this tool?</h3>
     <p>You can input/paste your hash/array code directly into the editor. Modify the indent size you want. You can also check the "Value Aligned" to align values in a same vertical line.</p>
-    <p>After beautifying/formatting your hash/array code, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <p>After beautifying/formatting your hash/array code, you can download or save/share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
     <h3>What is the difference between an array and a hash?</h3>
     <p>An array is initially fixed number of memory locations. At each location it should store a predetermined type (e.g. an integer). It may or may not have repeated values.</p>
 

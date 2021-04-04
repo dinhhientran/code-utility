@@ -2,85 +2,152 @@
 <div class="row mt-5">
   <div class="col-md-6 p-3">
     <h3>Introduction</h3>
-    <p>This is an online converter tool which helps to convert HTML to Pug template.</p>
+    <p>This is an online converter tool which helps to convert CSS to SCSS/Sass and vice versa.</p>
     <h3>How to use this tool?</h3>
-    <p>You can input/paste your HTML code directly into the editor, then click the convert button to convert the code.</p>
-    <p>After converting, you can download or save / share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
+    <p>You can input/paste your code directly into the editor, then click the Convert button. After converting, you can download or save/share the result. It will create a link for you to share with others. You can also sign-in using Google/GitHub to save results into your account.</p>
     <h3>What is CSS?</h3>
 
-    <p>Pug is a high-performance template engine heavily influenced by <a href="http://haml.info/" rel="nofollow">Haml</a>
-      and implemented with JavaScript for <a href="http://nodejs.org" rel="nofollow">Node.js</a> and browsers.</p>
+    <p>CSS stands for Cascading Style Sheets. It is a style sheet language which is used to describe the look and formatting of a document written in markup language. It provides an additional feature to HTML. It is generally used with HTML to change the style of web pages and user interfaces. It can also be used with any kind of XML documents including plain XML, SVG and XUL.</p>
 
-    <p><a href="https://pugjs.org/" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+    <p>CSS is used along with HTML and JavaScript in most websites to create user interfaces for web applications and user interfaces for many mobile applications.</p>
 
-    <p class="mt-5">Pug Syntax</p>
+    <p><a href="https://www.w3schools.com/css/css_intro.asp" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">CSS Syntax</p>
     <pre class="code-block">
-      <code class="javascript">
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
-    script(type='text/javascript').
-      if (foo) bar(1 + 5)
-  body
-    h1 Pug - node template engine
-    #container.col
-      if youAreUsingPug
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        Pug is a terse and simple templating language with a
-        strong focus on performance and powerful features.
+      <code class="css">
+p {
+  color: red;
+  text-align: center;
+}
       </code>
     </pre>
 
     <h3>What is SCSS?</h3>
 
-    <h3>What is SASS</h3>
+    <p>SCSS is a preprocessor language that is interrupted or compiled into CSS. It is a special type of SASS(Syntactically Awesome Style Sheets). Scripting of SCSS is done in Saasscript. SCSS contains all the features of CSS with a few extra added on speciality features as well.</p>
+
+    <p>Using SCSS, we can add many additional functionalities to CSS such as variables, nesting and more. All these additional functionalities can make writing CSS much easier and faster as compared to writing the traditional CSS.</p>
+
+    <p><a href="https://sass-lang.com/guide" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">SCSS Syntax</p>
+    <pre class="code-block">
+      <code class="scss">
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+      </code>
+    </pre>
+
+    <h3>What is Sass</h3>
+
+    <p>Sass is a CSS preprocessor, which adds special features such as variables, nested rules and mixins (sometimes referred to as syntactic sugar) into regular CSS. The aim is to make the coding process simpler and more efficient.</p>
+
+    <p><a href="https://sass-lang.com/guide" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">Sass Syntax</p>
+
+    <pre class="code-block">
+      <code class="scss">
+nav
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+  li
+    display: inline-block
+
+  a
+    display: block
+    padding: 6px 12px
+    text-decoration: none
+
+      </code>
+    </pre>
 
   </div>
   <div class="col-md-6 p-3 pl-5">
     <h3>Examples</h3>
-    <p><small>HTML</small></p>
+    <p><small>CSS</small></p>
 
     <pre class="code-block">
-      <code class="xml">
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;title&gt;Pug&lt;/title&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-      if (foo) bar(1 + 5)
-    &lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Pug - node template engine&lt;/h1&gt;
-    &lt;div id=&quot;container&quot; class=&quot;col&quot;&gt;
-      &lt;p&gt;You are amazing&lt;/p&gt;
-      &lt;p&gt;Pug is a terse and simple templating language with a strong focus on performance and powerful features.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
+      <code class="css">
+.alert:hover {
+  font-weight: bold;
+}
+[dir=rtl] .alert {
+  margin-left: 0;
+  margin-right: 10px;
+}
+:not(.alert) {
+  opacity: 0.8;
+}
       </code>
     </pre>
 
-    <p><small>Pug</small></p>
+    <p><small>SCSS</small></p>
 
     <pre class="code-block">
-      <code class="javascript">
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
-    script(type='text/javascript').
-      if (foo) bar(1 + 5)
-  body
-    h1 Pug - node template engine
-    #container.col
-      p You are amazing
-      p Pug is a terse and simple templating language with a strong focus on performance and powerful features.
+      <code class="scss">
+.alert {
+  // The parent selector can be used to add pseudo-classes to the outer
+  // selector.
+  &:hover {
+    font-weight: bold;
+  }
+
+  // It can also be used to style the outer selector in a certain context, such
+  // as a body set to use a right-to-left language.
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  // You can even use it as an argument to pseudo-class selectors.
+  :not(&) {
+    opacity: 0.8;
+  }
+}
     </code>
     </pre>
+
+    <p><small>Sass</small></p>
+
+    <pre class="code-block">
+      <code class="scss">
+.alert
+  // The parent selector can be used to add pseudo-classes to the outer
+  // selector.
+  &:hover
+    font-weight: bold
+
+
+  // It can also be used to style the outer selector in a certain context, such
+  // as a body set to use a right-to-left language.
+  [dir=rtl] &
+    margin-left: 0
+    margin-right: 10px
+
+
+  // You can even use it as an argument to pseudo-class selectors.
+  :not(&)
+    opacity: 0.8
+      </code>
+    </pre>
+
   </div>
 </div>

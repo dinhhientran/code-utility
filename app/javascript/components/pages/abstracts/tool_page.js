@@ -17,8 +17,9 @@ import haml from 'highlight.js/lib/languages/haml';
 import yaml from 'highlight.js/lib/languages/yaml';
 import css from 'highlight.js/lib/languages/css';
 import scss from 'highlight.js/lib/languages/scss';
-import sass from 'highlight.js/lib/languages/sas';
 import javascript from 'highlight.js/lib/languages/javascript';
+import sql from 'highlight.js/lib/languages/sql';
+import plaintext from 'highlight.js/lib/languages/plaintext';
 
 hljs.registerLanguage('c', c);
 hljs.registerLanguage('json', json);
@@ -30,8 +31,9 @@ hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('yaml', yaml);
 hljs.registerLanguage('css', css);
 hljs.registerLanguage('scss', scss);
-hljs.registerLanguage('sass', sass);
 hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('sql', sql);
+hljs.registerLanguage('plaintext', plaintext);
 
 export default class ToolPage extends BasePage {
 
@@ -77,7 +79,7 @@ export default class ToolPage extends BasePage {
         this.$newBtn = $('#new-btn');
         this.downloadBtnId = '#download-btn';
         this.$uploadBtn = $('#upload-btn');
-        this.$themeDdl = $('#theme');
+        this.$themeMode = $('#theme-mode');
         this.$lightThemeStylesheet = $('#light_theme_stylesheet');
         this.$darkThemeStylesheet = $('#dark_theme_stylesheet');
         this.$fileInput = $('input[type=file]');
@@ -136,9 +138,9 @@ export default class ToolPage extends BasePage {
                 }
             );
 
-            this.$copyLink.show().find('span').text(window.gon.base_url + window.gon.reference_number + '/' + window.gon.version);
+            this.$copyLink.show().find('span span').text(window.gon.base_url + window.gon.reference_number + '/' + window.gon.version);
 
-            this.$copyLink.find('.copy').tooltip(
+            this.$copyLink.find('span').tooltip(
                 {
                     placement: 'top',
                     title: 'Copied!',
@@ -147,24 +149,24 @@ export default class ToolPage extends BasePage {
                 }
             );
 
-            new ClipboardJS(this.copyLinkClass + ' .copy', {
+            new ClipboardJS(this.copyLinkClass + ' span', {
                 text: function (trigger) {
                     return window.gon.base_url + window.gon.reference_number + '/' + window.gon.version;
                 }
             }).on('success', function (e) {
                 setTimeout(function () {
-                    $('.link-copy .copy').tooltip('hide');
+                    $('.link-copy span').tooltip('hide');
                 }, 2000);
             });
 
             this.$forkBtn.show().click(function () {
                 _this.sendForkRequest();
             });
-
-            this.$newBtn.show().click(function () {
-                window.location.href = window.gon.tool_url;
-            });
         }
+
+        this.$newBtn.show().click(function () {
+            window.location.href = window.gon.tool_url;
+        });
 
         this.$shareBtn.click(function () {
             if (!_this.isThisShare()) {
@@ -276,21 +278,24 @@ export default class ToolPage extends BasePage {
     initThemeButton() {
         let _this = this;
         let theme = this.theme;
-        this.$themeDdl.select2({width: 70, minimumResultsForSearch: Infinity});
-        this.$themeDdl.val(theme).trigger('change');
 
-        this.$themeDdl.change(function($theme) {
-            theme = $theme.target.value.toLowerCase();
-            _this.setCookie('theme', theme);
-
-            if (theme == 'light') {
-                _this.$lightThemeStylesheet.removeAttr('disabled');
-                _this.$darkThemeStylesheet.attr('disabled', 'disabled');
-            } else {
+        this.$themeMode.find('.btn').click(function() {
+            if ($.trim($(this).text()) == 'Dark Theme') {
                 _this.$darkThemeStylesheet.removeAttr('disabled');
                 _this.$lightThemeStylesheet.attr('disabled', 'disabled');
+                theme = 'dark';
+                $(this).html('<i class="far fa-sun"></i> Light Theme');
+                $(this).removeClass('btn-dark');
+                $(this).addClass('btn-light');
+            } else {
+                _this.$lightThemeStylesheet.removeAttr('disabled');
+                _this.$darkThemeStylesheet.attr('disabled', 'disabled');
+                theme = 'light';
+                $(this).html('<i class="far fa-moon"></i> Dark Theme');
+                $(this).removeClass('btn-light');
+                $(this).addClass('btn-dark');
             }
-
+            _this.setCookie('theme', theme);
             _this.onThemeChange(theme);
         });
     }

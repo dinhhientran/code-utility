@@ -1,1 +1,108 @@
 <%= render "tools/partials/converter_page", name: 'Minify JavaScript' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online minifier tool which helps to minify/compress JavaScript code.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your JavaScript code directly into the editor, then click the minify button to minify the code.</p>
+    <p>After minifying, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save minifyed result into your account.</p>
+    <h3>What is JavaScript?</h3>
+
+    <p>JavaScript stands for Hypertext Markup Language. It allows the user to create and structure sections, paragraphs, headings, links, and blockquotes for web pages and applications.</p>
+
+    <p>JavaScript is not a programming language, meaning it doesn’t have the ability to create dynamic functionality. Instead, it makes it possible to organize and format documents, similarly to Microsoft Word.</p>
+
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">JavaScript Syntax</p>
+    <pre class="code-block">
+      <code class="javascript">
+// program to solve quadratic equation
+let root1, root2;
+
+// take input from the user
+let a = prompt("Enter the first number: ");
+let b = prompt("Enter the second number: ");
+let c = prompt("Enter the third number: ");
+
+// calculate discriminant
+let discriminant = b * b - 4 * a * c;
+
+// condition for real and different roots
+if (discriminant > 0) {
+    root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+    root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+    // result
+    console.log(`The roots of quadratic equation are ${root1} and ${root2}`);
+}
+
+// condition for real and equal roots
+else if (discriminant == 0) {
+    root1 = root2 = -b / (2 * a);
+
+    // result
+    console.log(`The roots of quadratic equation are ${root1} and ${root2}`);
+}
+
+// if roots are not real
+else {
+    let realPart = (-b / (2 * a)).toFixed(2);
+    let imagPart = (Math.sqrt(-discriminant) / (2 * a)).toFixed(2);
+
+    // result
+    console.log(
+    `The roots of quadratic equation are ${realPart} + ${imagPart}i and ${realPart} - ${imagPart}i`
+  );
+}
+      </code>
+    </pre>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>What is Minification?</h3>
+
+    <p>Minification is the process of minimizing code and markup in your web pages and script files. It’s one of the main methods used to reduce load times and bandwidth usage on websites. Minification dramatically improves site speed and accessibility, directly translating into a better user experience. It’s also beneficial to users accessing your website through a limited data plan and who would like to save on their bandwidth usage while surfing the web.</p>
+
+    <h3>Why minify JavaScript?</h3>
+
+    <p>When creating JavaScript developers tend to use spacing, comments and well-named variables to make code and markup readable for themselves. It also helps others who might later work on the assets. While this is a plus in the development phase, it becomes a negative when it comes to serving your pages. Web servers and browsers can parse file content without comments and well-structured code, both of which create additional network traffic without providing any functional benefit.</p>
+
+    <p>To minify JavaScript files, comments and extra spaces need to be removed, as well as crunch variable names so as to minimize code and reduce file size. The minified file version provides the same functionality while reducing the bandwidth of network requests.</p>
+
+    <h3>Examples</h3>
+    <p><small>Before minified</small></p>
+
+    <pre class="code-block">
+      <code class="javascript">
+// program to find the HCF or GCD of two integers
+
+let hcf;
+// take input
+const number1 = prompt('Enter a first positive integer: ');
+const number2 = prompt('Enter a second positive integer: ');
+
+// looping from 1 to number1 and number2
+for (let i = 1; i <= number1 && i <= number2; i++) {
+
+    // check if is factor of both integers
+    if( number1 % i == 0 && number2 % i == 0) {
+        hcf = i;
+    }
+}
+
+// display the hcf
+console.log(`HCF of ${number1} and ${number2} is ${hcf}.`);
+      </code>
+    </pre>
+
+    <p><small>After minified</small></p>
+
+    <pre class="code-block">
+      <code class="javascript">
+let hcf;const number1=prompt('Enter a first positive integer: ');const number2=prompt('Enter a second positive integer: ');for(let i=1;i<=number1&&i<=number2;i++){if(number1%i==0&&number2%i==0){hcf=i}}console.log(`HCF of ${number1} and ${number2} is ${hcf}.`);
+      </code>
+    </pre>
+  </div>
+</div>

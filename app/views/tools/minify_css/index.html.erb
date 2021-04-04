@@ -1,1 +1,82 @@
 <%= render "tools/partials/converter_page", name: 'Minify CSS' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online minifier tool which helps to minify/compress CSS code.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your CSS code directly into the editor, then click the minify button to minify the code.</p>
+    <p>After minifying, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save minifyed result into your account.</p>
+    <h3>What is CSS?</h3>
+
+    <p>CSS stands for Cascading Style Sheets. It is a style sheet language which is used to describe the look and formatting of a document written in markup language. It provides an additional feature to HTML. It is generally used with HTML to change the style of web pages and user interfaces. It can also be used with any kind of XML documents including plain XML, SVG and XUL.</p>
+
+    <p>CSS is used along with HTML and JavaScript in most websites to create user interfaces for web applications and user interfaces for many mobile applications.</p>
+
+    <p><a href="https://www.w3schools.com/css/css_intro.asp" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <p class="mt-5">CSS Syntax</p>
+    <pre class="code-block">
+      <code class="css">
+body {
+    padding-left: 11em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: purple;
+    background-color: #d8da3d
+}
+
+ul.navbar {
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    width: 9em
+}
+
+h1 {
+    font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif
+}
+      </code>
+    </pre>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>What is Minification?</h3>
+
+    <p>Minification is the process of minimizing code and markup in your web pages and script files. It’s one of the main methods used to reduce load times and bandwidth usage on websites. Minification dramatically improves site speed and accessibility, directly translating into a better user experience. It’s also beneficial to users accessing your website through a limited data plan and who would like to save on their bandwidth usage while surfing the web.</p>
+
+    <h3>Why minify CSS?</h3>
+
+    <p>When creating CSS developers tend to use spacing, comments and well-named variables to make code and markup readable for themselves. It also helps others who might later work on the assets. While this is a plus in the development phase, it becomes a negative when it comes to serving your pages. Web servers and browsers can parse file content without comments and well-structured code, both of which create additional network traffic without providing any functional benefit.</p>
+
+    <p>To minify CSS files, comments and extra spaces need to be removed, as well as crunch variable names so as to minimize code and reduce file size. The minified file version provides the same functionality while reducing the bandwidth of network requests.</p>
+
+    <h3>Examples</h3>
+    <p><small>Before minified</small></p>
+
+    <pre class="code-block">
+      <code class="css">
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav li {
+  display: inline-block;
+}
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+      </code>
+    </pre>
+
+    <p><small>After minified</small></p>
+
+    <pre class="code-block">
+      <code class="css">
+nav ul{margin:0;padding:0;list-style:none;}nav li{display:inline-block;}nav a{display:block;padding:6px 12px;text-decoration:none;}
+      </code>
+    </pre>
+  </div>
+</div>

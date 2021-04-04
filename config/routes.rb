@@ -56,7 +56,9 @@ Rails.application.routes.draw do
        :path_names => {
          :sign_in => 'login',
          :sign_out => 'logout'
-       }
+       } do
+    match '/login' => "devise/sessions#new"
+  end
 
   get "user/profile", to: "users/user#profile"
   get "user/shares", to: "users/shares#index"
@@ -68,5 +70,13 @@ Rails.application.routes.draw do
   put "user/add_favorite_tool", to: "users/user#add_favorite_tool"
 
   get "/tag/:slug", to: "tag#index", constraints: {slug: /[a-z0-9]+(?:-[a-z0-9]+)*/}
+
+  get "/releases", to: "releases#index"
+
+  get "/sitemap", to: "sitemap#index"
+
+  get "/privacy", to: "privacy#index"
+
+  get "/terms", to: "terms#index"
 
 end

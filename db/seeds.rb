@@ -12,7 +12,7 @@
 # Tool.create(:name => 'Beautify JavaScript', :alias => 'beautify_js', :description => 'Convert inline/unreadable JavaScript to well formatted code')
 # Tool.create(:name => 'Beautify HTML', :alias => 'beautify_html', :description => 'Convert inline/unreadable HTML to well formatted code')
 # Tool.create(:name => 'Beautify SQL', :alias => 'beautify_sql', :description => 'Convert inline/unreadable SQL to well formatted code')
-# Tool.create(:name => 'HTML to HAML', :alias => 'html2haml', :description => 'Convert HTML/ERB to HAML template code')
+# Tool.create(:name => 'HTML to Haml', :alias => 'html2haml', :description => 'Convert HTML/ERB to Haml template code')
 # Tool.create(:name => 'HTML to Slim', :alias => 'html2slim', :description => 'Convert HTML/ERB to Slim template code')
 # Tool.create(:name => 'HTML to JSX', :alias => 'html2jsx', :description => 'Convert HTML to JSX template code')
 # Tool.create(:name => 'HTML to Pug', :alias => 'html2pug', :description => 'Convert HTML to Pug template code')

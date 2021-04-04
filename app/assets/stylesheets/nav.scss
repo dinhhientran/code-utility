@@ -111,9 +111,11 @@ $bd-purple-bright: #3b528c;
 }
 .dropdown-item:focus,
 .dropdown-item:hover {
-  color: #fff;
   text-decoration: none;
   background-color: #1ebdc2 !important;
+}
+a.dropdown-item:hover {
+  color: #fff !important;
 }
 .sm-menu {
   border-radius: 0;
@@ -158,3 +160,6 @@ $bd-purple-bright: #3b528c;
   background-color: #36a7f7 !important;
 }
 
+li.current-version a {
+  margin-top: 11px !important;
+}

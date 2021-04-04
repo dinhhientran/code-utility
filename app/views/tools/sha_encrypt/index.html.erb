@@ -1,1 +1,44 @@
 <%= render "tools/partials/converter_page", name: 'SHA Encrypter', tool: 'sha_encrypt' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online SHA encrypter tool which helps to encrypt a string using SHA algorithms.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your string directly into the editor, then click the encrypt button to encrypt your string.</p>
+    <p>After encrypting, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save result into your account.</p>
+    <h3>What is SHA?</h3>
+
+    <p>The <b>Secure Hash Algorithms</b> are a family of cryptographic hash functions published by the National Institute of Standards and Technology (NIST) as a U.S. Federal Information Processing Standard (FIPS), including:</p>
+
+    <ul>
+      <li class="mb-2"><b>SHA-0</b>: A retronym applied to the original version of the 160-bit hash function published in 1993 under the name "SHA". It was withdrawn shortly after publication due to an undisclosed "significant flaw" and replaced by the slightly revised version SHA-1.</li>
+      <li class="mb-2"><b>SHA-1</b>: A 160-bit hash function which resembles the earlier MD5 algorithm. This was designed by the National Security Agency (NSA) to be part of the Digital Signature Algorithm. Cryptographic weaknesses were discovered in SHA-1, and the standard was no longer approved for most cryptographic uses after 2010.</li>
+      <li class="mb-2"><b>SHA-2</b>: A family of two similar hash functions, with different block sizes, known as SHA-256 and SHA-512. They differ in the word size; SHA-256 uses 32-byte words where SHA-512 uses 64-byte words. There are also truncated versions of each standard, known as SHA-224, SHA-384, SHA-512/224 and SHA-512/256. These were also designed by the NSA.</li>
+      <li class="mb-2"><b>SHA-3</b>: A hash function formerly called Keccak, chosen in 2012 after a public competition among non-NSA designers. It supports the same hash lengths as SHA-2, and its internal structure differs significantly from the rest of the SHA family.</li>
+    </ul>
+
+    <p>The corresponding standards are FIPS PUB 180 (original SHA), FIPS PUB 180-1 (SHA-1), FIPS PUB 180-2 (SHA-1, SHA-256, SHA-384, and SHA-512). NIST has updated Draft FIPS Publication 202, SHA-3 Standard separate from the Secure Hash Standard (SHS).</p>
+
+    <p><a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Before encrypted</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+Hello, World!
+      </code>
+    </pre>
+
+    <p><small>After encrypted (using SHA-1)</small></p>
+
+    <pre class="code-block">
+      <code class="plaintext">
+0a0a9f2a6772942557ab5355d76af442f8f65e01
+      </code>
+    </pre>
+  </div>
+</div>

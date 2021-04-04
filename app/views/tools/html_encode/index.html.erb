@@ -1,1 +1,141 @@
 <%= render "tools/partials/converter_page", name: 'HTML Encoder', tool: 'html_encode' %>
+<div class="row mt-5">
+  <div class="col-md-6 p-3">
+    <h3>Introduction</h3>
+    <p>This is an online HTML encoder tool which helps to converts characters to HTML entities.</p>
+    <h3>How to use this tool?</h3>
+    <p>You can input/paste your HTML directly into the editor, then click the encode/decode button to encode/decode the HTML.</p>
+    <p>After encoding/decoding, you can download, save or share the result. It will create a short link for you to share with others. You can also sign-in using Google/GitHub to save result into your account.</p>
+    <h3>What is HTML Entity?</h3>
+
+    <p>An HTML entity is a piece of text ("string") that begins with an ampersand (&) and ends with a semicolon (;) . Entities are frequently used to display reserved characters (which would otherwise be interpreted as HTML code), and invisible characters (like non-breaking spaces). You can also use them in place of other characters that are difficult to type with a standard keyboard.</p>
+
+    <p><a href="https://www.w3schools.com/html/html_entities.asp" target="_blank">Learn more <i class="fas fa-angle-double-right"></i></a></p>
+
+    <h3>Some Useful HTML Character Entities</h3>
+    <table class="table table-striped supported-language-table mt-3"  style="font-size: 0.8em; border-radius: 10px; overflow: hidden">
+      <thead>
+        <tr>
+          <th scope="col">Result</th>
+          <th scope="col">Description</th>
+          <th scope="col">Entity Name</th>
+          <th scope="col">Entity Number</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td style="height: 29px"></td>
+        <td style="height: 29px">non-breaking space</td>
+        <td style="height: 29px">&amp;nbsp;</td>
+        <td style="height: 29px">&amp;#160;</td>
+      </tr>
+      <tr>
+        <td>&lt;</td>
+        <td>less than</td>
+        <td>&amp;lt;</td>
+        <td>&amp;#60;</td>
+      </tr>
+      <tr>
+        <td>&gt;</td>
+        <td>greater than</td>
+        <td>&amp;gt;</td>
+        <td>&amp;#62;</td>
+      </tr>
+      <tr>
+        <td>&amp;</td>
+        <td>ampersand</td>
+        <td>&amp;amp;</td>
+        <td>&amp;#38;</td>
+      </tr>
+      <tr>
+        <td>"</td>
+        <td>double quotation mark </td>
+        <td>&amp;quot;</td>
+        <td>&amp;#34;</td>
+      </tr>
+      <tr>
+        <td>'</td>
+        <td>single quotation mark (apostrophe) </td>
+        <td>&amp;apos;</td>
+        <td>&amp;#39;</td>
+      </tr>
+      <tr>
+        <td>¢</td>
+        <td>cent</td>
+        <td>&amp;cent;</td>
+        <td>&amp;#162;</td>
+      </tr>
+      <tr>
+        <td>£</td>
+        <td>pound</td>
+        <td>&amp;pound;</td>
+        <td>&amp;#163;</td>
+      </tr>
+      <tr>
+        <td>¥</td>
+        <td>yen</td>
+        <td>&amp;yen;</td>
+        <td>&amp;#165;</td>
+      </tr>
+      <tr>
+        <td>€</td>
+        <td>euro</td>
+        <td>&amp;euro;</td>
+        <td>&amp;#8364;</td>
+      </tr>
+      <tr>
+        <td>©</td>
+        <td>copyright</td>
+        <td>&amp;copy;</td>
+        <td>&amp;#169;</td>
+      </tr>
+      <tr>
+        <td>®</td>
+        <td>registered trademark</td>
+        <td>&amp;reg;</td>
+        <td>&amp;#174;</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="col-md-6 p-3 pl-5">
+    <h3>Examples</h3>
+    <p><small>Before encoded</small></p>
+
+    <pre class="code-block">
+      <code class="xml">
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;content&quot;&gt;
+      &lt;h1 class=&quot;title&quot;&gt;Hello World!&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </code>
+    </pre>
+
+    <p><small>After encoded</small></p>
+
+    <pre class="code-block">
+      <code class="">
+&amp;lt;!doctype html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;title&amp;gt;Hello World!&amp;lt;/title&amp;gt;
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;lt;div id=&amp;quot;content&amp;quot;&amp;gt;
+      &amp;lt;h1 class=&amp;quot;title&amp;quot;&amp;gt;Hello World!&amp;lt;/h1&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+      </code>
+    </pre>
+  </div>
+</div>
