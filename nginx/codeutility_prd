@@ -46,8 +46,8 @@ server {
     listen [::]:443 ssl;
     server_name  $page;
 
-    ssl_certificate      /app/keystore/codeutility_prd.crt;
-    ssl_certificate_key  /app/keystore/codeutitlity_prd.key;
+    ssl_certificate      /etc/letsencrypt/live/codeutility.io/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/codeutility.io/privkey.pem;
 
     ssl_session_cache    shared:SSL:1m;
     ssl_session_timeout  5m;
@@ -60,10 +60,10 @@ server {
 	error_page 502 503 = @maintenance;
     error_page 404 = @error_404;
 
-	access_log /app/log/nginx/access.log; 
-	error_log /app/log/nginx/error.log;
+	access_log /app/log/nginx/codeutility_access.log;
+    error_log /app/log/nginx/codeutility_error.log;
 
-    location ~* \.(js|jpg|png|css|ico|eot|svg|ttf|woff|woff2|map|txt)$ {
+    location ~* \.(js|css|ico|eot|ttf|woff|woff2|map|txt)$ {
         root  $app_root/public/;
         add_header 'Access-Control-Allow-Origin' "*" always;
         add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS' always;
