@@ -113,4 +113,6 @@ Rails.application.configure do
   config.hosts << 'codeutility.io'
   config.hosts << /[a-z0-9]+\.codeutility\.io/
 
+  config.action_controller.default_url_options = { host:'codeutility.io' , protocol: 'https'}
+
 end
