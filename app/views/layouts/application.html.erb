@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= i18n(@page, 'title') %></title>
+    <title><%= i18n(@page, @tag, 'title') %></title>
     <meta charset="UTF-8">
-    <meta name="description" content="<%= i18n(@page, 'description') %>">
-    <meta name="keywords" content="<%= i18n(@page, 'keywords') %>">
+    <meta name="description" content="<%= i18n(@page, @tag, 'description') %>">
+    <meta name="keywords" content="<%= i18n(@page, @tag, 'keywords') %>">
     <meta name="author" content="Hien Tran">
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="<%= current_host_url(@page, @is_tool) %>" />
-    <meta property="og:title" content="<%= i18n(@page, 'title') %>">
-    <meta property="og:description" content="<%= i18n(@page, 'description') %>">
+    <meta property="og:title" content="<%= i18n(@page, @tag, 'title') %>">
+    <meta property="og:description" content="<%= i18n(@page, @tag, 'description') %>">
     <meta property="og:image" content="<%= ENV['ASSET_HOST'] %>/thumbnail.png">
     <meta property="og:url" content="<%= current_host_url(@page, @is_tool) %>">
-    <meta name="twitter:title" content="<%= i18n(@page, 'title') %>">
-    <meta name="twitter:description" content="<%= i18n(@page, 'description') %>">
+    <meta name="twitter:title" content="<%= i18n(@page, @tag, 'title') %>">
+    <meta name="twitter:description" content="<%= i18n(@page, @tag, 'description') %>">
     <meta name="twitter:image" content="<%= ENV['ASSET_HOST'] %>/thumbnail.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="shortcut icon" type="image/x-icon" href="<%= ENV['BASE_URL'] %>favicon.ico">

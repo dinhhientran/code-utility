@@ -9,7 +9,7 @@ module ApplicationHelper
     ENV[(is_tool ? page.upcase : 'BASE') + "_URL"]
   end
 
-  def i18n(page, locale)
-    I18n.t('page.' + page + '.' + locale)
+  def i18n(page, tag, locale)
+    I18n.t('page.' + page + '.' + locale) + (!tag.nil? ? " \"%s\"" % tag.slug : "")
   end
 end
