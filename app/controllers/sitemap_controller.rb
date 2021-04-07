@@ -46,7 +46,7 @@ class SitemapController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml { render :xml => @records }
+      format.xml { render :records => @records }
     end
   end
 

@@ -72,6 +72,7 @@ server {
         proxy_buffers 100 128k;
         proxy_set_header   X-NginX-Proxy  true;
         proxy_read_timeout 120;
+        client_max_body_size 3M;
     }
 
     location @maintenance {
